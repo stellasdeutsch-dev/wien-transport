@@ -605,6 +605,17 @@ b,strong{font-weight:700}
 .dock .btn{min-height:48px;padding:0 18px;font-size:11px;letter-spacing:.14em}
 @media (min-width:860px){.dock{left:50%;right:auto;width:520px;margin-left:-260px}}
 
+/* cyrillic transcription */
+.cy{display:block;font-size:12.5px;line-height:1.35;font-weight:600;color:#9A8FB0;letter-spacing:.01em;margin-top:3px;font-style:normal}
+.wc .fa .cy{margin-top:-2px}
+.pl .cy,.scard .cy,.callcard .cy,.msg.me .cy,.bigcard .cy{color:rgba(255,255,255,.85)}
+.stoer .cy{color:#9A9AB0}
+.sent + .cy,#sentcy{font-size:14px;margin-top:2px}
+.tk .cy{margin:-2px 0 6px}
+.stepcap .cy{font-size:13.5px}
+.tbox .say-line{flex-wrap:wrap}
+#tcy{flex-basis:100%;padding-left:50px;font-size:13.5px}
+
 /* reveal fallback */
 .rv{transition:opacity .7s ease,translate .7s cubic-bezier(.2,.9,.3,1)}
 html.io .rv:not(.in){translate:0 26px}
@@ -802,7 +813,7 @@ html.io .rv:not(.in){translate:0 26px}
         <div class="tkwrap">
           <div class="tk" id="tk">
             <div class="tkh"><span>Wiener Linien</span><span>Kernzone 100</span></div>
-            <div class="tkn" id="tkn">Einzelfahrschein</div>
+            <div class="tkn" id="tkn">Einzelfahrschein</div><div class="cy" id="tkcy">[а́йнцельфаршайн]</div>
             <div class="tkd" id="tkd">Одна поездка в одну сторону.</div>
             <div class="tkf"><span id="tkr">≈ одна поездка</span><button class="say" id="tksay" data-say="der Einzelfahrschein" aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button><span class="stampbox" id="tkst">noch nicht entwertet</span></div>
           </div>
@@ -814,14 +825,14 @@ html.io .rv:not(.in){translate:0 26px}
     <h3 class="h2" style="margin-top:46px">Слова для кассы и автомата</h3>
     <div class="legend"><span style="background:var(--violet)">der</span><span style="background:var(--coral)">die</span><span style="background:var(--yellow)">das</span><span style="background:#C84FD0">глагол / слово</span></div>
     <div class="words">
-      <div class="wc der rv" data-say="der Fahrschein"><div class="in"><div class="fa"><span class="art">der</span><img src="../media/e-ticket.webp" alt="" loading="lazy"><div class="w" lang="de">Fahr&shy;schein</div><span class="tap"><svg class="ic"><use href="#i-repeat"/></svg>нажми</span></div><div class="fb"><div class="tr">билет</div><div class="ex">Ein Fahrschein, bitte.<br>Один билет, пожалуйста.</div></div></div></div>
-      <div class="wc die rv" data-say="die Trafik"><div class="in"><div class="fa"><span class="art">die</span><img src="../media/e-books.webp" alt="" loading="lazy"><div class="w" lang="de">Trafik</div><span class="tap"><svg class="ic"><use href="#i-repeat"/></svg>нажми</span></div><div class="fb"><div class="tr">киоск с газетами и билетами</div><div class="ex">Чисто австрийское слово. В Германии не поймут.</div></div></div></div>
-      <div class="wc der rv" data-say="der Automat"><div class="in"><div class="fa"><span class="art">der</span><img src="../media/e-euro.webp" alt="" loading="lazy"><div class="w" lang="de">Automat</div><span class="tap"><svg class="ic"><use href="#i-repeat"/></svg>нажми</span></div><div class="fb"><div class="tr">автомат</div><div class="ex">Der Automat nimmt auch Karte.<br>Автомат берёт и карту.</div></div></div></div>
-      <div class="wc das rv" data-say="das Handyticket"><div class="in"><div class="fa"><span class="art">das</span><img src="../media/e-phone.webp" alt="" loading="lazy"><div class="w" lang="de">Handy&shy;ticket</div><span class="tap"><svg class="ic"><use href="#i-repeat"/></svg>нажми</span></div><div class="fb"><div class="tr">билет в телефоне</div><div class="ex">Покупаешь в приложении WienMobil.</div></div></div></div>
-      <div class="wc die rv" data-say="die Wochenkarte"><div class="in"><div class="fa"><span class="art">die</span><img src="../media/e-backpack.webp" alt="" loading="lazy"><div class="w" lang="de">Wochen&shy;karte</div><span class="tap"><svg class="ic"><use href="#i-repeat"/></svg>нажми</span></div><div class="fb"><div class="tr">недельный проездной</div><div class="ex">С понедельника до понедельника, 9:00.</div></div></div></div>
-      <div class="wc die rv" data-say="die Jahreskarte"><div class="in"><div class="fa"><span class="art">die</span><img src="../media/e-graduation.webp" alt="" loading="lazy"><div class="w" lang="de">Jahres&shy;karte</div><span class="tap"><svg class="ic"><use href="#i-repeat"/></svg>нажми</span></div><div class="fb"><div class="tr">годовой проездной</div><div class="ex">Венцы любят её больше шницеля. Почти.</div></div></div></div>
-      <div class="wc vb rv" data-say="entwerten"><div class="in"><div class="fa"><span class="art">глагол</span><img src="../media/e-money.webp" alt="" loading="lazy"><div class="w" lang="de">ent&shy;werten</div><span class="tap"><svg class="ic"><use href="#i-repeat"/></svg>нажми</span></div><div class="fb"><div class="tr">пробить, отметить</div><div class="ex">Bitte den Fahrschein entwerten!<br>Не забудь отметить билет!</div></div></div></div>
-      <div class="wc vb rv" data-say="gültig"><div class="in"><div class="fa"><span class="art">слово</span><img src="../media/e-check.webp" alt="" loading="lazy"><div class="w" lang="de">gültig</div><span class="tap"><svg class="ic"><use href="#i-repeat"/></svg>нажми</span></div><div class="fb"><div class="tr">действительный</div><div class="ex">Der Fahrschein ist gültig.<br>Билет действителен.</div></div></div></div>
+      <div class="wc der rv" data-say="der Fahrschein"><div class="in"><div class="fa"><span class="art">der</span><img src="../media/e-ticket.webp" alt="" loading="lazy"><div class="w" lang="de">Fahr&shy;schein</div><div class="cy">[дэр фа́ршайн]</div><span class="tap"><svg class="ic"><use href="#i-repeat"/></svg>нажми</span></div><div class="fb"><div class="tr">билет</div><div class="ex">Ein Fahrschein, bitte.<br>Один билет, пожалуйста.</div></div></div></div>
+      <div class="wc die rv" data-say="die Trafik"><div class="in"><div class="fa"><span class="art">die</span><img src="../media/e-books.webp" alt="" loading="lazy"><div class="w" lang="de">Trafik</div><div class="cy">[ди трафи́к]</div><span class="tap"><svg class="ic"><use href="#i-repeat"/></svg>нажми</span></div><div class="fb"><div class="tr">киоск с газетами и билетами</div><div class="ex">Чисто австрийское слово. В Германии не поймут.</div></div></div></div>
+      <div class="wc der rv" data-say="der Automat"><div class="in"><div class="fa"><span class="art">der</span><img src="../media/e-euro.webp" alt="" loading="lazy"><div class="w" lang="de">Automat</div><div class="cy">[дэр аутома́т]</div><span class="tap"><svg class="ic"><use href="#i-repeat"/></svg>нажми</span></div><div class="fb"><div class="tr">автомат</div><div class="ex">Der Automat nimmt auch Karte.<br>Автомат берёт и карту.</div></div></div></div>
+      <div class="wc das rv" data-say="das Handyticket"><div class="in"><div class="fa"><span class="art">das</span><img src="../media/e-phone.webp" alt="" loading="lazy"><div class="w" lang="de">Handy&shy;ticket</div><div class="cy">[дас хэ́ндитикет]</div><span class="tap"><svg class="ic"><use href="#i-repeat"/></svg>нажми</span></div><div class="fb"><div class="tr">билет в телефоне</div><div class="ex">Покупаешь в приложении WienMobil.</div></div></div></div>
+      <div class="wc die rv" data-say="die Wochenkarte"><div class="in"><div class="fa"><span class="art">die</span><img src="../media/e-backpack.webp" alt="" loading="lazy"><div class="w" lang="de">Wochen&shy;karte</div><div class="cy">[ди во́хенкарте]</div><span class="tap"><svg class="ic"><use href="#i-repeat"/></svg>нажми</span></div><div class="fb"><div class="tr">недельный проездной</div><div class="ex">С понедельника до понедельника, 9:00.</div></div></div></div>
+      <div class="wc die rv" data-say="die Jahreskarte"><div class="in"><div class="fa"><span class="art">die</span><img src="../media/e-graduation.webp" alt="" loading="lazy"><div class="w" lang="de">Jahres&shy;karte</div><div class="cy">[ди я́рескарте]</div><span class="tap"><svg class="ic"><use href="#i-repeat"/></svg>нажми</span></div><div class="fb"><div class="tr">годовой проездной</div><div class="ex">Венцы любят её больше шницеля. Почти.</div></div></div></div>
+      <div class="wc vb rv" data-say="entwerten"><div class="in"><div class="fa"><span class="art">глагол</span><img src="../media/e-money.webp" alt="" loading="lazy"><div class="w" lang="de">ent&shy;werten</div><div class="cy">[энтвэ́ртен]</div><span class="tap"><svg class="ic"><use href="#i-repeat"/></svg>нажми</span></div><div class="fb"><div class="tr">пробить, отметить</div><div class="ex">Bitte den Fahrschein entwerten!<br>Не забудь отметить билет!</div></div></div></div>
+      <div class="wc vb rv" data-say="gültig"><div class="in"><div class="fa"><span class="art">слово</span><img src="../media/e-check.webp" alt="" loading="lazy"><div class="w" lang="de">gültig</div><div class="cy">[гю́льтиш]</div><span class="tap"><svg class="ic"><use href="#i-repeat"/></svg>нажми</span></div><div class="fb"><div class="tr">действительный</div><div class="ex">Der Fahrschein ist gültig.<br>Билет действителен.</div></div></div></div>
     </div>
   </div>
 </section>
@@ -860,7 +871,7 @@ html.io .rv:not(.in){translate:0 26px}
       </div>
       <div>
         <div class="stepcap" aria-live="polite">
-          <div class="say-line"><button class="say" id="entsay" data-say="Ich habe einen Fahrschein gekauft." aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button><div><div class="de" id="entde">Ich habe einen Fahrschein gekauft.</div><p id="entru">Билет куплен. Но пока это просто бумажка.</p></div></div>
+          <div class="say-line"><button class="say" id="entsay" data-say="Ich habe einen Fahrschein gekauft." aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button><div><div class="de" id="entde">Ich habe einen Fahrschein gekauft.</div><div class="cy" id="entcy">[ихь ха́бе а́йнен фа́ршайн гека́уфт]</div><p id="entru">Билет куплен. Но пока это просто бумажка.</p></div></div>
         </div>
         <div class="vs">
           <div class="a rv"><img src="../media/e-ticket.webp" alt="" loading="lazy"><b>Бумажный билет</b><span>Нет даты и времени? Штампуй. До поездки, а не когда увидел контролёра.</span></div>
@@ -882,10 +893,10 @@ html.io .rv:not(.in){translate:0 26px}
       <img class="bc-emo emo" src="../media/e-busstop.webp" alt="" loading="lazy">
     </div>
     <div class="places" id="places">
-      <div class="pl a"><img class="pin" src="../media/e-pin.webp" alt=""><button class="say" data-say="die Haltestelle" aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button><div class="pk">Трамвай и автобус</div><div class="pw" lang="de">die Halte&shy;stelle<small>остановка</small></div><p>Столбик с табличкой на улице. «Wo ist die Haltestelle?»</p><img class="emo" src="../media/e-busstop.webp" alt="" loading="lazy"></div>
-      <div class="pl b"><img class="pin" src="../media/e-pin.webp" alt=""><button class="say" data-say="die Station" aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button><div class="pk">U-Bahn</div><div class="pw" lang="de">die Station<small>станция метро</small></div><p>Вход с большой буквой U. В вагоне слышишь: «Nächste Station…»</p><img class="emo" src="../media/e-metro.webp" alt="" loading="lazy"></div>
-      <div class="pl c"><img class="pin" src="../media/e-pin.webp" alt=""><button class="say" data-say="der Bahnsteig" aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button><div class="pk">Внутри станции</div><div class="pw" lang="de">der Bahn&shy;steig<small>платформа</small></div><p>Место, где стоишь и ждёшь свой поезд. Не перепутай сторону.</p><img class="emo" src="../media/e-station.webp" alt="" loading="lazy"></div>
-      <div class="pl d"><img class="pin" src="../media/e-pin.webp" alt=""><button class="say" data-say="das Gleis" aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button><div class="pk">S-Bahn и поезда</div><div class="pw" lang="de">das Gleis<small>путь</small></div><p>Путь с номером. На вокзале: «Zug nach Salzburg, Gleis 7».</p><img class="emo" src="../media/e-light.webp" alt="" loading="lazy"></div>
+      <div class="pl a"><img class="pin" src="../media/e-pin.webp" alt=""><button class="say" data-say="die Haltestelle" aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button><div class="pk">Трамвай и автобус</div><div class="pw" lang="de">die Halte&shy;stelle<small>остановка</small></div><div class="cy">[ди ха́льтэштэлле]</div><p>Столбик с табличкой на улице. «Wo ist die Haltestelle?»</p><img class="emo" src="../media/e-busstop.webp" alt="" loading="lazy"></div>
+      <div class="pl b"><img class="pin" src="../media/e-pin.webp" alt=""><button class="say" data-say="die Station" aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button><div class="pk">U-Bahn</div><div class="pw" lang="de">die Station<small>станция метро</small></div><div class="cy">[ди штацьо́н]</div><p>Вход с большой буквой U. В вагоне слышишь: «Nächste Station…»</p><img class="emo" src="../media/e-metro.webp" alt="" loading="lazy"></div>
+      <div class="pl c"><img class="pin" src="../media/e-pin.webp" alt=""><button class="say" data-say="der Bahnsteig" aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button><div class="pk">Внутри станции</div><div class="pw" lang="de">der Bahn&shy;steig<small>платформа</small></div><div class="cy">[дэр ба́нштайк]</div><p>Место, где стоишь и ждёшь свой поезд. Не перепутай сторону.</p><img class="emo" src="../media/e-station.webp" alt="" loading="lazy"></div>
+      <div class="pl d"><img class="pin" src="../media/e-pin.webp" alt=""><button class="say" data-say="das Gleis" aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button><div class="pk">S-Bahn и поезда</div><div class="pw" lang="de">das Gleis<small>путь</small></div><div class="cy">[дас глайс]</div><p>Путь с номером. На вокзале: «Zug nach Salzburg, Gleis 7».</p><img class="emo" src="../media/e-light.webp" alt="" loading="lazy"></div>
     </div>
     <div class="story rv" style="max-width:640px;margin:6px 0 26px">
       <p>Направление в Вене называют по конечной.</p>
@@ -912,14 +923,14 @@ html.io .rv:not(.in){translate:0 26px}
 
     <h3 class="h2" style="margin-top:46px">Слова для дороги</h3>
     <div class="words">
-      <div class="wc die rv" data-say="die Bim"><div class="in"><div class="fa"><span class="art">die</span><img src="../media/e-tram.webp" alt="" loading="lazy"><div class="w" lang="de">Bim</div><span class="tap"><svg class="ic"><use href="#i-repeat"/></svg>нажми</span></div><div class="fb"><div class="tr">трамвай по-венски</div><div class="ex">Официально Straßenbahn. Но кто так говорит? Звенит «бим», вот и Bim.</div></div></div></div>
-      <div class="wc die rv" data-say="die Öffis"><div class="in"><div class="fa"><span class="art">die</span><img src="../media/e-bus.webp" alt="" loading="lazy"><div class="w" lang="de">Öffis</div><span class="tap"><svg class="ic"><use href="#i-repeat"/></svg>нажми</span></div><div class="fb"><div class="tr">общественный транспорт</div><div class="ex">Ich fahre mit den Öffis.<br>Я езжу на общественном.</div></div></div></div>
-      <div class="wc die rv" data-say="die Richtung"><div class="in"><div class="fa"><span class="art">die</span><img src="../media/e-map.webp" alt="" loading="lazy"><div class="w" lang="de">Richtung</div><span class="tap"><svg class="ic"><use href="#i-repeat"/></svg>нажми</span></div><div class="fb"><div class="tr">направление</div><div class="ex">U1 Richtung Leopoldau.<br>U1 в сторону Leopoldau.</div></div></div></div>
-      <div class="wc die rv" data-say="die Endstation"><div class="in"><div class="fa"><span class="art">die</span><img src="../media/e-check.webp" alt="" loading="lazy"><div class="w" lang="de">End&shy;station</div><span class="tap"><svg class="ic"><use href="#i-repeat"/></svg>нажми</span></div><div class="fb"><div class="tr">конечная</div><div class="ex">Endstation. Bitte alle aussteigen.<br>Конечная. Все на выход.</div></div></div></div>
-      <div class="wc der rv" data-say="der Haltewunsch"><div class="in"><div class="fa"><span class="art">der</span><img src="../media/e-bell.webp" alt="" loading="lazy"><div class="w" lang="de">Halte&shy;wunsch</div><span class="tap"><svg class="ic"><use href="#i-repeat"/></svg>нажми</span></div><div class="fb"><div class="tr">кнопка «остановите»</div><div class="ex">В автобусе жмёшь её, иначе водитель может проехать мимо.</div></div></div></div>
-      <div class="wc der rv" data-say="der Ausgang"><div class="in"><div class="fa"><span class="art">der</span><img src="../media/e-door.webp" alt="" loading="lazy"><div class="w" lang="de">Ausgang</div><span class="tap"><svg class="ic"><use href="#i-repeat"/></svg>нажми</span></div><div class="fb"><div class="tr">выход</div><div class="ex">Wo ist der Ausgang?<br>Где выход?</div></div></div></div>
-      <div class="wc die rv" data-say="die Rolltreppe"><div class="in"><div class="fa"><span class="art">die</span><img src="../media/e-station.webp" alt="" loading="lazy"><div class="w" lang="de">Roll&shy;treppe</div><span class="tap"><svg class="ic"><use href="#i-repeat"/></svg>нажми</span></div><div class="fb"><div class="tr">эскалатор</div><div class="ex">Rechts stehen, links gehen.<br>Справа стоят, слева идут.</div></div></div></div>
-      <div class="wc der rv" data-say="der Lift"><div class="in"><div class="fa"><span class="art">der</span><img src="../media/e-rocket.webp" alt="" loading="lazy"><div class="w" lang="de">Lift</div><span class="tap"><svg class="ic"><use href="#i-repeat"/></svg>нажми</span></div><div class="fb"><div class="tr">лифт</div><div class="ex">В Германии чаще Aufzug. В Австрии Lift. Оба правильные.</div></div></div></div>
+      <div class="wc die rv" data-say="die Bim"><div class="in"><div class="fa"><span class="art">die</span><img src="../media/e-tram.webp" alt="" loading="lazy"><div class="w" lang="de">Bim</div><div class="cy">[ди бим]</div><span class="tap"><svg class="ic"><use href="#i-repeat"/></svg>нажми</span></div><div class="fb"><div class="tr">трамвай по-венски</div><div class="ex">Официально Straßenbahn. Но кто так говорит? Звенит «бим», вот и Bim.</div></div></div></div>
+      <div class="wc die rv" data-say="die Öffis"><div class="in"><div class="fa"><span class="art">die</span><img src="../media/e-bus.webp" alt="" loading="lazy"><div class="w" lang="de">Öffis</div><div class="cy">[ди ё́ффис]</div><span class="tap"><svg class="ic"><use href="#i-repeat"/></svg>нажми</span></div><div class="fb"><div class="tr">общественный транспорт</div><div class="ex">Ich fahre mit den Öffis.<br>Я езжу на общественном.</div></div></div></div>
+      <div class="wc die rv" data-say="die Richtung"><div class="in"><div class="fa"><span class="art">die</span><img src="../media/e-map.webp" alt="" loading="lazy"><div class="w" lang="de">Richtung</div><div class="cy">[ди ри́хтунг]</div><span class="tap"><svg class="ic"><use href="#i-repeat"/></svg>нажми</span></div><div class="fb"><div class="tr">направление</div><div class="ex">U1 Richtung Leopoldau.<br>U1 в сторону Leopoldau.</div></div></div></div>
+      <div class="wc die rv" data-say="die Endstation"><div class="in"><div class="fa"><span class="art">die</span><img src="../media/e-check.webp" alt="" loading="lazy"><div class="w" lang="de">End&shy;station</div><div class="cy">[ди э́нтштацьон]</div><span class="tap"><svg class="ic"><use href="#i-repeat"/></svg>нажми</span></div><div class="fb"><div class="tr">конечная</div><div class="ex">Endstation. Bitte alle aussteigen.<br>Конечная. Все на выход.</div></div></div></div>
+      <div class="wc der rv" data-say="der Haltewunsch"><div class="in"><div class="fa"><span class="art">der</span><img src="../media/e-bell.webp" alt="" loading="lazy"><div class="w" lang="de">Halte&shy;wunsch</div><div class="cy">[дэр ха́льтэвунш]</div><span class="tap"><svg class="ic"><use href="#i-repeat"/></svg>нажми</span></div><div class="fb"><div class="tr">кнопка «остановите»</div><div class="ex">В автобусе жмёшь её, иначе водитель может проехать мимо.</div></div></div></div>
+      <div class="wc der rv" data-say="der Ausgang"><div class="in"><div class="fa"><span class="art">der</span><img src="../media/e-door.webp" alt="" loading="lazy"><div class="w" lang="de">Ausgang</div><div class="cy">[дэр а́усганг]</div><span class="tap"><svg class="ic"><use href="#i-repeat"/></svg>нажми</span></div><div class="fb"><div class="tr">выход</div><div class="ex">Wo ist der Ausgang?<br>Где выход?</div></div></div></div>
+      <div class="wc die rv" data-say="die Rolltreppe"><div class="in"><div class="fa"><span class="art">die</span><img src="../media/e-station.webp" alt="" loading="lazy"><div class="w" lang="de">Roll&shy;treppe</div><div class="cy">[ди ро́льтрэпэ]</div><span class="tap"><svg class="ic"><use href="#i-repeat"/></svg>нажми</span></div><div class="fb"><div class="tr">эскалатор</div><div class="ex">Rechts stehen, links gehen.<br>Справа стоят, слева идут.</div></div></div></div>
+      <div class="wc der rv" data-say="der Lift"><div class="in"><div class="fa"><span class="art">der</span><img src="../media/e-rocket.webp" alt="" loading="lazy"><div class="w" lang="de">Lift</div><div class="cy">[дэр лифт]</div><span class="tap"><svg class="ic"><use href="#i-repeat"/></svg>нажми</span></div><div class="fb"><div class="tr">лифт</div><div class="ex">В Германии чаще Aufzug. В Австрии Lift. Оба правильные.</div></div></div></div>
     </div>
   </div>
 </section>
@@ -963,7 +974,7 @@ html.io .rv:not(.in){translate:0 26px}
         <circle id="mdot" cx="40" cy="200" r="11" fill="#319F49" stroke="#fff" stroke-width="4"/>
       </svg>
       <div class="mapctl">
-        <div class="say-line"><button class="say" id="msay" aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button><div style="flex:1;min-width:0"><div class="sent" id="sent" lang="de"></div><div class="sentru" id="sentru"></div></div></div>
+        <div class="say-line"><button class="say" id="msay" aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button><div style="flex:1;min-width:0"><div class="sent" id="sent" lang="de"></div><div class="cy" id="sentcy"></div><div class="sentru" id="sentru"></div></div></div>
         <div class="anno" id="anno"><img src="../media/e-speaker.webp" alt=""><span id="annot">U4 Richtung Heiligenstadt</span></div>
         <div class="steps" id="msteps">
           <button data-i="0" class="on"><b>01</b>Сел</button><button data-i="1"><b>02</b>Еду</button><button data-i="2"><b>03</b>Пересел</button><button data-i="3"><b>04</b>Еду</button><button data-i="4"><b>05</b>Вышел</button>
@@ -984,11 +995,11 @@ html.io .rv:not(.in){translate:0 26px}
     <div class="tren">
       <div class="tbox rv">
         <div class="tswitch" id="tsw"><button data-k="ein" class="on">einsteigen</button><button data-k="aus">aussteigen</button><button data-k="um">umsteigen</button></div>
-        <div class="say-line"><button class="say" id="tsay" aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button><div class="tline" id="tline" lang="de"></div></div>
+        <div class="say-line"><button class="say" id="tsay" aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button><div class="tline" id="tline" lang="de"></div><div class="cy" id="tcy"></div></div>
         <div class="tru" id="tru"></div>
         <div class="story" style="margin-top:16px;font-size:15px">
           <p style="font-size:15px">В прошедшем <b>ge-</b> садится в середину. И глагол всегда с <b>sein</b>:</p>
-          <p style="font-size:15px"><span class="de">Ich bin eingestiegen · ausgestiegen · umgestiegen.</span></p>
+          <p style="font-size:15px"><span class="de">Ich bin eingestiegen · ausgestiegen · umgestiegen.</span><span class="cy">[ихь бин а́йнгештиген · а́усгештиген · у́мгештиген]</span></p>
         </div>
       </div>
       <div class="doorscene rv" id="door">
@@ -1001,8 +1012,8 @@ html.io .rv:not(.in){translate:0 26px}
       </div>
     </div>
     <div class="phr" style="margin-top:20px">
-      <button class="ph rv" data-say="Steigen Sie bei der nächsten aus?"><img src="../media/e-door.webp" alt="" loading="lazy"><div><b lang="de">Steigen Sie bei der nächsten aus?</b><span>Вы выходите на следующей?</span></div><span class="say"><svg class="ic"><use href="#i-volume-2"/></svg></span></button>
-      <button class="ph rv" data-say="Entschuldigung, darf ich bitte durch?"><img src="../media/e-pleading.webp" alt="" loading="lazy"><div><b lang="de">Entschuldigung, darf ich bitte durch?</b><span>Извините, можно пройти?</span></div><span class="say"><svg class="ic"><use href="#i-volume-2"/></svg></span></button>
+      <button class="ph rv" data-say="Steigen Sie bei der nächsten aus?"><img src="../media/e-door.webp" alt="" loading="lazy"><div><b lang="de">Steigen Sie bei der nächsten aus?</b><span class="cy">[шта́йген зи бай дэр нэ́хстен аус?]</span><span>Вы выходите на следующей?</span></div><span class="say"><svg class="ic"><use href="#i-volume-2"/></svg></span></button>
+      <button class="ph rv" data-say="Entschuldigung, darf ich bitte durch?"><img src="../media/e-pleading.webp" alt="" loading="lazy"><div><b lang="de">Entschuldigung, darf ich bitte durch?</b><span class="cy">[энтшу́льдигунг, дарф ихь би́тте дурх?]</span><span>Извините, можно пройти?</span></div><span class="say"><svg class="ic"><use href="#i-volume-2"/></svg></span></button>
     </div>
   </div>
 </section>
@@ -1021,24 +1032,24 @@ html.io .rv:not(.in){translate:0 26px}
       <div>
         <div class="chat" id="chat">
           <div class="msg nar">U6, вечер. Встают двое в обычных куртках.</div>
-          <div class="msg k"><div class="who"><img src="../media/e-police.webp" alt="">Kontrolleur</div><div class="dl"><span>Fahrscheinkontrolle! Die Fahrscheine, bitte.</span><button class="say" data-say="Fahrscheinkontrolle! Die Fahrscheine, bitte." aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button></div><div class="rl">Проверка билетов! Ваши билеты, пожалуйста.</div></div>
-          <div class="msg me"><div class="who">Я</div><div class="dl"><span>Moment… Hier, bitte.</span><button class="say" data-say="Moment. Hier, bitte." aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button></div><div class="rl">Секунду… Вот, пожалуйста.</div></div>
-          <div class="msg k"><div class="who"><img src="../media/e-police.webp" alt="">Kontrolleur</div><div class="dl"><span>Der ist nicht entwertet.</span><button class="say" data-say="Der ist nicht entwertet." aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button></div><div class="rl">Он не отмечен.</div></div>
-          <div class="msg me"><div class="who">Я</div><div class="dl"><span>Aber ich habe ihn gekauft!</span><button class="say" data-say="Aber ich habe ihn gekauft!" aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button></div><div class="rl">Но я же его купил!</div></div>
-          <div class="msg k"><div class="who"><img src="../media/e-police.webp" alt="">Kontrolleur</div><div class="dl"><span>Kaufen reicht nicht. Haben Sie einen Ausweis?</span><button class="say" data-say="Kaufen reicht nicht. Haben Sie einen Ausweis?" aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button></div><div class="rl">Купить мало. Документ есть?</div></div>
+          <div class="msg k"><div class="who"><img src="../media/e-police.webp" alt="">Kontrolleur</div><div class="dl"><span>Fahrscheinkontrolle! Die Fahrscheine, bitte.</span><button class="say" data-say="Fahrscheinkontrolle! Die Fahrscheine, bitte." aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button></div><div class="cy">[фа́ршайнконтролле! ди фа́ршайне, би́тте]</div><div class="rl">Проверка билетов! Ваши билеты, пожалуйста.</div></div>
+          <div class="msg me"><div class="who">Я</div><div class="dl"><span>Moment… Hier, bitte.</span><button class="say" data-say="Moment. Hier, bitte." aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button></div><div class="cy">[момэ́нт… хир, би́тте]</div><div class="rl">Секунду… Вот, пожалуйста.</div></div>
+          <div class="msg k"><div class="who"><img src="../media/e-police.webp" alt="">Kontrolleur</div><div class="dl"><span>Der ist nicht entwertet.</span><button class="say" data-say="Der ist nicht entwertet." aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button></div><div class="cy">[дэр ист нихьт энтвэ́ртет]</div><div class="rl">Он не отмечен.</div></div>
+          <div class="msg me"><div class="who">Я</div><div class="dl"><span>Aber ich habe ihn gekauft!</span><button class="say" data-say="Aber ich habe ihn gekauft!" aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button></div><div class="cy">[а́бер ихь ха́бе ин гека́уфт!]</div><div class="rl">Но я же его купил!</div></div>
+          <div class="msg k"><div class="who"><img src="../media/e-police.webp" alt="">Kontrolleur</div><div class="dl"><span>Kaufen reicht nicht. Haben Sie einen Ausweis?</span><button class="say" data-say="Kaufen reicht nicht. Haben Sie einen Ausweis?" aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button></div><div class="cy">[ка́уфен райхьт нихьт. ха́бен зи а́йнен а́усвайс?]</div><div class="rl">Купить мало. Документ есть?</div></div>
           <div class="msg nar">Дальше была Mehrgebühr. Перемотаем. Тот же вагон, но билет отмечен.</div>
-          <div class="msg me"><div class="who">Я</div><div class="dl"><span>Bitte schön. Entwertet um 8:14.</span><button class="say" data-say="Bitte schön. Entwertet um acht Uhr vierzehn." aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button></div><div class="rl">Пожалуйста. Отмечен в 8:14.</div></div>
-          <div class="msg k"><div class="who"><img src="../media/e-police.webp" alt="">Kontrolleur</div><div class="dl"><span>Danke, passt.</span><button class="say" data-say="Danke, passt." aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button></div><div class="rl">Спасибо, всё в порядке.</div></div>
+          <div class="msg me"><div class="who">Я</div><div class="dl"><span>Bitte schön. Entwertet um 8:14.</span><button class="say" data-say="Bitte schön. Entwertet um acht Uhr vierzehn." aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button></div><div class="cy">[би́тте шён. энтвэ́ртет ум ахт ур фи́рцен]</div><div class="rl">Пожалуйста. Отмечен в 8:14.</div></div>
+          <div class="msg k"><div class="who"><img src="../media/e-police.webp" alt="">Kontrolleur</div><div class="dl"><span>Danke, passt.</span><button class="say" data-say="Danke, passt." aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button></div><div class="cy">[да́нке, паст]</div><div class="rl">Спасибо, всё в порядке.</div></div>
           <div class="msg nar">Passt. Самое австрийское слово. Значит «всё хорошо, живи».</div>
         </div>
         <button class="btn sm white" id="chatagain" style="margin-top:16px"><svg class="ic"><use href="#i-rotate-ccw"/></svg>Ещё раз</button>
       </div>
       <div class="side-words">
-        <div class="sw2 rv"><img src="../media/e-police.webp" alt="" loading="lazy"><div><b lang="de">der Kontrolleur</b><span>контролёр. Часто без формы.</span></div><button class="say" data-say="der Kontrolleur" aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button></div>
-        <div class="sw2 rv"><img src="../media/e-eyes.webp" alt="" loading="lazy"><div><b lang="de">die Fahrscheinkontrolle</b><span>проверка билетов</span></div><button class="say" data-say="die Fahrscheinkontrolle" aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button></div>
-        <div class="sw2 rv"><img src="../media/e-graduation.webp" alt="" loading="lazy"><div><b lang="de">der Ausweis</b><span>документ, удостоверение</span></div><button class="say" data-say="der Ausweis" aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button></div>
-        <div class="sw2 rv"><img src="../media/e-euro.webp" alt="" loading="lazy"><div><b lang="de">die Mehrgebühr</b><span>штраф, «доплата» за проезд без билета</span></div><button class="say" data-say="die Mehrgebühr" aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button></div>
-        <div class="sw2 rv"><img src="../media/e-sweat.webp" alt="" loading="lazy"><div><b lang="de">schwarzfahren</b><span>ехать зайцем. Буквально «ехать чёрным». По ощущениям так и есть.</span></div><button class="say" data-say="schwarzfahren" aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button></div>
+        <div class="sw2 rv"><img src="../media/e-police.webp" alt="" loading="lazy"><div><b lang="de">der Kontrolleur</b><span class="cy">[дэр контролё́р]</span><span>контролёр. Часто без формы.</span></div><button class="say" data-say="der Kontrolleur" aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button></div>
+        <div class="sw2 rv"><img src="../media/e-eyes.webp" alt="" loading="lazy"><div><b lang="de">die Fahrscheinkontrolle</b><span class="cy">[ди фа́ршайнконтролле]</span><span>проверка билетов</span></div><button class="say" data-say="die Fahrscheinkontrolle" aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button></div>
+        <div class="sw2 rv"><img src="../media/e-graduation.webp" alt="" loading="lazy"><div><b lang="de">der Ausweis</b><span class="cy">[дэр а́усвайс]</span><span>документ, удостоверение</span></div><button class="say" data-say="der Ausweis" aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button></div>
+        <div class="sw2 rv"><img src="../media/e-euro.webp" alt="" loading="lazy"><div><b lang="de">die Mehrgebühr</b><span class="cy">[ди ме́ргебюр]</span><span>штраф, «доплата» за проезд без билета</span></div><button class="say" data-say="die Mehrgebühr" aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button></div>
+        <div class="sw2 rv"><img src="../media/e-sweat.webp" alt="" loading="lazy"><div><b lang="de">schwarzfahren</b><span class="cy">[шва́рцфарен]</span><span>ехать зайцем. Буквально «ехать чёрным». По ощущениям так и есть.</span></div><button class="say" data-say="schwarzfahren" aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button></div>
       </div>
     </div>
   </div>
@@ -1052,12 +1063,12 @@ html.io .rv:not(.in){translate:0 26px}
       <p class="lede">Нажми на фразу и послушай. Повтори вслух. Прямо в вагоне. Никто не смотрит. Все в телефонах.</p>
     </div>
     <div class="phr">
-      <button class="ph rv" data-say="Wo kann ich einen Fahrschein kaufen?"><img src="../media/e-tickets.webp" alt="" loading="lazy"><div><b lang="de">Wo kann ich einen Fahrschein kaufen?</b><span>Где можно купить билет?</span></div><span class="say"><svg class="ic"><use href="#i-volume-2"/></svg></span></button>
-      <button class="ph rv" data-say="Fährt diese Bim zum Westbahnhof?"><img src="../media/e-tram.webp" alt="" loading="lazy"><div><b lang="de">Fährt diese Bim zum Westbahnhof?</b><span>Этот трамвай идёт до Westbahnhof?</span></div><span class="say"><svg class="ic"><use href="#i-volume-2"/></svg></span></button>
-      <button class="ph rv" data-say="Wo muss ich umsteigen?"><img src="../media/e-metro.webp" alt="" loading="lazy"><div><b lang="de">Wo muss ich umsteigen?</b><span>Где мне пересесть?</span></div><span class="say"><svg class="ic"><use href="#i-volume-2"/></svg></span></button>
-      <button class="ph rv" data-say="Ist das die richtige Richtung zum Stephansplatz?"><img src="../media/e-map.webp" alt="" loading="lazy"><div><b lang="de">Ist das die richtige Richtung zum Stephansplatz?</b><span>Это правильное направление до Stephansplatz?</span></div><span class="say"><svg class="ic"><use href="#i-volume-2"/></svg></span></button>
-      <button class="ph rv" data-say="Wie viele Stationen noch?"><img src="../media/e-pin.webp" alt="" loading="lazy"><div><b lang="de">Wie viele Stationen noch?</b><span>Сколько ещё станций?</span></div><span class="say"><svg class="ic"><use href="#i-volume-2"/></svg></span></button>
-      <button class="ph rv" data-say="Ist der Platz noch frei?"><img src="../media/e-eyes.webp" alt="" loading="lazy"><div><b lang="de">Ist der Platz noch frei?</b><span>Место свободно?</span></div><span class="say"><svg class="ic"><use href="#i-volume-2"/></svg></span></button>
+      <button class="ph rv" data-say="Wo kann ich einen Fahrschein kaufen?"><img src="../media/e-tickets.webp" alt="" loading="lazy"><div><b lang="de">Wo kann ich einen Fahrschein kaufen?</b><span class="cy">[во канн ихь а́йнен фа́ршайн ка́уфен?]</span><span>Где можно купить билет?</span></div><span class="say"><svg class="ic"><use href="#i-volume-2"/></svg></span></button>
+      <button class="ph rv" data-say="Fährt diese Bim zum Westbahnhof?"><img src="../media/e-tram.webp" alt="" loading="lazy"><div><b lang="de">Fährt diese Bim zum Westbahnhof?</b><span class="cy">[фэрт ди́зе бим цум вэ́стбанхоф?]</span><span>Этот трамвай идёт до Westbahnhof?</span></div><span class="say"><svg class="ic"><use href="#i-volume-2"/></svg></span></button>
+      <button class="ph rv" data-say="Wo muss ich umsteigen?"><img src="../media/e-metro.webp" alt="" loading="lazy"><div><b lang="de">Wo muss ich umsteigen?</b><span class="cy">[во мус ихь у́мштайген?]</span><span>Где мне пересесть?</span></div><span class="say"><svg class="ic"><use href="#i-volume-2"/></svg></span></button>
+      <button class="ph rv" data-say="Ist das die richtige Richtung zum Stephansplatz?"><img src="../media/e-map.webp" alt="" loading="lazy"><div><b lang="de">Ist das die richtige Richtung zum Stephansplatz?</b><span class="cy">[ист дас ди ри́хтиге ри́хтунг цум ште́фансплац?]</span><span>Это правильное направление до Stephansplatz?</span></div><span class="say"><svg class="ic"><use href="#i-volume-2"/></svg></span></button>
+      <button class="ph rv" data-say="Wie viele Stationen noch?"><img src="../media/e-pin.webp" alt="" loading="lazy"><div><b lang="de">Wie viele Stationen noch?</b><span class="cy">[ви фи́ле штацьо́нен нох?]</span><span>Сколько ещё станций?</span></div><span class="say"><svg class="ic"><use href="#i-volume-2"/></svg></span></button>
+      <button class="ph rv" data-say="Ist der Platz noch frei?"><img src="../media/e-eyes.webp" alt="" loading="lazy"><div><b lang="de">Ist der Platz noch frei?</b><span class="cy">[ист дэр плац нох фрай?]</span><span>Место свободно?</span></div><span class="say"><svg class="ic"><use href="#i-volume-2"/></svg></span></button>
     </div>
 
     <div class="stoer rv" style="margin-top:46px">
@@ -1066,14 +1077,14 @@ html.io .rv:not(.in){translate:0 26px}
       <div class="led gl">STÖRUNG</div>
       <p style="color:#B9B9C6;margin:10px 0 0;max-width:34ch;font-size:15px">Венское метро ходит как часы. Но часы тоже иногда стоят.</p>
       <div class="list">
-        <div class="it"><div><b lang="de">die Störung</b><span>сбой. «Auf der U6 gibt es eine Störung.»</span></div><button class="say" data-say="Auf der U6 gibt es eine Störung." aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button></div>
-        <div class="it"><div><b lang="de">die Verspätung</b><span>задержка. «Der Zug hat Verspätung.»</span></div><button class="say" data-say="Der Zug hat Verspätung." aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button></div>
-        <div class="it"><div><b lang="de">der Ersatzverkehr</b><span>замена. Метро стоит, вместо него автобусы.</span></div><button class="say" data-say="der Ersatzverkehr" aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button></div>
-        <div class="it"><div><b lang="de">Der Zug endet hier.</b><span>Поезд дальше не идёт. Все на выход.</span></div><button class="say" data-say="Der Zug endet hier. Bitte alle aussteigen." aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button></div>
+        <div class="it"><div><b lang="de">die Störung</b><span class="cy">[ди штё́рунг]</span><span>сбой. «Auf der U6 gibt es eine Störung.»</span></div><button class="say" data-say="Auf der U6 gibt es eine Störung." aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button></div>
+        <div class="it"><div><b lang="de">die Verspätung</b><span class="cy">[ди фэршпэ́тунг]</span><span>задержка. «Der Zug hat Verspätung.»</span></div><button class="say" data-say="Der Zug hat Verspätung." aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button></div>
+        <div class="it"><div><b lang="de">der Ersatzverkehr</b><span class="cy">[дэр эрза́цфэркер]</span><span>замена. Метро стоит, вместо него автобусы.</span></div><button class="say" data-say="der Ersatzverkehr" aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button></div>
+        <div class="it"><div><b lang="de">Der Zug endet hier.</b><span class="cy">[дэр цуг э́ндет хир]</span><span>Поезд дальше не идёт. Все на выход.</span></div><button class="say" data-say="Der Zug endet hier. Bitte alle aussteigen." aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button></div>
       </div>
       <div class="callcard">
         <img src="../media/e-phone.webp" alt="" loading="lazy">
-        <div><b lang="de">Ich komme 15 Minuten später. Auf der U6 gibt es eine Störung.</b><span>Звонок начальнику: опаздываю на 15 минут, на U6 сбой.</span></div>
+        <div><b lang="de">Ich komme 15 Minuten später. Auf der U6 gibt es eine Störung.</b><span class="cy">[ихь ко́мме фю́нфцен мину́тен шпэ́тер. ауф дэр у-зэкс гипт эс а́йне штё́рунг]</span><span>Звонок начальнику: опаздываю на 15 минут, на U6 сбой.</span></div>
         <button class="say" data-say="Ich komme fünfzehn Minuten später. Auf der U6 gibt es eine Störung." aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button>
       </div>
     </div>
@@ -1265,11 +1276,11 @@ function xInit(){
 
   /* ---------- 1. ticket machine (multi-step) ---------- */
   var TK = [
-    {n:'Einzelfahrschein', s:'der Einzelfahrschein', d:'Одна поездка в одну сторону. Пересаживаться можно. Вернуться по нему нельзя.', r:'1 поездка', p:1},
-    {n:'24-Stunden-Karte', s:'die vierundzwanzig Stunden Karte', d:'Сутки с момента отметки. Есть ещё на 48 и 72 часа.', r:'24 часа', p:1},
-    {n:'Wochenkarte', s:'die Wochenkarte', d:'С понедельника до следующего понедельника, 9:00. Не семь дней с покупки. Именно так.', r:'Пн → Пн 9:00', p:1},
-    {n:'Jahreskarte', s:'die Jahreskarte', d:'Целый год без вопросов. Самый венский билет.', r:'весь год', p:1},
-    {n:'Handyticket', s:'das Handyticket', d:'В приложении WienMobil. Время уже стоит в билете. Штамповать ничего не надо.', r:'в телефоне', p:0}
+    {n:'Einzelfahrschein', cy:'[а́йнцельфаршайн]', s:'der Einzelfahrschein', d:'Одна поездка в одну сторону. Пересаживаться можно. Вернуться по нему нельзя.', r:'1 поездка', p:1},
+    {n:'24-Stunden-Karte', cy:'[фирунцва́нцих-шту́нден-ка́рте]', s:'die vierundzwanzig Stunden Karte', d:'Сутки с момента отметки. Есть ещё на 48 и 72 часа.', r:'24 часа', p:1},
+    {n:'Wochenkarte', cy:'[во́хенкарте]', s:'die Wochenkarte', d:'С понедельника до следующего понедельника, 9:00. Не семь дней с покупки. Именно так.', r:'Пн → Пн 9:00', p:1},
+    {n:'Jahreskarte', cy:'[я́рескарте]', s:'die Jahreskarte', d:'Целый год без вопросов. Самый венский билет.', r:'весь год', p:1},
+    {n:'Handyticket', cy:'[хэ́ндитикет]', s:'das Handyticket', d:'В приложении WienMobil. Время уже стоит в билете. Штамповать ничего не надо.', r:'в телефоне', p:0}
   ];
   var mach = $('#mach'), busy = false, touched = false;
   function machPick(i){
@@ -1282,7 +1293,7 @@ function xInit(){
       mach.dataset.s = 'pay';
       return wait(1300);
     }).then(function(){
-      $('#tkn').textContent = t.n; $('#tkd').textContent = t.d; $('#tkr').textContent = t.r;
+      $('#tkn').textContent = t.n; $('#tkcy').textContent = t.cy; $('#tkd').textContent = t.d; $('#tkr').textContent = t.r;
       $('#tksay').dataset.say = t.s;
       var st = $('#tkst');
       st.textContent = t.p ? 'noch nicht entwertet' : 'gültig ab: jetzt';
@@ -1314,10 +1325,10 @@ function xInit(){
   /* ---------- 2. Entwerter stepper ---------- */
   var ent = $('#ent'), ENT = [
     null,
-    {de:'Ich habe einen Fahrschein gekauft.', ru:'Билет куплен. Но пока это просто бумажка.'},
-    {de:'Ich entwerte den Fahrschein.', ru:'Суёшь билет в ящик. Стрелкой вперёд, как нарисовано.'},
-    {de:'Klack!', ru:'Ящик печатает дату и время. С этой секунды билет живой.'},
-    {de:'Der Fahrschein ist gültig.', ru:'Теперь хоть десять контролёров. Улыбаешься и показываешь.'}
+    {de:'Ich habe einen Fahrschein gekauft.', cy:'[ихь ха́бе а́йнен фа́ршайн гека́уфт]', ru:'Билет куплен. Но пока это просто бумажка.'},
+    {de:'Ich entwerte den Fahrschein.', cy:'[ихь энтвэ́рте дэн фа́ршайн]', ru:'Суёшь билет в ящик. Стрелкой вперёд, как нарисовано.'},
+    {de:'Klack!', cy:'[кляк!]', ru:'Ящик печатает дату и время. С этой секунды билет живой.'},
+    {de:'Der Fahrschein ist gültig.', cy:'[дэр фа́ршайн ист гю́льтиш]', ru:'Теперь хоть десять контролёров. Улыбаешься и показываешь.'}
   ];
   var entT = null, entStep = 1, entAuto = true;
   function stamp(){
@@ -1334,7 +1345,7 @@ function xInit(){
   function setEnt(s){
     entStep = s; ent.dataset.s = s;
     $$('#entsteps button').forEach(function(b){ b.classList.toggle('on', +b.dataset.s === s); });
-    $('#entde').textContent = ENT[s].de; $('#entru').textContent = ENT[s].ru; $('#entsay').dataset.say = ENT[s].de;
+    $('#entde').textContent = ENT[s].de; $('#entcy').textContent = ENT[s].cy; $('#entru').textContent = ENT[s].ru; $('#entsay').dataset.say = ENT[s].de;
     $('#entcs').textContent = s >= 3 ? stamp() : 'hier stempeln';
     if(G && s === 3){ G.fromTo('#entbox', {scaleY:.94, y:4}, {scaleY:1, y:0, duration:.5, ease:'elastic.out(1.2,.3)'}); }
     if(G && s === 4){ G.fromTo('.ent .okb img', {scale:.3, rotation:-90}, {scale:1, rotation:0, duration:.7, ease:'back.out(3)'}); }
@@ -1365,11 +1376,11 @@ function xInit(){
 
   /* ---------- 4. transfer map ---------- */
   var MS = [
-    {t:0,   c:'#319F49', w:[['Ich'],['steige','vb'],['in Hütteldorf'],['ein','px'],['.']], ru:'Сажусь в Hütteldorf. Это начало U4.', a:'U4 Richtung Heiligenstadt'},
-    {t:.7, c:'#319F49', w:[['Ich'],['fahre','vb'],['mit der U4 Richtung Heiligenstadt.']], ru:'Еду на U4. Направление по конечной: Heiligenstadt.', a:'Nächste Station: Karlsplatz. Umsteigen zur U1.'},
-    {t:.7, c:'#E2001A', w:[['Am Karlsplatz'],['steige','vb'],['ich in die U1'],['um','px'],['.']], ru:'На Karlsplatz пересаживаюсь на U1. «um» улетает в конец.', a:'Umsteigen zur Linie U1'},
-    {t:1,   c:'#E2001A', w:[['Ich'],['fahre','vb'],['eine Station Richtung Leopoldau.']], ru:'Одна станция в сторону Leopoldau.', a:'Nächste Station: Stephansplatz.'},
-    {t:1,   c:'#E2001A', w:[['Am Stephansplatz'],['steige','vb'],['ich'],['aus','px'],['.']], ru:'На Stephansplatz выхожу. Собор прямо над головой.', a:'Stephansplatz.'}
+    {t:0,   c:'#319F49', w:[['Ich'],['steige','vb'],['in Hütteldorf'],['ein','px'],['.']], ru:'Сажусь в Hütteldorf. Это начало U4.', cy:'[ихь шта́йге ин хю́ттельдорф айн]', a:'U4 Richtung Heiligenstadt'},
+    {t:.7, c:'#319F49', w:[['Ich'],['fahre','vb'],['mit der U4 Richtung Heiligenstadt.']], ru:'Еду на U4. Направление по конечной: Heiligenstadt.', cy:'[ихь фа́ре мит дэр у-фир ри́хтунг ха́йлигенштат]', a:'Nächste Station: Karlsplatz. Umsteigen zur U1.'},
+    {t:.7, c:'#E2001A', w:[['Am Karlsplatz'],['steige','vb'],['ich in die U1'],['um','px'],['.']], ru:'На Karlsplatz пересаживаюсь на U1. «um» улетает в конец.', cy:'[ам ка́рлсплац шта́йге ихь ин ди у-айнс ум]', a:'Umsteigen zur Linie U1'},
+    {t:1,   c:'#E2001A', w:[['Ich'],['fahre','vb'],['eine Station Richtung Leopoldau.']], ru:'Одна станция в сторону Leopoldau.', cy:'[ихь фа́ре а́йне штацьо́н ри́хтунг леопо́льдау]', a:'Nächste Station: Stephansplatz.'},
+    {t:1,   c:'#E2001A', w:[['Am Stephansplatz'],['steige','vb'],['ich'],['aus','px'],['.']], ru:'На Stephansplatz выхожу. Собор прямо над головой.', cy:'[ам ште́фансплац шта́йге ихь аус]', a:'Stephansplatz.'}
   ];
   var P0 = {x:40,y:200}, PK = {x:230,y:200}, PS = {x:230,y:120}, KT = .7;
   function ptAt(t){ return t <= KT ? {x:P0.x + (PK.x-P0.x)*(t/KT), y:200} : {x:230, y:PK.y + (PS.y-PK.y)*((t-KT)/(1-KT))}; }
@@ -1406,7 +1417,7 @@ function xInit(){
     $('#mcnt').textContent = (i+1) + ' / 5';
     $('#mnext').firstChild.textContent = i === 4 ? 'Сначала' : 'Дальше';
     renderSent(s);
-    $('#sentru').textContent = s.ru; $('#annot').textContent = s.a;
+    $('#sentru').textContent = s.ru; $('#sentcy').textContent = s.cy; $('#annot').textContent = s.a;
     $('#msay').dataset.say = s.w.map(function(w){ return w[0]; }).join(' ').replace(' .', '.');
     mdot.setAttribute('fill', s.c); mring.setAttribute('stroke', s.c);
     $('#lnU4').setAttribute('opacity', i < 2 ? 1 : .45); $('#lnU1').setAttribute('opacity', i >= 2 ? 1 : .45);
@@ -1427,9 +1438,9 @@ function xInit(){
 
   /* ---------- trennbar: door scene ---------- */
   var TR = {
-    ein:{w:[['Ich'],['steige','v'],['in die Bim'],['ein','p']], ru:'Я сажусь в трамвай.', say:'Ich steige in die Bim ein.'},
-    aus:{w:[['Ich'],['steige','v'],['aus der Bim'],['aus','p']], ru:'Я выхожу из трамвая.', say:'Ich steige aus der Bim aus.'},
-    um:{w:[['Ich'],['steige','v'],['in die U6'],['um','p']], ru:'Я пересаживаюсь на U6.', say:'Ich steige in die U6 um.'}
+    ein:{w:[['Ich'],['steige','v'],['in die Bim'],['ein','p']], ru:'Я сажусь в трамвай.', cy:'[ихь шта́йге ин ди бим айн]', say:'Ich steige in die Bim ein.'},
+    aus:{w:[['Ich'],['steige','v'],['aus der Bim'],['aus','p']], ru:'Я выхожу из трамвая.', cy:'[ихь шта́йге аус дэр бим аус]', say:'Ich steige aus der Bim aus.'},
+    um:{w:[['Ich'],['steige','v'],['in die U6'],['um','p']], ru:'Я пересаживаюсь на U6.', cy:'[ихь шта́йге ин ди у-зэкс ум]', say:'Ich steige in die U6 um.'}
   };
   var door = $('#door'), guy = $('#guy'), seq = 0;
   function instant(fn){ door.classList.add('nt'); guy.style.transition = 'none'; fn(); void guy.offsetWidth; guy.style.transition = ''; door.classList.remove('nt'); }
@@ -1439,7 +1450,7 @@ function xInit(){
     $('#dbadge').textContent = k + 'steigen';
     var line = $('#tline');
     line.innerHTML = t.w.map(function(w){ return '<span class="'+(w[1]||'')+'">'+w[0]+'</span>'; }).join('');
-    $('#tru').textContent = t.ru; $('#tsay').dataset.say = t.say;
+    $('#tru').textContent = t.ru; $('#tcy').textContent = t.cy; $('#tsay').dataset.say = t.say;
     var p = $('.p', line), v = $('.v', line);
     if(G && p && v){
       var pr = p.getBoundingClientRect(), vr = v.getBoundingClientRect();
