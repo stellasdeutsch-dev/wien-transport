@@ -1,0 +1,1747 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Лексика венского транспорта: билеты, entwerten, остановки, пересадки и контроль. Интерактивный гайд Stellas.">
+<meta property="og:title" content="Венские Öffis">
+<meta property="og:description" content="Лексика венского транспорта: билеты, entwerten, остановки, пересадки и контроль. Интерактивный гайд Stellas.">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="media/logo.webp">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}</style>
+<title>Венские Öffis</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preload" href="assets/fonts/montserrat-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>@font-face {  font-family: 'Montserrat';  font-style: normal;  font-weight: 300 900;  font-display: swap;  src: url(assets/fonts/montserrat-cyrillic.woff2) format('woff2');  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;}
+@font-face {  font-family: 'Montserrat';  font-style: normal;  font-weight: 300 900;  font-display: swap;  src: url(assets/fonts/montserrat-latin.woff2) format('woff2');  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}
+</style>
+<script defer src="assets/gsap-bundle.min.js"></script>
+
+<style>
+:root{
+  color-scheme: light;
+  --bg:#FFFFFF; --soft:#F5F4F8; --soft-2:#FBF1F3; --lilac:#F3ECFB;
+  --ink:#2E2E36; --ink-2:#55555F; --mute:#8D8D98; --line:rgba(46,46,54,.1);
+  --coral:#F4525F; --coral-2:#FF7476; --red:#EC3E5C; --pink:#FF8FA3;
+  --violet:#8E3BF4; --violet-2:#A95CFF; --violet-d:#6E28DC;
+  --yellow:#FFB534; --yellow-2:#FFCB57; --orange:#FF9147;
+  --tg:#33AEEA; --green:#2BB673;
+  --g-coral:linear-gradient(140deg,#FF8080 0%,#F4525F 52%,#EA3D5D 100%);
+  --g-violet:linear-gradient(140deg,#B866FF 0%,#8E3BF4 52%,#7429EE 100%);
+  --g-sunset:linear-gradient(165deg,#FFC94F 0%,#FF9A5C 42%,#F4525F 100%);
+  --g-vc:linear-gradient(120deg,#9A3BF5 0%,#C84FD0 46%,#F4525F 100%);
+  --g-yellow:linear-gradient(140deg,#FFD36B 0%,#FFB534 60%,#FF9F2E 100%);
+  --g-btn:linear-gradient(180deg,#FFC95C 0%,#FFAA2B 100%);
+  --g-tg:linear-gradient(180deg,#5CCBF8 0%,#2AA2E6 100%);
+  --f:"Montserrat","Gilroy","Helvetica Neue",Arial,system-ui,sans-serif;
+  --gut:16px; --r:26px;
+  --sh-c:0 28px 60px -24px rgba(244,82,95,.55);
+  --sh-v:0 28px 60px -24px rgba(142,59,244,.55);
+  --sh-w:0 24px 60px -30px rgba(40,30,70,.35);
+}
+@media (min-width:760px){:root{--gut:32px;--r:34px}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:500 16px/1.55 var(--f);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+main{overflow-x:clip;position:relative}
+img,video{max-width:100%;display:block}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none;padding:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--violet);outline-offset:3px;border-radius:8px}
+.ic{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none;vertical-align:-.14em}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(var(--gut),env(safe-area-inset-left,0px));padding-right:max(var(--gut),env(safe-area-inset-right,0px));position:relative}
+.sec{padding:76px 0;position:relative}
+.sec.soft{background:linear-gradient(180deg,#fff 0%,var(--soft) 12%,var(--soft) 88%,#fff 100%)}
+.sec.pinkbg{background:linear-gradient(180deg,#fff 0%,var(--soft-2) 14%,var(--lilac) 86%,#fff 100%)}
+.emo{display:block;pointer-events:none;user-select:none;-webkit-user-drag:none;filter:drop-shadow(0 14px 18px rgba(80,20,40,.22))}
+.blurheart{position:absolute;pointer-events:none;filter:blur(16px);opacity:.92;z-index:0}
+.blurheart.soft{filter:blur(26px);opacity:.75}
+
+/* ---------- type ---------- */
+.ttl{font-weight:800;text-transform:uppercase;line-height:1.03;letter-spacing:-.005em;margin:0;font-size:clamp(28px,8.4vw,62px)}
+.ttl .th{display:block;font-weight:300;letter-spacing:.01em}
+.ttl.dark{color:#3A3A44}
+.ttl.dark .th{color:#5A5A66}
+.ttl .wd{display:inline-block}
+.h2{font-weight:700;font-size:clamp(26px,7vw,42px);line-height:1.15;margin:0 0 10px;color:#34343E;letter-spacing:-.01em}
+.lede{font-size:clamp(16px,4.3vw,19px);color:var(--ink-2);font-weight:500;max-width:640px;margin:14px 0 0}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--coral);margin-bottom:14px}
+.eyebrow .n{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:9px;background:var(--g-coral);color:#fff;letter-spacing:0;font-size:12px;box-shadow:0 8px 16px -8px rgba(244,82,95,.8)}
+.eyebrow.v{color:var(--violet)} .eyebrow.v .n{background:var(--g-violet);box-shadow:0 8px 16px -8px rgba(142,59,244,.8)}
+.story p{margin:0 0 10px;font-size:17px;line-height:1.5}
+.story p.punch{font-weight:800;font-size:20px;color:var(--coral);margin-top:16px}
+.de{font-weight:700;color:var(--violet-d)}
+.ru{color:var(--mute);font-size:.92em}
+b,strong{font-weight:700}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:58px;padding:0 30px;border-radius:999px;background:var(--g-btn);color:#fff;
+  font-weight:800;font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;box-shadow:0 16px 30px -12px rgba(255,160,40,.85),inset 0 -3px 0 rgba(0,0,0,.06);
+  transition:scale .25s cubic-bezier(.3,1.6,.5,1),box-shadow .25s;white-space:nowrap}
+.btn:hover{scale:1.04}
+.btn:active{scale:.97}
+.btn .paw{width:18px;height:18px}
+.btn.tg{background:var(--g-tg);box-shadow:0 16px 30px -12px rgba(42,162,230,.8)}
+.btn.violet{background:var(--g-violet);box-shadow:var(--sh-v)}
+.btn.white{background:#fff;color:var(--coral);box-shadow:0 14px 30px -16px rgba(0,0,0,.35)}
+.btn.sm{min-height:44px;padding:0 20px;font-size:11px}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:12px;background:rgba(255,255,255,.95);color:#5A5A66;font-size:12px;font-weight:600;box-shadow:0 10px 24px -14px rgba(0,0,0,.4)}
+.chip i{font-style:normal;font-weight:800;color:#fff;border-radius:6px;padding:1px 6px;font-size:11px}
+.u1{background:#E2001A}.u2{background:#A762A3}.u3{background:#EE7D00}.u4{background:#319F49}.u6{background:#9D6830}
+.say{display:inline-grid;place-items:center;width:38px;height:38px;border-radius:50%;background:#fff;color:var(--violet);box-shadow:0 8px 18px -10px rgba(110,40,220,.6);flex:none;transition:scale .2s}
+.say .ic{width:18px;height:18px}
+.say.on{background:var(--g-violet);color:#fff;scale:1.08}
+.no-tts .say{display:none}
+
+/* ---------- top bar ---------- */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:rgba(255,255,255,.92);border-bottom:1px solid var(--line)}
+@media (min-width:900px){.bar{backdrop-filter:saturate(1.4) blur(14px);background:rgba(255,255,255,.78)}}
+.bar .wrap{display:flex;align-items:center;justify-content:space-between;height:58px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;letter-spacing:.14em;font-size:13px}
+.brand img{width:32px;height:32px;border-radius:10px}
+.bar .tag{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+.prog{position:absolute;left:0;bottom:-1px;height:3px;width:100%;background:linear-gradient(90deg,var(--coral),var(--violet));transform-origin:0 50%;transform:scaleX(0)}
+
+/* ---------- hero (copy of the marathon hero card) ---------- */
+.hero{padding:12px 0 0}
+.hcard{position:relative;border-radius:var(--r);background:var(--g-coral);color:#fff;overflow:hidden;padding:26px 22px 0;box-shadow:var(--sh-c);min-height:640px;isolation:isolate}
+.hcard::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 50% at 85% 20%,rgba(255,255,255,.22),transparent 70%),radial-gradient(50% 40% at 10% 90%,rgba(255,160,120,.35),transparent 70%);z-index:-1}
+.hmeta{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:34px}
+.hmeta div{display:flex;align-items:baseline;gap:7px;line-height:1}
+.hmeta b{font-size:26px;font-weight:800}
+.hmeta span{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;line-height:1.15;opacity:.95}
+.hmeta span small{display:block;font-weight:500;letter-spacing:0;text-transform:none;opacity:.8;font-size:9.5px}
+.hcard .ttl{font-size:clamp(30px,9.3vw,72px);max-width:12ch;position:relative;z-index:2}
+.hsub{font-size:15px;line-height:1.5;max-width:420px;margin:18px 0 26px;font-weight:500;opacity:.97;position:relative;z-index:2}
+.hsub b{font-weight:800}
+.hcta{display:flex;flex-wrap:wrap;align-items:center;gap:14px;position:relative;z-index:3}
+.hvis{position:relative;height:300px;margin:18px -22px 0;z-index:1}
+.hvis .ghost-u{position:absolute;right:-30px;top:-40px;width:230px;height:230px;border-radius:44px;border:16px solid rgba(255,255,255,.12);transform:rotate(14deg)}
+.hvis .ghost-u::after{content:"U";position:absolute;inset:0;display:grid;place-items:center;font-size:150px;font-weight:900;color:rgba(255,255,255,.1)}
+.hvis .hz{position:absolute;display:block}
+.hvis .hz img{width:100%}
+.hvis .tram{width:250px;left:50%;bottom:6px;margin-left:-110px;z-index:2}
+.hvis .tram img{animation:tramIn 1.4s cubic-bezier(.2,.9,.25,1.05) .25s both}
+.hvis .zap{width:96px;left:8%;top:6px;z-index:3}
+.hvis .zap img{rotate:-14deg;animation:pop .9s cubic-bezier(.3,1.7,.5,1) .9s both}
+.hvis .tick{width:104px;right:6%;top:30px;z-index:3}
+.hvis .tick img{rotate:16deg;animation:pop .9s cubic-bezier(.3,1.7,.5,1) 1.1s both}
+.hvis .vic{width:92px;right:12%;bottom:30px;z-index:4}
+.hvis .vic img{animation:pop .9s cubic-bezier(.3,1.7,.5,1) 1.3s both}
+.hvis .blurheart{width:200px;left:-40px;bottom:40px}
+.lineset{position:absolute;left:22px;bottom:18px;display:flex;gap:6px;z-index:4}
+.lineset i{font-style:normal;font-weight:800;font-size:12px;color:#fff;border-radius:8px;padding:5px 8px;box-shadow:0 6px 14px -6px rgba(0,0,0,.45)}
+@keyframes tramIn{from{translate:120% 0;rotate:4deg}to{translate:0 0;rotate:0deg}}
+@keyframes pop{from{scale:.3;opacity:0}to{scale:1;opacity:1}}
+@keyframes floaty{0%,100%{translate:0 0}50%{translate:0 -10px}}
+.hero .wd{display:inline-block}
+@media (min-width:860px){
+  .hcard{padding:46px 56px 56px;min-height:620px;display:grid;grid-template-columns:1.1fr .9fr;gap:20px;align-items:center}
+  .hcard .hmeta{grid-column:1/-1}
+  .hvis{height:460px;margin:0;align-self:end}
+  .hvis .tram{width:400px;margin-left:-200px;bottom:30px}
+  .hvis .zap{width:130px}.hvis .tick{width:150px}.hvis .vic{width:130px}
+  .lineset{left:56px;bottom:30px}
+  .hmeta{margin-bottom:10px}
+}
+
+/* ---------- story cards (marathon "creative" row) ---------- */
+.rowscroll{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:22px var(--gut) 34px;margin:0 calc(var(--gut)*-1);scrollbar-width:none}
+.rowscroll::-webkit-scrollbar{display:none}
+.scard{flex:0 0 76%;max-width:300px;aspect-ratio:3/4.1;border-radius:24px;position:relative;overflow:hidden;color:#fff;padding:22px 20px;display:flex;flex-direction:column;justify-content:flex-end;scroll-snap-align:center;box-shadow:var(--sh-c)}
+.scard.c1{background:var(--g-sunset)} .scard.c2{background:var(--g-vc);box-shadow:var(--sh-v)} .scard.c3{background:var(--g-coral)} .scard.c4{background:var(--g-violet);box-shadow:var(--sh-v)}
+.scard .emo{position:absolute;width:150px;top:16px;right:-8px}
+.scard .emo.l{left:-10px;right:auto;top:6px}
+.scard .k{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;opacity:.9;position:relative}
+.scard .ttl{font-size:clamp(22px,6.6vw,30px);position:relative;margin:6px 0 10px}
+.scard .ttl .th{font-size:.72em}
+.scard p{margin:0;font-size:13.5px;line-height:1.45;opacity:.95;position:relative;font-weight:500}
+.scard .de{color:#fff;background:rgba(255,255,255,.2);padding:0 6px;border-radius:6px}
+.scard .num{position:absolute;top:18px;left:20px;font-size:12px;font-weight:800;letter-spacing:.1em;opacity:.85}
+@media (min-width:900px){.rowscroll{overflow:visible;margin:0;padding:22px 0 34px}.scard{flex:1 1 0}}
+.storytext{display:grid;gap:20px}
+.storytext .story{background:#fff;border-radius:24px;padding:24px 22px;box-shadow:var(--sh-w);border:1px solid var(--line)}
+@media (min-width:860px){.storytext{grid-template-columns:1.2fr .8fr;align-items:start}}
+.coda{border-radius:24px;padding:24px 22px;background:var(--g-violet);color:#fff;box-shadow:var(--sh-v);position:relative;overflow:hidden}
+.coda .emo{position:absolute;width:110px;right:-12px;bottom:-14px;rotate:-12deg}
+.coda p{margin:0 0 8px;font-weight:600;font-size:16px;position:relative;max-width:78%}
+.coda .big{font-size:22px;font-weight:800;line-height:1.15}
+
+/* ---------- for you / after (two column) ---------- */
+.two{display:grid;border-radius:var(--r);overflow:hidden;box-shadow:var(--sh-w);position:relative}
+.two .colw{background:#fff;padding:30px 22px}
+.two .colv{background:var(--g-violet);color:#fff;padding:30px 22px;position:relative;overflow:hidden}
+.two h3{font-size:clamp(24px,6.6vw,34px);font-weight:700;line-height:1.15;margin:0 0 22px}
+.two ul{list-style:none;margin:0;padding:0;display:grid;gap:18px}
+.two li{display:grid;grid-template-columns:46px 1fr;gap:14px;align-items:center;font-size:14.5px;line-height:1.4;color:#5A5A66}
+.two li b{color:#34343E}
+.two .colv li{color:rgba(255,255,255,.88)} .two .colv li b{color:#fff}
+.two li img{width:46px;height:46px}
+.two .arr{display:none}
+.two .colv .blurheart{width:170px;right:-50px;bottom:-40px}
+@media (min-width:860px){.two{grid-template-columns:1fr 1.05fr}.two .colw,.two .colv{padding:52px 48px}.two .arr{display:block;position:absolute;left:47%;top:50%;width:70px;z-index:3}}
+
+/* ---------- route / program (staggered day cards) ---------- */
+.route{position:relative;display:grid;gap:14px;margin-top:30px}
+.route .rline{position:absolute;left:22px;top:20px;bottom:20px;width:4px;border-radius:4px;background:repeating-linear-gradient(180deg,#E9E2F2 0 10px,transparent 10px 18px)}
+.route .rfill{position:absolute;inset:0;border-radius:4px;background:linear-gradient(180deg,var(--coral),var(--violet));transform-origin:50% 0;transform:scaleY(0)}
+.route .rtram{position:absolute;left:-20px;top:-10px;width:44px;max-width:none;z-index:3}
+.day{position:relative;margin-left:46px;border-radius:20px;padding:18px 18px 18px 20px;text-decoration:none;display:block;box-shadow:0 18px 40px -26px rgba(40,30,70,.5);background:#fff;border:1px solid var(--line);transition:scale .25s cubic-bezier(.3,1.6,.5,1)}
+.day:hover{scale:1.02}
+.day .dn{font-size:20px;font-weight:800;text-transform:uppercase;letter-spacing:.01em}
+.day p{margin:6px 0 0;font-size:13.5px;line-height:1.45;color:#62626C}
+.day .emo{position:absolute;width:62px;right:-10px;top:-24px}
+.day.k1{background:var(--g-coral);color:#fff;border:0}.day.k1 p{color:rgba(255,255,255,.9)}
+.day.k3{background:var(--g-violet);color:#fff;border:0}.day.k3 p{color:rgba(255,255,255,.9)}
+.day.k5{background:var(--g-yellow);color:#fff;border:0}.day.k5 p{color:rgba(255,255,255,.95)}
+.day::before{content:"";position:absolute;left:-31px;top:24px;width:16px;height:16px;border-radius:50%;background:#fff;border:4px solid var(--coral);box-shadow:0 0 0 4px #fff}
+.day.k3::before{border-color:var(--violet)} .day.k5::before{border-color:var(--yellow)}
+@media (min-width:860px){
+  .route{grid-template-columns:1fr 1fr;column-gap:40px;row-gap:16px;max-width:900px;margin-left:auto;margin-right:auto}
+  .route .rline{left:50%;margin-left:-2px}
+  .route .rtram{left:50%;margin-left:-22px}
+  .day{margin-left:0}
+  .day:nth-child(odd){grid-column:1}.day:nth-child(even){grid-column:2;margin-top:60px}
+  .day::before{display:none}
+}
+
+/* ---------- section head ---------- */
+.shead{display:grid;gap:12px;margin-bottom:26px;position:relative}
+.shead .ttl{font-size:clamp(28px,8.2vw,58px)}
+.bigcard{position:relative;border-radius:var(--r);color:#fff;overflow:hidden;padding:28px 22px;margin-bottom:26px;min-height:240px;isolation:isolate}
+.bigcard.coral{background:var(--g-coral);box-shadow:var(--sh-c)}
+.bigcard.violet{background:var(--g-violet);box-shadow:var(--sh-v)}
+.bigcard.sunset{background:var(--g-sunset);box-shadow:var(--sh-c)}
+.bigcard.vc{background:var(--g-vc);box-shadow:var(--sh-v)}
+.bigcard .ttl{font-size:clamp(28px,8.4vw,58px);position:relative;z-index:2;max-width:13ch}
+.bigcard{padding-bottom:104px}
+.bigcard .bc-emo{position:absolute;right:-6px;bottom:-14px;width:118px;z-index:1}
+.bigcard .bc-emo2{position:absolute;right:120px;bottom:14px;width:58px;z-index:1;rotate:12deg}
+.bigcard .k{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;opacity:.92;margin-bottom:10px;display:flex;align-items:center;gap:8px;position:relative;z-index:2}
+.bigcard .k .n{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:9px;background:rgba(255,255,255,.22);font-size:12px;letter-spacing:0}
+.bigcard p{position:relative;z-index:2;margin:14px 0 0;max-width:30ch;font-size:15px;font-weight:500;opacity:.96}
+@media (min-width:860px){.bigcard{padding:44px 48px;min-height:300px}.bigcard .bc-emo{width:230px;right:40px;bottom:auto;top:40px}.bigcard .bc-emo2{right:290px;bottom:auto;top:36px;width:90px}}
+
+/* ---------- ticket machine ---------- */
+.mach{display:grid;gap:18px}
+.automat{position:relative;border-radius:28px;background:linear-gradient(180deg,#3A3A48,#24242E);padding:16px;box-shadow:0 30px 60px -28px rgba(20,10,40,.7);color:#fff}
+.automat .top{display:flex;justify-content:space-between;align-items:center;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;opacity:.75;padding:2px 6px 12px}
+.automat .top .wl{display:flex;align-items:center;gap:6px}
+.automat .top .wl i{width:10px;height:10px;border-radius:50%;background:var(--coral);display:inline-block}
+.screen{background:linear-gradient(180deg,#F8F6FF,#ECE7FB);color:var(--ink);border-radius:18px;padding:16px;min-height:236px;position:relative;overflow:hidden}
+.screen .q{font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--violet);text-transform:uppercase;margin-bottom:10px;display:flex;justify-content:space-between}
+.opts{display:grid;gap:8px}
+.opt{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:#fff;border-radius:14px;padding:10px 12px;font-size:13.5px;font-weight:600;color:#3A3A44;box-shadow:0 8px 18px -14px rgba(60,30,120,.6);transition:scale .2s,background .2s,color .2s}
+.opt img{width:32px;height:32px}
+.opt small{display:block;font-weight:500;color:var(--mute);font-size:11.5px}
+.opt.on{background:var(--g-violet);color:#fff}.opt.on small{color:rgba(255,255,255,.8)}
+.opt:active{scale:.97}
+.paystep{position:absolute;inset:0;display:grid;place-items:center;align-content:center;gap:10px;background:linear-gradient(180deg,#F8F6FF,#ECE7FB);text-align:center;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}
+.paystep img{width:70px}
+.paystep .pt{font-weight:800;font-size:18px;color:var(--violet-d)}
+.paystep .bar2{width:70%;height:8px;border-radius:8px;background:#E0D6F8;overflow:hidden}
+.paystep .bar2 i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--coral),var(--violet));border-radius:8px}
+.mach[data-s="pay"] .paystep{opacity:1;visibility:visible}
+.mach[data-s="pay"] .paystep .bar2 i{width:100%;transition:width 1.1s ease-in-out}
+.slot{margin:14px auto 0;width:78%;height:16px;border-radius:10px;background:#111;box-shadow:inset 0 3px 6px rgba(0,0,0,.8);position:relative}
+.slot::after{content:"";position:absolute;inset:-4px -8px;border-radius:14px;box-shadow:0 0 0 0 rgba(255,181,52,0);transition:box-shadow .4s}
+.mach[data-s="print"] .slot::after,.mach[data-s="done"] .slot::after{box-shadow:0 0 22px 4px rgba(255,181,52,.85)}
+.tkwrap{position:relative;height:250px;overflow:hidden;margin-top:-6px}
+.tk{position:absolute;left:50%;top:0;width:min(290px,86%);translate:-50% -105%;transition:translate .9s cubic-bezier(.25,1.2,.4,1);border-radius:16px;background:#fff;color:var(--ink);padding:16px 16px 14px;box-shadow:0 20px 40px -20px rgba(40,20,80,.6);
+  -webkit-mask:radial-gradient(circle 9px at 0 62%,transparent 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 9px at 100% 62%,transparent 98%,#000) right/51% 100% no-repeat;
+  mask:radial-gradient(circle 9px at 0 62%,transparent 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 9px at 100% 62%,transparent 98%,#000) right/51% 100% no-repeat}
+.mach[data-s="print"] .tk,.mach[data-s="done"] .tk{translate:-50% 0}
+.tk .tkh{display:flex;justify-content:space-between;font-size:10px;font-weight:800;letter-spacing:.14em;color:var(--coral);text-transform:uppercase}
+.tk .tkn{font-size:24px;font-weight:800;line-height:1.1;margin:8px 0 4px;color:#2E2E36}
+.tk .tkd{font-size:12.5px;color:var(--ink-2);line-height:1.4}
+.tk .tkf{display:flex;justify-content:space-between;align-items:center;border-top:2px dashed #E8E3F2;margin-top:14px;padding-top:10px;font-size:11px;font-weight:700;color:var(--mute)}
+.tk .stampbox{border:2px dashed #F4A3AA;color:var(--coral);border-radius:8px;padding:3px 8px;font-size:10px;letter-spacing:.06em;text-transform:uppercase}
+.mach .hint{font-size:13px;color:var(--mute);text-align:center;margin:6px 0 0}
+@media (min-width:860px){.mach{grid-template-columns:1fr 1fr;align-items:start}}
+
+/* ---------- word cards (flip) ---------- */
+.words{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media (min-width:700px){.words{grid-template-columns:repeat(4,1fr);gap:16px}}
+.wc{perspective:900px;height:178px;cursor:pointer}
+.wc .in{position:relative;width:100%;height:100%;transition:rotate .7s cubic-bezier(.3,1.3,.5,1);transform-style:preserve-3d;rotate:y 0deg}
+.wc.f .in{rotate:y 180deg}
+.wc .fa,.wc .fb{position:absolute;inset:0;border-radius:20px;padding:14px;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden}
+.wc .fa{background:#fff;border:1px solid var(--line);box-shadow:0 16px 34px -24px rgba(40,30,70,.6)}
+.wc .fb{rotate:y 180deg;color:#fff;background:var(--g-violet)}
+.wc.der .fb{background:var(--g-violet)} .wc.die .fb{background:var(--g-coral)} .wc.das .fb{background:var(--g-yellow)} .wc.vb .fb{background:var(--g-vc)}
+.wc .art{font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;border-radius:6px;padding:2px 7px;align-self:flex-start;color:#fff}
+.wc.der .art{background:var(--violet)} .wc.die .art{background:var(--coral)} .wc.das .art{background:var(--yellow)} .wc.vb .art{background:#C84FD0}
+.wc .w{font-size:19px;font-weight:800;line-height:1.1;color:#2E2E36;word-break:break-word;hyphens:auto}
+.wc .fa img{position:absolute;right:8px;top:8px;width:50px}
+.wc .tap{font-size:10.5px;color:var(--mute);font-weight:600;display:flex;align-items:center;gap:6px}
+.wc .fb .tr{font-size:17px;font-weight:800;line-height:1.15}
+.wc .fb .ex{font-size:12px;line-height:1.35;opacity:.95}
+.wc .fb .say{width:32px;height:32px;position:absolute;right:10px;top:10px}
+.legend{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 16px}
+.legend span{font-size:11px;font-weight:700;border-radius:8px;padding:4px 10px;color:#fff;letter-spacing:.06em}
+
+/* ---------- entwerter ---------- */
+.ent{display:grid;gap:18px}
+.entstage{position:relative;height:330px;border-radius:26px;background:linear-gradient(180deg,#F3ECFB,#FCE9EC);overflow:hidden;box-shadow:inset 0 0 0 1px var(--line)}
+.entbox{position:absolute;right:12%;top:46px;width:120px;height:170px;border-radius:22px;background:linear-gradient(180deg,#3E64FF,#2B44C8);box-shadow:0 26px 40px -20px rgba(40,60,200,.8);color:#fff;display:grid;justify-items:center;align-content:start;padding-top:16px}
+.entbox .lbl{font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+.entbox .mouth{width:84px;height:12px;border-radius:8px;background:#111A55;margin-top:16px;box-shadow:inset 0 3px 5px rgba(0,0,0,.7)}
+.entbox .led{width:12px;height:12px;border-radius:50%;background:#55607F;margin-top:22px;transition:background .3s,box-shadow .3s}
+.ent[data-s="3"] .entbox .led,.ent[data-s="4"] .entbox .led{background:#4BFF9A;box-shadow:0 0 14px #4BFF9A}
+.entbox .arrow{margin-top:16px;width:22px;height:22px;opacity:.85}
+.ent .card{position:absolute;left:6%;top:120px;width:150px;border-radius:12px;background:#fff;padding:12px;box-shadow:0 18px 30px -16px rgba(40,20,80,.5);transition:translate .8s cubic-bezier(.4,1.2,.4,1),rotate .8s;rotate:-8deg;z-index:3}
+.ent .card .cn{font-weight:800;font-size:14px;color:#2E2E36}
+.ent .card .cs{margin-top:8px;height:34px;border-radius:7px;border:2px dashed #F4A3AA;display:grid;place-items:center;font-size:9.5px;font-weight:800;color:var(--coral);letter-spacing:.04em;text-transform:uppercase;transition:all .3s}
+.ent[data-s="2"] .card{translate:var(--ex,150px) var(--ey,-88px);rotate:0deg}
+.ent[data-s="3"] .card{translate:var(--ex,150px) calc(var(--ey,-88px) + 6px);rotate:0deg}
+.ent[data-s="4"] .card{translate:0 0;rotate:-4deg}
+.ent[data-s="3"] .card .cs,.ent[data-s="4"] .card .cs{border:2px solid var(--violet);color:var(--violet);background:#F3ECFB}
+.ent .stampfx{position:absolute;inset:0;pointer-events:none;display:grid;place-items:center;font-weight:900;font-size:44px;color:var(--violet);opacity:0;scale:2;transition:opacity .2s,scale .35s cubic-bezier(.3,1.7,.5,1);letter-spacing:.04em}
+.ent[data-s="3"] .stampfx{opacity:.95;scale:1}
+.ent .okb{position:absolute;left:6%;bottom:18px;display:flex;align-items:center;gap:10px;background:#fff;border-radius:16px;padding:10px 14px;font-weight:800;color:var(--green);box-shadow:0 14px 28px -18px rgba(0,0,0,.5);opacity:0;translate:0 10px;transition:opacity .4s,translate .4s}
+.ent .okb img{width:30px}
+.ent[data-s="4"] .okb{opacity:1;translate:0 0}
+.ent .noslip{position:absolute;left:6%;bottom:18px;display:flex;align-items:center;gap:10px;background:#fff;border-radius:16px;padding:10px 14px;font-weight:800;color:var(--coral);box-shadow:0 14px 28px -18px rgba(0,0,0,.5);transition:opacity .4s}
+.ent .noslip img{width:30px}
+.ent:not([data-s="1"]) .noslip{opacity:0}
+.steps{display:flex;gap:8px;flex-wrap:wrap}
+.steps button{flex:1 1 0;min-width:64px;border-radius:14px;background:#fff;border:1px solid var(--line);padding:10px 8px;font-size:12px;font-weight:700;color:var(--ink-2);text-align:left;transition:background .25s,color .25s}
+.steps button b{display:block;font-size:10px;letter-spacing:.14em;color:var(--mute)}
+.steps button.on{background:var(--g-coral);color:#fff;border-color:transparent}.steps button.on b{color:rgba(255,255,255,.8)}
+.stepcap{background:#fff;border-radius:20px;padding:18px;border:1px solid var(--line);box-shadow:var(--sh-w);min-height:120px}
+.stepcap .de{font-size:19px}
+.stepcap p{margin:6px 0 0;font-size:14px;color:var(--ink-2)}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.vs > div{border-radius:20px;padding:16px;color:#fff;position:relative;overflow:hidden}
+.vs .a{background:var(--g-coral)} .vs .b{background:var(--g-violet)}
+.vs img{width:54px;margin-bottom:8px}
+.vs b{display:block;font-size:15px;line-height:1.2}
+.vs span{font-size:12.5px;opacity:.92;display:block;margin-top:4px;line-height:1.35}
+@media (min-width:860px){.ent{grid-template-columns:1.1fr .9fr;align-items:start}}
+
+/* ---------- 4 places ---------- */
+.places{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:10px var(--gut) 30px;margin:0 calc(var(--gut)*-1);scrollbar-width:none}
+.places::-webkit-scrollbar{display:none}
+.pl{flex:0 0 74%;max-width:290px;border-radius:24px;padding:20px;color:#fff;scroll-snap-align:center;position:relative;overflow:hidden;min-height:330px;display:flex;flex-direction:column}
+.pl.a{background:var(--g-coral);box-shadow:var(--sh-c)} .pl.b{background:var(--g-violet);box-shadow:var(--sh-v)} .pl.c{background:var(--g-yellow);box-shadow:0 28px 60px -24px rgba(255,160,40,.6)} .pl.d{background:var(--g-vc);box-shadow:var(--sh-v)}
+.pl .pk{font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;line-height:1.25}
+.pl .pw{font-size:clamp(22px,6.3vw,30px);hyphens:manual;font-weight:800;line-height:1.05;margin:14px 0 10px;word-break:break-word}
+.pl .pw small{display:block;font-size:13px;font-weight:600;opacity:.85;margin-top:4px}
+.pl p{margin:0;font-size:13.5px;line-height:1.45;font-weight:500;opacity:.95}
+.pl .say{position:absolute;right:16px;top:16px}
+.pl .emo{width:96px;margin-top:auto;align-self:flex-end;margin-right:-8px;margin-bottom:-8px}
+.pl .pin{position:absolute;width:40px;left:50%;top:-50px}
+@media (min-width:900px){.places{overflow:visible;margin:0;padding:10px 0 30px}.pl{flex:1 1 0}}
+
+/* ---------- display board ---------- */
+.board{border-radius:22px;background:#15151C;color:#FFB534;padding:16px 16px 12px;font-family:"SFMono-Regular",Menlo,Consolas,monospace;box-shadow:0 26px 50px -26px rgba(0,0,0,.8);position:relative;overflow:hidden}
+.board::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.035) 0 2px,transparent 2px 4px);pointer-events:none}
+.board .bh{display:flex;justify-content:space-between;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#9A9AA8;margin-bottom:10px;font-family:var(--f);font-weight:700}
+.board .row{display:grid;grid-template-columns:42px 1fr auto;gap:10px;align-items:center;padding:8px 0;border-top:1px solid rgba(255,255,255,.08);font-size:16px;font-weight:700;letter-spacing:.02em}
+.board .row i{font-style:normal;font-family:var(--f);font-weight:800;font-size:13px;color:#fff;border-radius:7px;padding:4px 0;text-align:center}
+.board .row .m{min-width:46px;text-align:right}
+.board .row .m.blink{animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:.2}}
+.board .ticker{margin-top:8px;border-top:1px solid rgba(255,255,255,.08);padding-top:8px;overflow:hidden;white-space:nowrap;font-size:13px;color:#FFD27A}
+.board .ticker span{display:inline-block;padding-left:100%;animation:tick 16s linear infinite}
+@keyframes tick{to{translate:-100% 0}}
+.which{margin-top:16px;background:#fff;border-radius:22px;padding:18px;border:1px solid var(--line);box-shadow:var(--sh-w)}
+.which .wq{font-weight:700;font-size:15.5px;line-height:1.4;margin-bottom:12px}
+.which .wbtns{display:grid;gap:8px}
+.which button{display:flex;align-items:center;gap:10px;border-radius:14px;padding:12px 14px;background:var(--soft);font-weight:700;font-size:14px;text-align:left;transition:background .25s,color .25s}
+.which button i{font-style:normal;font-weight:800;font-size:11px;color:#fff;background:#E2001A;border-radius:6px;padding:2px 6px}
+.which button.ok{background:var(--green);color:#fff}.which button.bad{background:var(--coral);color:#fff}
+.which .wa{font-size:14px;color:var(--ink-2);margin-top:12px;min-height:22px}
+@media (min-width:860px){.rich{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}.which{margin-top:0}}
+
+/* ---------- map ---------- */
+.mapcard{border-radius:var(--r);background:#fff;box-shadow:var(--sh-w);border:1px solid var(--line);overflow:hidden}
+.mapsvg{display:block;width:100%;height:auto;background:linear-gradient(180deg,#FBF8FF,#FFF3F4)}
+.mapsvg .st{fill:#fff;stroke-width:4}
+.mapsvg text{font-family:var(--f);font-weight:700;font-size:13px;fill:#3A3A44}
+.mapsvg .sm{font-size:11px;fill:#8D8D98;font-weight:600}
+.mapsvg .hl{fill:#fff}
+.mapctl{padding:16px 16px 18px}
+.say-line{display:flex;gap:12px;align-items:flex-start}
+.sent{font-size:clamp(19px,5.4vw,26px);font-weight:800;line-height:1.3;color:#2E2E36;min-height:2.6em;position:relative}
+.sent .vb{color:var(--coral)} .sent .px{color:var(--violet);display:inline-block}
+.sent .ghostpx{display:inline-block;color:var(--violet);opacity:.0}
+.sentru{font-size:14px;color:var(--mute);margin-top:4px;min-height:1.4em}
+.mapctl .steps{margin-top:14px;display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.mapctl .steps button{min-width:0;padding:8px 6px;font-size:11px}
+.mapctl .nav{display:flex;gap:10px;margin-top:14px;align-items:center}
+.mapctl .nav .cnt{margin-left:auto;font-size:12px;font-weight:700;color:var(--mute);letter-spacing:.08em}
+.anno{margin-top:14px;border-radius:14px;background:#15151C;color:#FFB534;font-family:"SFMono-Regular",Menlo,Consolas,monospace;font-size:13.5px;padding:10px 12px;display:flex;align-items:center;gap:10px;min-height:44px}
+.anno img{width:24px;flex:none}
+@media (min-width:860px){.mapcard{display:grid;grid-template-columns:1.15fr .85fr}.mapctl{padding:28px}}
+
+/* ---------- trennbar machine ---------- */
+.tren{display:grid;gap:16px}
+.tbox{border-radius:24px;background:#fff;border:1px solid var(--line);box-shadow:var(--sh-w);padding:20px 16px}
+.tline{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:clamp(18px,5.2vw,24px);font-weight:800;min-height:56px;position:relative}
+.tline span{display:inline-block;padding:8px 12px;border-radius:12px;background:var(--soft);color:#3A3A44}
+.tline .v{background:var(--g-coral);color:#fff}
+.tline .p{background:var(--g-violet);color:#fff}
+.tline .p.fly{position:relative;z-index:2}
+.tline .slotp{min-width:56px;border:2px dashed #D9C8F5;background:transparent;color:transparent}
+.tswitch{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+.tswitch button{border-radius:14px;padding:12px 6px;font-weight:800;font-size:13px;background:var(--soft);color:#3A3A44;transition:background .25s,color .25s}
+.tswitch button.on{background:var(--g-violet);color:#fff}
+.tru{font-size:14px;color:var(--mute);margin-top:10px}
+.doorscene{position:relative;height:210px;border-radius:24px;overflow:hidden;background:linear-gradient(180deg,#FFE6E8,#F3ECFB)}
+.doorscene .wagon{position:absolute;left:50%;top:22px;width:250px;height:150px;margin-left:-125px;border-radius:26px 26px 12px 12px;background:var(--g-coral);box-shadow:0 20px 34px -18px rgba(244,82,95,.8)}
+.doorscene .wagon::before{content:"";position:absolute;left:16px;right:16px;top:16px;height:44px;border-radius:12px;background:rgba(255,255,255,.35)}
+.doorscene .wagon b{position:absolute;left:18px;bottom:12px;font-size:12px;color:#fff;letter-spacing:.14em}
+.doorscene .doors{position:absolute;left:50%;top:70px;width:76px;height:80px;margin-left:-38px;overflow:hidden;border-radius:8px;background:#2B2B35}
+.doorscene .doors i{position:absolute;top:0;bottom:0;width:50%;background:linear-gradient(180deg,#FFC9CE,#FFB0B8);transition:translate .5s cubic-bezier(.5,0,.3,1);border:2px solid rgba(255,255,255,.6)}
+.doorscene .doors i:first-child{left:0}.doorscene .doors i:last-child{right:0}
+.doorscene.open .doors i:first-child{translate:-92% 0}.doorscene.open .doors i:last-child{translate:92% 0}
+.doorscene .guy{position:absolute;width:56px;left:50%;bottom:28px;margin-left:-28px;z-index:3;transition:translate .7s cubic-bezier(.4,1.1,.4,1),scale .7s,opacity .5s}
+.doorscene .guy.inside{translate:0 -36px;scale:.72;opacity:.0}
+.doorscene .guy.left{translate:-120px 0}
+.doorscene .guy.right{translate:120px 0}
+.doorscene .wagon2{position:absolute;right:-260px;top:22px;width:250px;height:150px;border-radius:26px 26px 12px 12px;background:var(--g-violet);transition:right .8s cubic-bezier(.4,1.1,.4,1)}
+.doorscene.two .wagon2{right:-180px}
+.doorscene.nt *{transition:none!important}
+.doorscene .ground{position:absolute;left:0;right:0;bottom:0;height:30px;background:#E9E2F2}
+.doorscene .say-badge{position:absolute;left:12px;top:12px;font-size:12px;font-weight:800;background:#fff;border-radius:10px;padding:6px 10px;color:var(--violet);z-index:4;box-shadow:0 10px 20px -14px rgba(0,0,0,.5)}
+@media (min-width:860px){.tren{grid-template-columns:1fr 1fr;align-items:stretch}.doorscene{height:100%;min-height:260px}}
+
+/* ---------- chat (control) ---------- */
+.chat{display:grid;gap:10px;max-width:560px}
+.msg{max-width:86%;border-radius:20px;padding:12px 14px;font-size:14.5px;line-height:1.45;box-shadow:0 12px 24px -18px rgba(0,0,0,.5);position:relative}
+.msg .who{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+.msg .who img{width:22px}
+.msg .dl{font-weight:700;font-size:16px;display:flex;gap:10px;align-items:center;justify-content:space-between}
+.msg .dl .say{width:32px;height:32px}
+.msg .rl{font-size:13px;opacity:.8;margin-top:2px}
+.msg.k{background:#fff;border:1px solid var(--line);border-top-left-radius:6px}
+.msg.k .who{color:var(--coral)}
+.msg.me{justify-self:end;background:var(--g-violet);color:#fff;border-top-right-radius:6px}
+.msg.me .who{color:rgba(255,255,255,.85)}
+.msg.me .say{background:rgba(255,255,255,.2);color:#fff;box-shadow:none}
+.msg.nar{justify-self:center;max-width:100%;background:transparent;box-shadow:none;text-align:center;color:var(--mute);font-size:13.5px;font-weight:600;padding:4px 10px}
+.typing{display:inline-flex;gap:4px;padding:12px 14px;background:#fff;border-radius:16px;border:1px solid var(--line);width:max-content}
+.typing i{width:7px;height:7px;border-radius:50%;background:#C8C2D6;animation:typ 1s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes typ{0%,60%,100%{translate:0 0}30%{translate:0 -5px}}
+.chat .msg.hid{display:none}
+.ctrlgrid{display:grid;gap:22px}
+@media (min-width:860px){.ctrlgrid{grid-template-columns:1fr .9fr;align-items:start}}
+.side-words{display:grid;gap:10px}
+.sw2{display:flex;align-items:center;gap:12px;background:#fff;border-radius:18px;padding:12px 14px;border:1px solid var(--line);box-shadow:0 14px 30px -26px rgba(40,30,70,.6)}
+.sw2 img{width:40px}
+.sw2 div{flex:1;min-width:0}
+.sw2 b{display:block;font-size:15.5px}
+.sw2 span{font-size:13px;color:var(--mute);line-height:1.35;display:block}
+
+/* ---------- phrases (checklist cards) ---------- */
+.phr{display:grid;gap:12px}
+@media (min-width:700px){.phr{grid-template-columns:1fr 1fr}}
+.ph{display:flex;gap:12px;align-items:center;background:#fff;border-radius:20px;padding:14px;border:1px solid var(--line);box-shadow:0 14px 30px -24px rgba(40,30,70,.6);text-align:left;width:100%}
+.ph img{width:42px;flex:none}
+.ph div{flex:1;min-width:0}
+.ph b{display:block;font-size:15.5px;color:#2E2E36;line-height:1.3}
+.ph span{display:block;font-size:13px;color:var(--mute);margin-top:2px}
+
+/* ---------- störung ---------- */
+.stoer{border-radius:var(--r);background:#15151C;color:#fff;padding:24px 20px;position:relative;overflow:hidden;box-shadow:0 30px 60px -30px rgba(0,0,0,.8)}
+.stoer .led{font-family:"SFMono-Regular",Menlo,Consolas,monospace;font-size:clamp(26px,8vw,54px);font-weight:800;color:#FF5A66;letter-spacing:.08em;text-shadow:0 0 18px rgba(255,90,102,.6)}
+.stoer .led.gl{animation:glitch 2.6s infinite}
+@keyframes glitch{0%,86%,100%{translate:0 0;opacity:1}88%{translate:-3px 1px;opacity:.6}90%{translate:3px -1px}92%{opacity:.2}94%{opacity:1}}
+.stoer .emo{position:absolute;width:110px;right:-6px;top:-6px}
+.stoer .list{display:grid;gap:10px;margin-top:18px}
+.stoer .it{display:flex;gap:10px;align-items:center;border-top:1px solid rgba(255,255,255,.1);padding-top:10px}
+.stoer .it div{flex:1}
+.stoer .it b{display:block;font-size:16px;color:#FFD27A}
+.stoer .it span{font-size:13px;color:#B9B9C6}
+.stoer .say{background:rgba(255,255,255,.1);color:#fff;box-shadow:none}
+.callcard{margin-top:18px;border-radius:20px;background:var(--g-coral);padding:16px;display:flex;gap:12px;align-items:center}
+.callcard img{width:46px}
+.callcard div{flex:1}
+.callcard b{display:block;font-size:15px;line-height:1.35}
+.callcard span{font-size:12.5px;opacity:.9}
+
+/* ---------- quiz ---------- */
+.quiz{border-radius:var(--r);background:#fff;box-shadow:var(--sh-w);border:1px solid var(--line);overflow:hidden;max-width:760px;margin:0 auto}
+.qtop{background:var(--g-violet);color:#fff;padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.qtop .qn{font-size:30px;font-weight:800;letter-spacing:.02em;font-variant-numeric:tabular-nums}
+.qtop .qn small{font-size:10px;font-weight:700;letter-spacing:.14em;display:block;opacity:.8;text-transform:uppercase}
+.qdots{display:flex;gap:6px}
+.qdots i{width:22px;height:6px;border-radius:6px;background:rgba(255,255,255,.3);transition:background .3s}
+.qdots i.ok{background:#7DFFB3}.qdots i.no{background:#FF9AA2}.qdots i.cur{background:#fff}
+.qbody{padding:22px 20px 24px}
+.qq{font-size:clamp(18px,5vw,22px);font-weight:800;line-height:1.3;margin:0 0 6px;color:#2E2E36}
+.qctx{font-size:14px;color:var(--mute);margin-bottom:16px}
+.qopts{display:grid;gap:10px}
+.qopt{display:flex;gap:12px;align-items:center;text-align:left;border-radius:16px;padding:14px;background:var(--soft);font-weight:700;font-size:15px;color:#3A3A44;transition:background .25s,color .25s}
+.qopt img{width:30px}
+.qopt.ok{background:var(--green);color:#fff}.qopt.no{background:var(--coral);color:#fff}
+.qopt[disabled]{cursor:default}
+.qexp{margin-top:14px;border-radius:16px;background:#F3ECFB;padding:14px;font-size:14.5px;line-height:1.5;color:#45325E;display:none}
+.qexp.on{display:block}
+.qnav{display:flex;justify-content:flex-end;margin-top:16px}
+.qres{text-align:center;padding:30px 20px}
+.qres img{width:120px;margin:0 auto 10px}
+.qres .sc{font-size:52px;font-weight:800;background:var(--g-vc);-webkit-background-clip:text;background-clip:text;color:transparent}
+.confetti{position:fixed;inset:0;pointer-events:none;z-index:80;overflow:hidden}
+.confetti img{position:absolute;width:36px;top:-50px}
+
+/* ---------- cheat sheet ---------- */
+.cheat{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:12px var(--gut) 34px;margin:0 calc(var(--gut)*-1);scrollbar-width:none}
+.cheat::-webkit-scrollbar{display:none}
+.cc{flex:0 0 80%;max-width:320px;border-radius:24px;padding:22px 20px;color:#fff;scroll-snap-align:center;position:relative;overflow:hidden}
+.cc.a{background:var(--g-violet);box-shadow:var(--sh-v)}.cc.b{background:var(--g-coral);box-shadow:var(--sh-c)}.cc.c{background:var(--g-vc);box-shadow:var(--sh-v)}.cc.d{background:var(--g-yellow);box-shadow:0 28px 60px -24px rgba(255,160,40,.6)}
+.cc.first{background:var(--g-sunset);display:flex;flex-direction:column;justify-content:space-between;min-height:360px}
+.cc.first .ttl{font-size:clamp(28px,8vw,36px)}
+.cc.first .emo{width:120px;align-self:flex-end}
+.cc h4{margin:0 0 12px;font-size:17px;font-weight:800;text-transform:uppercase;letter-spacing:.02em;line-height:1.2}
+.cc ul{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.cc li{font-size:14px;line-height:1.4;font-weight:600}
+.cc li b{font-weight:800}
+.cc li i{font-style:normal;opacity:.75;font-weight:500}
+@media (min-width:1000px){.cheat{overflow:visible;margin:0;padding:12px 0 34px}.cc{flex:1 1 0}}
+.aph{font-size:clamp(22px,6vw,34px);font-weight:800;line-height:1.2;text-align:center;max-width:760px;margin:30px auto 0;color:#34343E}
+.aph span{background:var(--g-vc);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ---------- ad: platform ---------- */
+.ad-hero{position:relative;border-radius:var(--r);background:var(--g-violet);color:#fff;overflow:hidden;padding:26px 22px 0;box-shadow:var(--sh-v);isolation:isolate}
+.ad-hero .ttl{font-size:clamp(28px,8.6vw,62px);position:relative;z-index:2}
+.ad-hero .hsub{margin-bottom:22px}
+.ad-hero .phonebox{position:relative;height:330px;margin:10px -22px 0}
+.phone{position:absolute;width:190px;border-radius:30px;background:#fff;padding:8px;box-shadow:0 30px 50px -24px rgba(30,0,70,.7)}
+.phone img,.phone video{border-radius:23px;width:100%;aspect-ratio:9/16.5;object-fit:cover;object-position:top;background:#eee}
+.phone::before{content:"";position:absolute;top:13px;left:50%;width:56px;height:6px;margin-left:-28px;border-radius:6px;background:#E7E3EF;z-index:2}
+.ad-hero .phone.p1{left:50%;margin-left:-60px;top:20px;rotate:8deg;z-index:2}
+.ad-hero .phone.p2{left:50%;margin-left:-190px;top:70px;rotate:-10deg;width:160px}
+.ad-hero .emo.z{position:absolute;width:90px;right:4%;top:0;z-index:3}
+.ad-hero .emo.h{position:absolute;width:80px;left:6%;top:12px;z-index:3}
+.ad-hero .blurheart{width:190px;right:-40px;bottom:30px}
+@media (min-width:860px){.ad-hero{padding:46px 56px 0;display:grid;grid-template-columns:1.1fr .9fr;gap:20px;align-items:end}.ad-hero .phonebox{height:470px;margin:0}.ad-hero .phone{width:230px}.ad-hero .phone.p2{width:200px;margin-left:-230px}}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:22px}
+@media (min-width:860px){.stats{grid-template-columns:repeat(4,1fr)}}
+.stat{border-radius:22px;background:#fff;border:1px solid var(--line);padding:18px;box-shadow:0 18px 40px -30px rgba(40,30,70,.6);position:relative;overflow:hidden}
+.stat .num{font-size:clamp(30px,8.6vw,44px);font-weight:800;line-height:1;background:var(--g-vc);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat span{display:block;font-size:13px;color:var(--ink-2);margin-top:6px;line-height:1.35;font-weight:600}
+.stat img{position:absolute;right:8px;top:-10px;width:34px;opacity:.95}
+.stat{overflow:visible}
+.pains .scard{aspect-ratio:auto;min-height:360px}
+.pains .scard .ttl{font-size:clamp(21px,6.2vw,27px)}
+.feat{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:12px var(--gut) 34px;margin:0 calc(var(--gut)*-1);scrollbar-width:none}
+.feat::-webkit-scrollbar{display:none}
+.fc{flex:0 0 82%;max-width:330px;border-radius:24px;padding:20px;color:#fff;scroll-snap-align:center;position:relative;overflow:hidden}
+.fc.a{background:var(--g-coral)}.fc.b{background:var(--g-violet)}.fc.c{background:var(--g-yellow)}.fc.d{background:var(--g-vc)}
+.fc h4{margin:0 0 10px;font-size:17px;font-weight:800;text-transform:uppercase;line-height:1.2}
+.fc p{margin:0;font-size:14px;line-height:1.5;font-weight:500}
+.fc p b{font-weight:800}
+.fc .media{margin-top:14px;border-radius:16px;overflow:hidden;background:rgba(255,255,255,.2);box-shadow:0 14px 30px -18px rgba(0,0,0,.6)}
+.fc .media video,.fc .media img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top}
+@media (min-width:1000px){.feat{display:grid;grid-template-columns:1fr 1fr;overflow:visible;margin:0;padding:12px 0 34px}.fc{max-width:none}}
+.mob{position:relative;border-radius:var(--r);background:var(--soft);overflow:hidden;padding:28px 22px 0;min-height:560px}
+.mob .ttl{font-size:clamp(28px,8.2vw,56px)}
+.mob .lede{margin-bottom:10px}
+.mob .tilt{position:relative;height:430px;margin:0 -22px}
+.mob .tilt .rot{position:absolute;left:50%;top:10px;width:640px;margin-left:-320px;height:520px;rotate:-24deg}
+.mob .phone{width:170px;top:0}
+.mob .phone.a{left:20px;top:60px}.mob .phone.b{left:225px;top:0}.mob .phone.c{left:430px;top:80px}
+.mob > div:first-child{position:relative;z-index:2}
+@media (min-width:860px){.mob{padding:46px 56px 0;display:grid;grid-template-columns:.9fr 1.1fr;min-height:520px;gap:30px}.mob .tilt{height:520px;margin:0;overflow:hidden;border-radius:24px}.mob .phone{width:200px}.mob .phone.b{left:240px}.mob .phone.c{left:460px}}
+.offer{display:grid;border-radius:var(--r);overflow:hidden;box-shadow:var(--sh-v)}
+.offer .ol{background:var(--g-coral);color:#fff;padding:28px 22px 150px;position:relative;overflow:hidden;min-height:260px}
+.offer .ol h3{font-size:clamp(26px,7vw,38px);font-weight:800;line-height:1.1;margin:0;position:relative;z-index:2}
+.offer .ol .emo{position:absolute;width:150px;right:-10px;bottom:-14px}
+.offer .ol .emo.b{width:84px;right:150px;bottom:20px;rotate:-10deg}
+.offer .or{background:var(--g-violet);color:#fff;padding:28px 22px}
+.offer .or .small{font-size:11px;letter-spacing:.06em;opacity:.8}
+.offer .or ul{list-style:none;padding:0;margin:14px 0 22px;display:grid;gap:10px}
+.offer .or li{display:flex;gap:10px;font-size:14.5px;line-height:1.4;font-weight:500}
+.offer .or li .ic{color:#9CF7C6;margin-top:2px}
+.prices{display:grid;gap:12px;margin:8px 0 22px}
+.price{display:flex;align-items:center;justify-content:space-between;gap:12px;border-radius:18px;background:rgba(255,255,255,.12);padding:14px 16px;border:1px solid rgba(255,255,255,.2)}
+.price b{font-size:15px;display:block}
+.price span{font-size:12px;opacity:.85}
+.price .p{font-size:30px;font-weight:800;white-space:nowrap}
+.price .p s{font-size:15px;opacity:.6;font-weight:600;margin-right:6px}
+.price.best{background:#fff;color:#3A3A44;border:0;position:relative}
+.price.best .p{background:var(--g-vc);-webkit-background-clip:text;background-clip:text;color:transparent}
+.price.best .rib{position:absolute;top:-10px;left:14px;background:var(--g-btn);color:#fff;font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;border-radius:8px;padding:3px 8px}
+@media (min-width:860px){.offer{grid-template-columns:1fr 1.1fr}.offer .ol,.offer .or{padding:46px}.offer .ol .emo{width:220px}.offer .ol .emo.b{width:110px;right:210px;bottom:60px}}
+.howto{display:grid;gap:12px;margin-top:10px}
+@media (min-width:860px){.howto{grid-template-columns:repeat(5,1fr)}}
+.hw{border-radius:20px;padding:16px;background:#fff;border:1px solid var(--line);box-shadow:0 18px 40px -30px rgba(40,30,70,.6);position:relative}
+.hw .dn{font-size:16px;font-weight:800;text-transform:uppercase;color:var(--coral)}
+.hw:nth-child(even) .dn{color:var(--violet)}
+.hw p{margin:6px 0 0;font-size:13.5px;color:var(--ink-2);line-height:1.45}
+.hw img{position:absolute;width:44px;right:10px;top:-14px}
+.revs{columns:1;column-gap:14px}
+@media (min-width:700px){.revs{columns:2}}
+.rev{break-inside:avoid;margin:0 0 14px;background:#fff;border-radius:20px;padding:12px;border:1px solid var(--line);box-shadow:0 18px 40px -30px rgba(40,30,70,.6)}
+.rev img{border-radius:12px;width:100%}
+.rev .src{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:12px;font-weight:700;color:var(--mute)}
+.rev .src i{width:22px;height:22px;border-radius:50%;background:var(--g-tg);display:inline-grid;place-items:center;color:#fff}
+.rev .src i .ic{width:12px;height:12px}
+.faq{display:grid;gap:10px;max-width:760px;margin:0 auto}
+.faq details{background:#fff;border-radius:18px;border:1px solid var(--line);box-shadow:0 14px 30px -26px rgba(40,30,70,.6);padding:0 18px}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:12px;align-items:center;font-weight:700;font-size:15px;padding:18px 0;color:#34343E}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .ic{color:var(--mute);transition:rotate .3s}
+.faq details[open] summary .ic{rotate:180deg}
+.faq details p{margin:0 0 18px;font-size:14.5px;color:var(--ink-2);line-height:1.55}
+.fin{text-align:center;padding:90px 0 120px;position:relative;overflow:hidden}
+.fin .vis{position:relative;width:220px;height:200px;margin:0 auto 10px}
+.fin .vis .blurheart{width:190px;left:0;top:0}
+.fin .vis .emo{position:absolute;width:120px;right:0;top:10px;rotate:12deg}
+.fin .ttl{font-size:clamp(34px,10vw,72px);color:#3A3A44}
+.fin p{color:var(--mute);font-size:14px;margin:12px 0 26px}
+.fin .links{display:flex;justify-content:center;gap:20px;font-size:18px;font-weight:600;flex-wrap:wrap}
+.fin .links a{text-decoration:none}
+.fin .links a:nth-child(1){color:#2AA2E6}.fin .links a:nth-child(2){color:var(--coral)}.fin .links a:nth-child(3){color:var(--violet)}
+.dock{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:60;display:flex;align-items:center;gap:12px;background:#fff;border-radius:22px;padding:10px 10px 10px 16px;box-shadow:0 20px 50px -18px rgba(40,20,80,.55);border:1px solid var(--line);translate:0 150%;transition:translate .5s cubic-bezier(.3,1.3,.5,1)}
+.dock.on{translate:0 0}
+.dock .dt{flex:1;min-width:0;line-height:1.2}
+.dock .dt b{display:block;font-size:14px}
+.dock .dt span{font-size:12px;color:var(--mute)}
+.dock .btn{min-height:48px;padding:0 18px;font-size:11px;letter-spacing:.14em}
+@media (min-width:860px){.dock{left:50%;right:auto;width:520px;margin-left:-260px}}
+
+/* reveal fallback */
+.rv{transition:opacity .7s ease,translate .7s cubic-bezier(.2,.9,.3,1)}
+html.io .rv:not(.in){translate:0 26px}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  html.io .rv:not(.in){translate:none}
+}
+</style>
+
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="i-paw-print" viewBox="0 0 24 24"><circle cx="11" cy="4" r="2"/><circle cx="18" cy="8" r="2"/><circle cx="20" cy="16" r="2"/><path d="M9 10a5 5 0 0 1 5 5v3.5a3.5 3.5 0 0 1-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 0 1 5.5 10Z"/></symbol>
+<symbol id="i-volume-2" viewBox="0 0 24 24"><path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z"/><path d="M16 9a5 5 0 0 1 0 6"/><path d="M19.364 18.364a9 9 0 0 0 0-12.728"/></symbol>
+<symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+<symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+<symbol id="i-send" viewBox="0 0 24 24"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></symbol>
+<symbol id="i-play" viewBox="0 0 24 24"><polygon points="6 3 20 12 6 21 6 3"/></symbol>
+<symbol id="i-rotate-ccw" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></symbol>
+<symbol id="i-circle-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></symbol>
+<symbol id="i-train-front" viewBox="0 0 24 24"><path d="M8 3.1V7a4 4 0 0 0 8 0V3.1"/><path d="m9 15-1-1"/><path d="m15 15 1-1"/><path d="M9 19c-2.8 0-5-2.2-5-5v-4a8 8 0 0 1 16 0v4c0 2.8-2.2 5-5 5Z"/><path d="m8 19-2 3"/><path d="m16 19 2 3"/></symbol>
+<symbol id="i-ticket" viewBox="0 0 24 24"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/></symbol>
+<symbol id="i-map-pin" viewBox="0 0 24 24"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></symbol>
+<symbol id="i-repeat" viewBox="0 0 24 24"><path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></symbol>
+<symbol id="i-hand" viewBox="0 0 24 24"><path d="M18 11V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2"/><path d="M14 10V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v2"/><path d="M10 10.5V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></symbol>
+<symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></symbol>
+<symbol id="i-wifi-off" viewBox="0 0 24 24"><path d="M12 20h.01"/><path d="M8.5 16.429a5 5 0 0 1 7 0"/><path d="M5 12.859a10 10 0 0 1 5.17-2.69"/><path d="M19 12.859a10 10 0 0 0-2.007-1.523"/><path d="M2 8.82a15 15 0 0 1 4.177-2.643"/><path d="M22 8.82a15 15 0 0 0-11.288-3.764"/><path d="m2 2 20 20"/></symbol>
+<symbol id="i-graduation-cap" viewBox="0 0 24 24"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></symbol>
+<symbol id="i-book-open" viewBox="0 0 24 24"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></symbol>
+<symbol id="i-audio-lines" viewBox="0 0 24 24"><path d="M2 10v3"/><path d="M6 6v11"/><path d="M10 3v18"/><path d="M14 8v7"/><path d="M18 5v13"/><path d="M22 10v3"/></symbol>
+<symbol id="i-bot" viewBox="0 0 24 24"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></symbol>
+<symbol id="i-infinity" viewBox="0 0 24 24"><path d="M12 12c-2-2.67-4-4-6-4a4 4 0 1 0 0 8c2 0 4-1.33 6-4Zm0 0c2 2.67 4 4 6 4a4 4 0 0 0 0-8c-2 0-4 1.33-6 4Z"/></symbol>
+<symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+</svg>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="media/logo.webp" alt="" width="32" height="32">STELLAS</a>
+    <span class="tag">Wien · Öffis</span>
+  </div>
+  <div class="prog" id="prog"></div>
+</header>
+
+<main id="top">
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hcard">
+      <div class="hmeta">
+        <div><b>40</b><span>слов<small>с озвучкой</small></span></div>
+        <div><b>7</b><span>минут<small>на чтение</small></span></div>
+        <div><b>A1</b><span>уровень<small>и выше</small></span></div>
+      </div>
+      <div class="hleft">
+        <h1 class="ttl"><span class="th">Вена. Öffis.</span>Билет, остановка, пересадка</h1>
+        <p class="hsub">Купишь правильный билет. Поймёшь объявление в вагоне. Пересядешь там, где надо, а не там, где все. И узнаешь, почему контролёр приходит <b>именно в тот день</b>, когда ты сэкономил одну секунду.</p>
+        <div class="hcta">
+          <a class="btn" href="#s1"><svg class="ic paw"><use href="#i-paw-print"/></svg>Поехали</a>
+          <span class="chip">Wiener Linien <i class="u1">U1</i><i class="u4">U4</i><i class="u6">U6</i></span>
+        </div>
+      </div>
+      <div class="hvis" aria-hidden="true">
+        <div class="ghost-u"></div>
+        <img class="blurheart" src="media/e-heart.webp" alt="">
+        <span class="hz zap"><img class="emo" src="media/e-zap.webp" alt=""></span>
+        <span class="hz tick"><img class="emo" src="media/e-ticket.webp" alt=""></span>
+        <span class="hz tram"><img class="emo" src="media/e-tram.webp" alt=""></span>
+        <span class="hz vic"><img class="emo" src="media/e-victory.webp" alt=""></span>
+      </div>
+      <div class="lineset" aria-hidden="true"><i class="u1">U1</i><i class="u2">U2</i><i class="u3">U3</i><i class="u4">U4</i><i class="u6">U6</i></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STORY ================= -->
+<section class="sec" id="story">
+  <div class="wrap">
+    <div class="eyebrow"><span class="n">0</span>История, с которой всё началось</div>
+    <h2 class="ttl dark"><span class="th">Я сэкономил</span>одну секунду</h2>
+    <div class="rowscroll" id="stories">
+      <article class="scard c1"><span class="num">01</span><img class="emo" src="media/e-victory.webp" alt="" loading="lazy">
+        <span class="k">День 1 в Вене</span><h3 class="ttl"><span class="th">В метро</span>нет турникетов</h3><p>Заходишь и едешь. Я подумал: какие честные люди.</p></article>
+      <article class="scard c2"><span class="num">02</span><img class="emo" src="media/e-police.webp" alt="" loading="lazy">
+        <span class="k">День 3</span><h3 class="ttl"><span class="th">Контролёр</span>подумал иначе</h3><p>Двое в обычных куртках. Один говорит: <span class="de">Fahrscheinkontrolle</span>.</p></article>
+      <article class="scard c3"><span class="num">03</span><img class="emo" src="media/e-monocle.webp" alt="" loading="lazy">
+        <span class="k">Билет был</span><h3 class="ttl"><span class="th">Куплен.</span>Но не entwertet</h3><p>Купить и пробить это два разных глагола. Я знал один.</p></article>
+      <article class="scard c4"><span class="num">04</span><img class="emo" src="media/e-scream.webp" alt="" loading="lazy">
+        <span class="k">Итог</span><h3 class="ttl"><span class="th">Больше</span>сотни евро</h3><p>За одно слово, которого не было в моём словаре.</p></article>
+    </div>
+    <div class="storytext">
+      <div class="story rv">
+        <p>Я приехал в Вену учиться.</p>
+        <p>В Вене есть метро. В метро нет турникетов. Заходишь и едешь.</p>
+        <p>Билет я купил. В трафике. Трафик это киоск, где продают газеты, сигареты и билеты на метро. Да, билеты лежат рядом с сигаретами.</p>
+        <p>Положил билет в карман. Горжусь собой. Еду.</p>
+        <p>На третьей станции встают двое в обычных куртках. Один говорит, <span class="de">Fahrscheinkontrolle</span>.</p>
+        <p>Достаю билет. Он смотрит. Говорит, <span class="de">nicht entwertet</span>.</p>
+        <p>Говорю, ай бот ит. Он говорит, <span class="de">ja</span>. Aber nicht entwertet.</p>
+        <p>Я тогда не знал слова entwerten. Теперь знаю.</p>
+        <p class="punch">Оно стоило мне больше сотни евро.</p>
+      </div>
+      <div class="coda rv">
+        <img class="emo" src="media/e-ticket.webp" alt="" loading="lazy">
+        <p>Билет я, кстати, храню до сих пор.</p>
+        <p>Чистый. Без штампа.</p>
+        <p class="big">Как памятник.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOR YOU ================= -->
+<section class="sec soft">
+  <div class="wrap">
+    <div class="two" id="two">
+      <div class="colw">
+        <h3>Гайд для тебя, если:</h3>
+        <ul>
+          <li><img src="media/e-neutral.webp" alt="" loading="lazy"><span>Ты стоишь у автомата и <b>не знаешь, что нажать</b></span></li>
+          <li><img src="media/e-grimace.webp" alt="" loading="lazy"><span>Ты боишься, что <b>контролёр заговорит</b> с тобой</span></li>
+          <li><img src="media/e-rolling.webp" alt="" loading="lazy"><span>Объявление в вагоне для тебя <b>просто шум</b></span></li>
+          <li><img src="media/e-thinking.webp" alt="" loading="lazy"><span>Ты выходишь тогда, <b>когда выходят все</b></span></li>
+          <li><img src="media/e-pleading.webp" alt="" loading="lazy"><span>Ты едешь 40 минут в обход, лишь бы <b>не делать пересадку</b></span></li>
+        </ul>
+      </div>
+      <svg class="arr" viewBox="0 0 80 40" aria-hidden="true"><path d="M2 30 C 25 2, 50 2, 72 20" fill="none" stroke="#F4525F" stroke-width="2.5" stroke-linecap="round"/><path d="M62 12 L74 21 L60 27" fill="none" stroke="#F4525F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="colv">
+        <img class="blurheart" src="media/e-heart.webp" alt="">
+        <h3>Что у тебя получится после гайда?</h3>
+        <ul>
+          <li><img src="media/e-hearteyes.webp" alt="" loading="lazy"><span><b>Купишь нужный билет</b> за двадцать секунд</span></li>
+          <li><img src="media/e-money.webp" alt="" loading="lazy"><span><b>Не заплатишь штраф</b> за одну пропущенную отметку</span></li>
+          <li><img src="media/e-sunglasses.webp" alt="" loading="lazy"><span><b>Поймёшь «Nächste Station…»</b> с первого раза</span></li>
+          <li><img src="media/e-monocle.webp" alt="" loading="lazy"><span><b>Спросишь дорогу</b> и поймёшь ответ</span></li>
+          <li><img src="media/e-starstruck.webp" alt="" loading="lazy"><span><b>Пересядешь на Karlsplatz</b> как местный</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ROUTE ================= -->
+<section class="sec" id="route">
+  <div class="wrap">
+    <h2 class="h2">Маршрут гайда</h2>
+    <p class="lede">Шесть остановок. Пересадок нет. Контролёр будет, но ты к нему подготовишься.</p>
+    <div class="route" id="routeList">
+      <div class="rline"><div class="rfill" id="rfill"></div><img class="rtram" id="rtram" src="media/e-tramcar.webp" alt=""></div>
+      <a class="day k1 rv" href="#s1"><img class="emo" src="media/e-tickets.webp" alt="" loading="lazy"><div class="dn">Остановка 1</div><p>Билеты. Какой брать и что жать на автомате.</p></a>
+      <a class="day rv" href="#s2"><img class="emo" src="media/e-money.webp" alt="" loading="lazy"><div class="dn">Остановка 2</div><p>Entwerten. Самое дорогое слово этого гайда.</p></a>
+      <a class="day k3 rv" href="#s3"><img class="emo" src="media/e-busstop.webp" alt="" loading="lazy"><div class="dn">Остановка 3</div><p>Где ждать. Haltestelle, Station, Bahnsteig и табло.</p></a>
+      <a class="day rv" href="#s4"><img class="emo" src="media/e-metro.webp" alt="" loading="lazy"><div class="dn">Остановка 4</div><p>Пересадка. Едем с Hütteldorf до Stephansplatz.</p></a>
+      <a class="day k5 rv" href="#s5"><img class="emo" src="media/e-police.webp" alt="" loading="lazy"><div class="dn">Остановка 5</div><p>Контроль. Диалог, который лучше прочитать здесь.</p></a>
+      <a class="day rv" href="#quiz"><img class="emo" src="media/e-partyface.webp" alt="" loading="lazy"><div class="dn">Конечная</div><p>Квиз. Шесть вопросов, штрафа нет.</p></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= S1 TICKETS ================= -->
+<section class="sec soft" id="s1">
+  <div class="wrap">
+    <div class="bigcard coral">
+      <div class="k"><span class="n">1</span>Остановка 1 · Билеты</div>
+      <h2 class="ttl"><span class="th">Что жать</span>на автомате</h2>
+      <p>Автомат вежливый. Он просто спросит, сколько ты будешь ездить. Ответь честно.</p>
+      <img class="bc-emo2 emo" src="media/e-zap.webp" alt="" loading="lazy">
+      <img class="bc-emo emo" src="media/e-tickets.webp" alt="" loading="lazy">
+    </div>
+    <div class="story rv" style="max-width:640px;margin-bottom:26px">
+      <p>Билет в Австрии называют <span class="de">der Fahrschein</span>.</p>
+      <p>Fahrkarte тоже поймут. Но звучит как «подъезд» в Петербурге. Вроде правильно. Но сразу видно, что не местный.</p>
+    </div>
+
+    <div class="mach" id="mach" data-s="pick">
+      <div class="automat">
+        <div class="top"><span class="wl"><i></i>Fahrscheinautomat</span><span>DE · EN</span></div>
+        <div class="screen">
+          <div class="q"><span>Wie fährst du?</span><span>Как ты ездишь?</span></div>
+          <div class="opts" id="opts">
+            <button class="opt" data-t="0"><img src="media/e-ticket.webp" alt=""><span>Одна поездка<small>туда, без обратно</small></span></button>
+            <button class="opt" data-t="1"><img src="media/e-stopwatch.webp" alt=""><span>Гуляю весь день<small>турист или гости приехали</small></span></button>
+            <button class="opt" data-t="2"><img src="media/e-backpack.webp" alt=""><span>Неделю в городе<small>работа, учёба, практика</small></span></button>
+            <button class="opt" data-t="3"><img src="media/e-graduation.webp" alt=""><span>Живу тут<small>каждый день, весь год</small></span></button>
+            <button class="opt" data-t="4"><img src="media/e-phone.webp" alt=""><span>Без бумажек<small>всё в телефоне</small></span></button>
+          </div>
+          <div class="paystep" aria-live="polite"><img src="media/e-euro.webp" alt=""><div class="pt" id="payt">Bitte zahlen</div><div class="bar2"><i></i></div></div>
+        </div>
+        <div class="slot"></div>
+      </div>
+      <div>
+        <div class="tkwrap">
+          <div class="tk" id="tk">
+            <div class="tkh"><span>Wiener Linien</span><span>Kernzone 100</span></div>
+            <div class="tkn" id="tkn">Einzelfahrschein</div>
+            <div class="tkd" id="tkd">Одна поездка в одну сторону.</div>
+            <div class="tkf"><span id="tkr">≈ одна поездка</span><button class="say" id="tksay" data-say="der Einzelfahrschein" aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button><span class="stampbox" id="tkst">noch nicht entwertet</span></div>
+          </div>
+        </div>
+        <p class="hint" id="mhint">Выбери вариант на экране автомата.</p>
+      </div>
+    </div>
+
+    <h3 class="h2" style="margin-top:46px">Слова для кассы и автомата</h3>
+    <div class="legend"><span style="background:var(--violet)">der</span><span style="background:var(--coral)">die</span><span style="background:var(--yellow)">das</span><span style="background:#C84FD0">глагол / слово</span></div>
+    <div class="words">
+      <div class="wc der rv" data-say="der Fahrschein"><div class="in"><div class="fa"><span class="art">der</span><img src="media/e-ticket.webp" alt="" loading="lazy"><div class="w" lang="de">Fahr&shy;schein</div><span class="tap"><svg class="ic"><use href="#i-repeat"/></svg>нажми</span></div><div class="fb"><div class="tr">билет</div><div class="ex">Ein Fahrschein, bitte.<br>Один билет, пожалуйста.</div></div></div></div>
+      <div class="wc die rv" data-say="die Trafik"><div class="in"><div class="fa"><span class="art">die</span><img src="media/e-books.webp" alt="" loading="lazy"><div class="w" lang="de">Trafik</div><span class="tap"><svg class="ic"><use href="#i-repeat"/></svg>нажми</span></div><div class="fb"><div class="tr">киоск с газетами и билетами</div><div class="ex">Чисто австрийское слово. В Германии не поймут.</div></div></div></div>
+      <div class="wc der rv" data-say="der Automat"><div class="in"><div class="fa"><span class="art">der</span><img src="media/e-euro.webp" alt="" loading="lazy"><div class="w" lang="de">Automat</div><span class="tap"><svg class="ic"><use href="#i-repeat"/></svg>нажми</span></div><div class="fb"><div class="tr">автомат</div><div class="ex">Der Automat nimmt auch Karte.<br>Автомат берёт и карту.</div></div></div></div>
+      <div class="wc das rv" data-say="das Handyticket"><div class="in"><div class="fa"><span class="art">das</span><img src="media/e-phone.webp" alt="" loading="lazy"><div class="w" lang="de">Handy&shy;ticket</div><span class="tap"><svg class="ic"><use href="#i-repeat"/></svg>нажми</span></div><div class="fb"><div class="tr">билет в телефоне</div><div class="ex">Покупаешь в приложении WienMobil.</div></div></div></div>
+      <div class="wc die rv" data-say="die Wochenkarte"><div class="in"><div class="fa"><span class="art">die</span><img src="media/e-backpack.webp" alt="" loading="lazy"><div class="w" lang="de">Wochen&shy;karte</div><span class="tap"><svg class="ic"><use href="#i-repeat"/></svg>нажми</span></div><div class="fb"><div class="tr">недельный проездной</div><div class="ex">С понедельника до понедельника, 9:00.</div></div></div></div>
+      <div class="wc die rv" data-say="die Jahreskarte"><div class="in"><div class="fa"><span class="art">die</span><img src="media/e-graduation.webp" alt="" loading="lazy"><div class="w" lang="de">Jahres&shy;karte</div><span class="tap"><svg class="ic"><use href="#i-repeat"/></svg>нажми</span></div><div class="fb"><div class="tr">годовой проездной</div><div class="ex">Венцы любят её больше шницеля. Почти.</div></div></div></div>
+      <div class="wc vb rv" data-say="entwerten"><div class="in"><div class="fa"><span class="art">глагол</span><img src="media/e-money.webp" alt="" loading="lazy"><div class="w" lang="de">ent&shy;werten</div><span class="tap"><svg class="ic"><use href="#i-repeat"/></svg>нажми</span></div><div class="fb"><div class="tr">пробить, отметить</div><div class="ex">Bitte den Fahrschein entwerten!<br>Не забудь отметить билет!</div></div></div></div>
+      <div class="wc vb rv" data-say="gültig"><div class="in"><div class="fa"><span class="art">слово</span><img src="media/e-check.webp" alt="" loading="lazy"><div class="w" lang="de">gültig</div><span class="tap"><svg class="ic"><use href="#i-repeat"/></svg>нажми</span></div><div class="fb"><div class="tr">действительный</div><div class="ex">Der Fahrschein ist gültig.<br>Билет действителен.</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= S2 ENTWERTEN ================= -->
+<section class="sec" id="s2">
+  <div class="wrap">
+    <div class="bigcard violet">
+      <div class="k"><span class="n">2</span>Остановка 2 · Entwerten</div>
+      <h2 class="ttl"><span class="th">Купить</span>≠ entwerten</h2>
+      <p>Самое дорогое слово этого гайда. Я проверил лично.</p>
+      <img class="bc-emo2 emo" src="media/e-stopwatch.webp" alt="" loading="lazy">
+      <img class="bc-emo emo" src="media/e-money.webp" alt="" loading="lazy">
+    </div>
+    <div class="story rv" style="max-width:640px;margin-bottom:26px">
+      <p>Купил билет. Это ещё не всё.</p>
+      <p>Бумажный билет без даты и времени надо <span class="de">entwerten</span>. По-старому: прокомпостировать.</p>
+      <p>Это как жениться без ЗАГСа. Вроде всё серьёзно. Но контролёр не засчитает.</p>
+    </div>
+
+    <div class="ent" id="ent" data-s="1">
+      <div>
+        <div class="entstage" id="entstage">
+          <div class="noslip"><img src="media/e-cross.webp" alt="">noch nicht gültig</div>
+          <div class="okb"><img src="media/e-check.webp" alt="">gültig</div>
+          <div class="entbox" id="entbox"><span class="lbl">Entwerter</span><div class="mouth" id="mouth"></div><svg class="ic arrow"><use href="#i-arrow-right"/></svg><div class="led"></div></div>
+          <div class="card" id="entcard"><div class="cn">Einzelfahrschein</div><div class="cs" id="entcs">hier stempeln</div></div>
+          <div class="stampfx">KLACK!</div>
+        </div>
+        <div class="steps" id="entsteps" style="margin-top:12px">
+          <button data-s="1" class="on"><b>01</b>Купил</button>
+          <button data-s="2"><b>02</b>Сунул</button>
+          <button data-s="3"><b>03</b>Klack</button>
+          <button data-s="4"><b>04</b>Gültig</button>
+        </div>
+      </div>
+      <div>
+        <div class="stepcap" aria-live="polite">
+          <div class="say-line"><button class="say" id="entsay" data-say="Ich habe einen Fahrschein gekauft." aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button><div><div class="de" id="entde">Ich habe einen Fahrschein gekauft.</div><p id="entru">Билет куплен. Но пока это просто бумажка.</p></div></div>
+        </div>
+        <div class="vs">
+          <div class="a rv"><img src="media/e-ticket.webp" alt="" loading="lazy"><b>Бумажный билет</b><span>Нет даты и времени? Штампуй. До поездки, а не когда увидел контролёра.</span></div>
+          <div class="b rv"><img src="media/e-phone.webp" alt="" loading="lazy"><b>Handyticket</b><span>Время уже внутри. Экран телефона штамповать не надо. Не спрашивай, откуда я знаю.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= S3 WHERE TO WAIT ================= -->
+<section class="sec pinkbg" id="s3">
+  <div class="wrap">
+    <div class="bigcard sunset">
+      <div class="k"><span class="n">3</span>Остановка 3 · Где ждать</div>
+      <h2 class="ttl"><span class="th">Остановка?</span>Смотря чья</h2>
+      <p>Русский говорит «остановка» про всё. Немецкий раздаёт каждому транспорту своё слово.</p>
+      <img class="bc-emo2 emo" src="media/e-pin.webp" alt="" loading="lazy">
+      <img class="bc-emo emo" src="media/e-busstop.webp" alt="" loading="lazy">
+    </div>
+    <div class="places" id="places">
+      <div class="pl a"><img class="pin" src="media/e-pin.webp" alt=""><button class="say" data-say="die Haltestelle" aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button><div class="pk">Трамвай и автобус</div><div class="pw" lang="de">die Halte&shy;stelle<small>остановка</small></div><p>Столбик с табличкой на улице. «Wo ist die Haltestelle?»</p><img class="emo" src="media/e-busstop.webp" alt="" loading="lazy"></div>
+      <div class="pl b"><img class="pin" src="media/e-pin.webp" alt=""><button class="say" data-say="die Station" aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button><div class="pk">U-Bahn</div><div class="pw" lang="de">die Station<small>станция метро</small></div><p>Вход с большой буквой U. В вагоне слышишь: «Nächste Station…»</p><img class="emo" src="media/e-metro.webp" alt="" loading="lazy"></div>
+      <div class="pl c"><img class="pin" src="media/e-pin.webp" alt=""><button class="say" data-say="der Bahnsteig" aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button><div class="pk">Внутри станции</div><div class="pw" lang="de">der Bahn&shy;steig<small>платформа</small></div><p>Место, где стоишь и ждёшь свой поезд. Не перепутай сторону.</p><img class="emo" src="media/e-station.webp" alt="" loading="lazy"></div>
+      <div class="pl d"><img class="pin" src="media/e-pin.webp" alt=""><button class="say" data-say="das Gleis" aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button><div class="pk">S-Bahn и поезда</div><div class="pw" lang="de">das Gleis<small>путь</small></div><p>Путь с номером. На вокзале: «Zug nach Salzburg, Gleis 7».</p><img class="emo" src="media/e-light.webp" alt="" loading="lazy"></div>
+    </div>
+    <div class="story rv" style="max-width:640px;margin:6px 0 26px">
+      <p>Направление в Вене называют по конечной.</p>
+      <p>Не «на север». Не «в центр». А <span class="de">Richtung Leopoldau</span>.</p>
+      <p>Запомни конечные своей линии. Это твой компас.</p>
+    </div>
+    <div class="rich">
+      <div class="board rv" id="board" aria-label="Табло">
+        <div class="bh"><span>Karlsplatz · U1</span><span id="clock">--:--</span></div>
+        <div class="row"><i class="u1">U1</i><span>Leopoldau</span><span class="m" id="m1">2 min</span></div>
+        <div class="row"><i class="u1">U1</i><span>Oberlaa</span><span class="m" id="m2">5 min</span></div>
+        <div class="row"><i class="u4">U4</i><span>Heiligenstadt</span><span class="m" id="m3">3 min</span></div>
+        <div class="ticker"><span>Nächste Station: Stephansplatz · Umsteigen zur U3 · Bitte Vorsicht beim Aussteigen · Nächste Station: Stephansplatz · Umsteigen zur U3 · </span></div>
+      </div>
+      <div class="which rv" id="which">
+        <div class="wq">Ты на Karlsplatz. Тебе на Stephansplatz по U1. На какую платформу идёшь?</div>
+        <div class="wbtns">
+          <button data-ok="1"><i>U1</i>Richtung Leopoldau</button>
+          <button data-ok="0"><i>U1</i>Richtung Oberlaa</button>
+        </div>
+        <div class="wa" id="wa"></div>
+      </div>
+    </div>
+
+    <h3 class="h2" style="margin-top:46px">Слова для дороги</h3>
+    <div class="words">
+      <div class="wc die rv" data-say="die Bim"><div class="in"><div class="fa"><span class="art">die</span><img src="media/e-tram.webp" alt="" loading="lazy"><div class="w" lang="de">Bim</div><span class="tap"><svg class="ic"><use href="#i-repeat"/></svg>нажми</span></div><div class="fb"><div class="tr">трамвай по-венски</div><div class="ex">Официально Straßenbahn. Но кто так говорит? Звенит «бим», вот и Bim.</div></div></div></div>
+      <div class="wc die rv" data-say="die Öffis"><div class="in"><div class="fa"><span class="art">die</span><img src="media/e-bus.webp" alt="" loading="lazy"><div class="w" lang="de">Öffis</div><span class="tap"><svg class="ic"><use href="#i-repeat"/></svg>нажми</span></div><div class="fb"><div class="tr">общественный транспорт</div><div class="ex">Ich fahre mit den Öffis.<br>Я езжу на общественном.</div></div></div></div>
+      <div class="wc die rv" data-say="die Richtung"><div class="in"><div class="fa"><span class="art">die</span><img src="media/e-map.webp" alt="" loading="lazy"><div class="w" lang="de">Richtung</div><span class="tap"><svg class="ic"><use href="#i-repeat"/></svg>нажми</span></div><div class="fb"><div class="tr">направление</div><div class="ex">U1 Richtung Leopoldau.<br>U1 в сторону Leopoldau.</div></div></div></div>
+      <div class="wc die rv" data-say="die Endstation"><div class="in"><div class="fa"><span class="art">die</span><img src="media/e-check.webp" alt="" loading="lazy"><div class="w" lang="de">End&shy;station</div><span class="tap"><svg class="ic"><use href="#i-repeat"/></svg>нажми</span></div><div class="fb"><div class="tr">конечная</div><div class="ex">Endstation. Bitte alle aussteigen.<br>Конечная. Все на выход.</div></div></div></div>
+      <div class="wc der rv" data-say="der Haltewunsch"><div class="in"><div class="fa"><span class="art">der</span><img src="media/e-bell.webp" alt="" loading="lazy"><div class="w" lang="de">Halte&shy;wunsch</div><span class="tap"><svg class="ic"><use href="#i-repeat"/></svg>нажми</span></div><div class="fb"><div class="tr">кнопка «остановите»</div><div class="ex">В автобусе жмёшь её, иначе водитель может проехать мимо.</div></div></div></div>
+      <div class="wc der rv" data-say="der Ausgang"><div class="in"><div class="fa"><span class="art">der</span><img src="media/e-door.webp" alt="" loading="lazy"><div class="w" lang="de">Ausgang</div><span class="tap"><svg class="ic"><use href="#i-repeat"/></svg>нажми</span></div><div class="fb"><div class="tr">выход</div><div class="ex">Wo ist der Ausgang?<br>Где выход?</div></div></div></div>
+      <div class="wc die rv" data-say="die Rolltreppe"><div class="in"><div class="fa"><span class="art">die</span><img src="media/e-station.webp" alt="" loading="lazy"><div class="w" lang="de">Roll&shy;treppe</div><span class="tap"><svg class="ic"><use href="#i-repeat"/></svg>нажми</span></div><div class="fb"><div class="tr">эскалатор</div><div class="ex">Rechts stehen, links gehen.<br>Справа стоят, слева идут.</div></div></div></div>
+      <div class="wc der rv" data-say="der Lift"><div class="in"><div class="fa"><span class="art">der</span><img src="media/e-rocket.webp" alt="" loading="lazy"><div class="w" lang="de">Lift</div><span class="tap"><svg class="ic"><use href="#i-repeat"/></svg>нажми</span></div><div class="fb"><div class="tr">лифт</div><div class="ex">В Германии чаще Aufzug. В Австрии Lift. Оба правильные.</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= S4 TRANSFER ================= -->
+<section class="sec" id="s4">
+  <div class="wrap">
+    <div class="bigcard vc">
+      <div class="k"><span class="n">4</span>Остановка 4 · Пересадка</div>
+      <h2 class="ttl"><span class="th">Пересадка</span>без паники</h2>
+      <p>Едем с Hütteldorf до Stephansplatz. Пять шагов. Один глагол рвётся пополам.</p>
+      <img class="bc-emo2 emo" src="media/e-zap.webp" alt="" loading="lazy">
+      <img class="bc-emo emo" src="media/e-metro.webp" alt="" loading="lazy">
+    </div>
+
+    <div class="mapcard rv" id="mapcard">
+      <svg class="mapsvg" id="mapsvg" viewBox="0 0 360 310" role="img" aria-label="Схема: U4 от Hütteldorf до Karlsplatz, затем U1 до Stephansplatz">
+        <line x1="230" y1="282" x2="230" y2="40" stroke="#E2001A" stroke-width="10" stroke-linecap="round" opacity=".3"/>
+        <line x1="34" y1="200" x2="345" y2="200" stroke="#319F49" stroke-width="10" stroke-linecap="round" opacity=".3"/>
+        <line id="lnU4" x1="40" y1="200" x2="230" y2="200" stroke="#319F49" stroke-width="10" stroke-linecap="round"/>
+        <line id="lnU1" x1="230" y1="200" x2="230" y2="120" stroke="#E2001A" stroke-width="10" stroke-linecap="round"/>
+        <g fill="#fff" stroke="#319F49" stroke-width="3"><circle cx="72" cy="200" r="3"/><circle cx="138" cy="200" r="3"/><circle cx="200" cy="200" r="3"/></g>
+        <circle class="st" cx="40" cy="200" r="9" stroke="#319F49"/>
+        <circle class="st" cx="105" cy="200" r="7" stroke="#319F49"/>
+        <circle class="st" cx="170" cy="200" r="7" stroke="#319F49"/>
+        <circle class="st" cx="230" cy="270" r="7" stroke="#E2001A"/>
+        <circle class="st" cx="230" cy="120" r="9" stroke="#E2001A"/>
+        <circle class="st" cx="230" cy="54" r="7" stroke="#E2001A"/>
+        <rect x="218" y="188" width="24" height="24" rx="8" fill="#fff" stroke="#2E2E36" stroke-width="3"/>
+        <text x="12" y="228">Hütteldorf</text>
+        <text x="105" y="180" text-anchor="middle" class="sm">Schönbrunn</text>
+        <text x="170" y="228" text-anchor="middle" class="sm">Längenfeldg.</text>
+        <text x="248" y="193">Karlsplatz</text>
+        <text x="248" y="124">Stephansplatz</text>
+        <text x="248" y="58" class="sm">Schwedenplatz</text>
+        <text x="248" y="274" class="sm">Taubstummeng.</text>
+        <text x="230" y="24" text-anchor="middle" class="sm">↑ Richtung Leopoldau</text>
+        <text x="230" y="302" text-anchor="middle" class="sm">↓ Richtung Oberlaa</text>
+        <text x="300" y="224" text-anchor="middle" class="sm">→ Heiligenstadt</text>
+        <circle id="mring" cx="40" cy="200" r="14" fill="none" stroke="#319F49" stroke-width="3" opacity=".6"/>
+        <circle id="mdot" cx="40" cy="200" r="11" fill="#319F49" stroke="#fff" stroke-width="4"/>
+      </svg>
+      <div class="mapctl">
+        <div class="say-line"><button class="say" id="msay" aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button><div style="flex:1;min-width:0"><div class="sent" id="sent" lang="de"></div><div class="sentru" id="sentru"></div></div></div>
+        <div class="anno" id="anno"><img src="media/e-speaker.webp" alt=""><span id="annot">U4 Richtung Heiligenstadt</span></div>
+        <div class="steps" id="msteps">
+          <button data-i="0" class="on"><b>01</b>Сел</button><button data-i="1"><b>02</b>Еду</button><button data-i="2"><b>03</b>Пересел</button><button data-i="3"><b>04</b>Еду</button><button data-i="4"><b>05</b>Вышел</button>
+        </div>
+        <div class="nav"><button class="btn sm violet" id="mnext">Дальше<svg class="ic"><use href="#i-arrow-right"/></svg></button><span class="cnt" id="mcnt">1 / 5</span></div>
+      </div>
+    </div>
+
+    <div class="shead" style="margin-top:56px">
+      <div class="eyebrow v"><span class="n">+</span>Глагол, который рвётся</div>
+      <h3 class="ttl dark"><span class="th">Три брата:</span>ein, aus, um</h3>
+    </div>
+    <div class="story rv" style="max-width:660px;margin-bottom:20px">
+      <p>Жили-были три брата. Отец у них один: <span class="de">steigen</span>.</p>
+      <p><b>ein</b> любит заходить. <b>aus</b> любит выходить. <b>um</b> не может определиться. Поэтому всё время пересаживается.</p>
+      <p>В предложении приставка отрывается и улетает в конец. Как пассажир, который проспал свою станцию.</p>
+    </div>
+    <div class="tren">
+      <div class="tbox rv">
+        <div class="tswitch" id="tsw"><button data-k="ein" class="on">einsteigen</button><button data-k="aus">aussteigen</button><button data-k="um">umsteigen</button></div>
+        <div class="say-line"><button class="say" id="tsay" aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button><div class="tline" id="tline" lang="de"></div></div>
+        <div class="tru" id="tru"></div>
+        <div class="story" style="margin-top:16px;font-size:15px">
+          <p style="font-size:15px">В прошедшем <b>ge-</b> садится в середину. И глагол всегда с <b>sein</b>:</p>
+          <p style="font-size:15px"><span class="de">Ich bin eingestiegen · ausgestiegen · umgestiegen.</span></p>
+        </div>
+      </div>
+      <div class="doorscene rv" id="door">
+        <span class="say-badge" id="dbadge">einsteigen</span>
+        <div class="wagon"><b>BIM 49</b></div>
+        <div class="doors"><i></i><i></i></div>
+        <div class="wagon2"></div>
+        <div class="ground"></div>
+        <img class="guy" id="guy" src="media/e-backpack.webp" alt="">
+      </div>
+    </div>
+    <div class="phr" style="margin-top:20px">
+      <button class="ph rv" data-say="Steigen Sie bei der nächsten aus?"><img src="media/e-door.webp" alt="" loading="lazy"><div><b lang="de">Steigen Sie bei der nächsten aus?</b><span>Вы выходите на следующей?</span></div><span class="say"><svg class="ic"><use href="#i-volume-2"/></svg></span></button>
+      <button class="ph rv" data-say="Entschuldigung, darf ich bitte durch?"><img src="media/e-pleading.webp" alt="" loading="lazy"><div><b lang="de">Entschuldigung, darf ich bitte durch?</b><span>Извините, можно пройти?</span></div><span class="say"><svg class="ic"><use href="#i-volume-2"/></svg></span></button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= S5 CONTROL ================= -->
+<section class="sec soft" id="s5">
+  <div class="wrap">
+    <div class="bigcard coral">
+      <div class="k"><span class="n">5</span>Остановка 5 · Контроль</div>
+      <h2 class="ttl"><span class="th">Самый</span>дорогой диалог</h2>
+      <p>Лучше прочитать его здесь, а не в вагоне.</p>
+      <img class="bc-emo2 emo" src="media/e-eyes.webp" alt="" loading="lazy">
+      <img class="bc-emo emo" src="media/e-police.webp" alt="" loading="lazy">
+    </div>
+    <div class="ctrlgrid">
+      <div>
+        <div class="chat" id="chat">
+          <div class="msg nar">U6, вечер. Встают двое в обычных куртках.</div>
+          <div class="msg k"><div class="who"><img src="media/e-police.webp" alt="">Kontrolleur</div><div class="dl"><span>Fahrscheinkontrolle! Die Fahrscheine, bitte.</span><button class="say" data-say="Fahrscheinkontrolle! Die Fahrscheine, bitte." aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button></div><div class="rl">Проверка билетов! Ваши билеты, пожалуйста.</div></div>
+          <div class="msg me"><div class="who">Я</div><div class="dl"><span>Moment… Hier, bitte.</span><button class="say" data-say="Moment. Hier, bitte." aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button></div><div class="rl">Секунду… Вот, пожалуйста.</div></div>
+          <div class="msg k"><div class="who"><img src="media/e-police.webp" alt="">Kontrolleur</div><div class="dl"><span>Der ist nicht entwertet.</span><button class="say" data-say="Der ist nicht entwertet." aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button></div><div class="rl">Он не отмечен.</div></div>
+          <div class="msg me"><div class="who">Я</div><div class="dl"><span>Aber ich habe ihn gekauft!</span><button class="say" data-say="Aber ich habe ihn gekauft!" aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button></div><div class="rl">Но я же его купил!</div></div>
+          <div class="msg k"><div class="who"><img src="media/e-police.webp" alt="">Kontrolleur</div><div class="dl"><span>Kaufen reicht nicht. Haben Sie einen Ausweis?</span><button class="say" data-say="Kaufen reicht nicht. Haben Sie einen Ausweis?" aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button></div><div class="rl">Купить мало. Документ есть?</div></div>
+          <div class="msg nar">Дальше была Mehrgebühr. Перемотаем. Тот же вагон, но билет отмечен.</div>
+          <div class="msg me"><div class="who">Я</div><div class="dl"><span>Bitte schön. Entwertet um 8:14.</span><button class="say" data-say="Bitte schön. Entwertet um acht Uhr vierzehn." aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button></div><div class="rl">Пожалуйста. Отмечен в 8:14.</div></div>
+          <div class="msg k"><div class="who"><img src="media/e-police.webp" alt="">Kontrolleur</div><div class="dl"><span>Danke, passt.</span><button class="say" data-say="Danke, passt." aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button></div><div class="rl">Спасибо, всё в порядке.</div></div>
+          <div class="msg nar">Passt. Самое австрийское слово. Значит «всё хорошо, живи».</div>
+        </div>
+        <button class="btn sm white" id="chatagain" style="margin-top:16px"><svg class="ic"><use href="#i-rotate-ccw"/></svg>Ещё раз</button>
+      </div>
+      <div class="side-words">
+        <div class="sw2 rv"><img src="media/e-police.webp" alt="" loading="lazy"><div><b lang="de">der Kontrolleur</b><span>контролёр. Часто без формы.</span></div><button class="say" data-say="der Kontrolleur" aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button></div>
+        <div class="sw2 rv"><img src="media/e-eyes.webp" alt="" loading="lazy"><div><b lang="de">die Fahrscheinkontrolle</b><span>проверка билетов</span></div><button class="say" data-say="die Fahrscheinkontrolle" aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button></div>
+        <div class="sw2 rv"><img src="media/e-graduation.webp" alt="" loading="lazy"><div><b lang="de">der Ausweis</b><span>документ, удостоверение</span></div><button class="say" data-say="der Ausweis" aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button></div>
+        <div class="sw2 rv"><img src="media/e-euro.webp" alt="" loading="lazy"><div><b lang="de">die Mehrgebühr</b><span>штраф, «доплата» за проезд без билета</span></div><button class="say" data-say="die Mehrgebühr" aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button></div>
+        <div class="sw2 rv"><img src="media/e-sweat.webp" alt="" loading="lazy"><div><b lang="de">schwarzfahren</b><span>ехать зайцем. Буквально «ехать чёрным». По ощущениям так и есть.</span></div><button class="say" data-say="schwarzfahren" aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PHRASES + STÖRUNG ================= -->
+<section class="sec" id="phrases">
+  <div class="wrap">
+    <div class="shead">
+      <h2 class="ttl dark"><span class="th">Фразы</span>для выживания</h2>
+      <p class="lede">Нажми на фразу и послушай. Повтори вслух. Прямо в вагоне. Никто не смотрит. Все в телефонах.</p>
+    </div>
+    <div class="phr">
+      <button class="ph rv" data-say="Wo kann ich einen Fahrschein kaufen?"><img src="media/e-tickets.webp" alt="" loading="lazy"><div><b lang="de">Wo kann ich einen Fahrschein kaufen?</b><span>Где можно купить билет?</span></div><span class="say"><svg class="ic"><use href="#i-volume-2"/></svg></span></button>
+      <button class="ph rv" data-say="Fährt diese Bim zum Westbahnhof?"><img src="media/e-tram.webp" alt="" loading="lazy"><div><b lang="de">Fährt diese Bim zum Westbahnhof?</b><span>Этот трамвай идёт до Westbahnhof?</span></div><span class="say"><svg class="ic"><use href="#i-volume-2"/></svg></span></button>
+      <button class="ph rv" data-say="Wo muss ich umsteigen?"><img src="media/e-metro.webp" alt="" loading="lazy"><div><b lang="de">Wo muss ich umsteigen?</b><span>Где мне пересесть?</span></div><span class="say"><svg class="ic"><use href="#i-volume-2"/></svg></span></button>
+      <button class="ph rv" data-say="Ist das die richtige Richtung zum Stephansplatz?"><img src="media/e-map.webp" alt="" loading="lazy"><div><b lang="de">Ist das die richtige Richtung zum Stephansplatz?</b><span>Это правильное направление до Stephansplatz?</span></div><span class="say"><svg class="ic"><use href="#i-volume-2"/></svg></span></button>
+      <button class="ph rv" data-say="Wie viele Stationen noch?"><img src="media/e-pin.webp" alt="" loading="lazy"><div><b lang="de">Wie viele Stationen noch?</b><span>Сколько ещё станций?</span></div><span class="say"><svg class="ic"><use href="#i-volume-2"/></svg></span></button>
+      <button class="ph rv" data-say="Ist der Platz noch frei?"><img src="media/e-eyes.webp" alt="" loading="lazy"><div><b lang="de">Ist der Platz noch frei?</b><span>Место свободно?</span></div><span class="say"><svg class="ic"><use href="#i-volume-2"/></svg></span></button>
+    </div>
+
+    <div class="stoer rv" style="margin-top:46px">
+      <img class="emo" src="media/e-sweat.webp" alt="" loading="lazy">
+      <div class="eyebrow" style="color:#FF9AA2">Когда всё пошло не так</div>
+      <div class="led gl">STÖRUNG</div>
+      <p style="color:#B9B9C6;margin:10px 0 0;max-width:34ch;font-size:15px">Венское метро ходит как часы. Но часы тоже иногда стоят.</p>
+      <div class="list">
+        <div class="it"><div><b lang="de">die Störung</b><span>сбой. «Auf der U6 gibt es eine Störung.»</span></div><button class="say" data-say="Auf der U6 gibt es eine Störung." aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button></div>
+        <div class="it"><div><b lang="de">die Verspätung</b><span>задержка. «Der Zug hat Verspätung.»</span></div><button class="say" data-say="Der Zug hat Verspätung." aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button></div>
+        <div class="it"><div><b lang="de">der Ersatzverkehr</b><span>замена. Метро стоит, вместо него автобусы.</span></div><button class="say" data-say="der Ersatzverkehr" aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button></div>
+        <div class="it"><div><b lang="de">Der Zug endet hier.</b><span>Поезд дальше не идёт. Все на выход.</span></div><button class="say" data-say="Der Zug endet hier. Bitte alle aussteigen." aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button></div>
+      </div>
+      <div class="callcard">
+        <img src="media/e-phone.webp" alt="" loading="lazy">
+        <div><b lang="de">Ich komme 15 Minuten später. Auf der U6 gibt es eine Störung.</b><span>Звонок начальнику: опаздываю на 15 минут, на U6 сбой.</span></div>
+        <button class="say" data-say="Ich komme fünfzehn Minuten später. Auf der U6 gibt es eine Störung." aria-label="Послушать"><svg class="ic"><use href="#i-volume-2"/></svg></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= QUIZ ================= -->
+<section class="sec pinkbg" id="quiz">
+  <div class="wrap">
+    <div class="shead" style="text-align:center;justify-items:center">
+      <h2 class="ttl dark"><span class="th">Конечная.</span>Квиз</h2>
+      <p class="lede">Шесть вопросов. За ошибку никто не попросит Ausweis.</p>
+    </div>
+    <div class="quiz" id="qz">
+      <div class="qtop"><div class="qn" id="qn"><small>Вопрос</small>1 / 6</div><div class="qdots" id="qdots"></div></div>
+      <div class="qbody" id="qbody"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CHEAT SHEET ================= -->
+<section class="sec" id="cheat">
+  <div class="wrap">
+    <div class="cheat" id="cheatrow">
+      <div class="cc first"><div><div class="eyebrow" style="color:#fff">Сохрани скрин</div><h2 class="ttl"><span class="th">Шпаргалка</span>венские Öffis</h2></div><img class="emo" src="media/e-victory.webp" alt="" loading="lazy"></div>
+      <div class="cc a"><h4>Билеты</h4><ul>
+        <li><b>Einzelfahrschein</b> → одна поездка</li>
+        <li><b>24-Stunden-Karte</b> → сутки с отметки</li>
+        <li><b>Wochenkarte</b> → Пн – Пн 9:00</li>
+        <li><b>Jahreskarte</b> → весь год</li>
+        <li><b>Handyticket</b> → в WienMobil</li></ul></div>
+      <div class="cc b"><h4>Отметка</h4><ul>
+        <li><b>kaufen ≠ entwerten</b></li>
+        <li>Бумажный без даты → <b>штампуй до поездки</b></li>
+        <li>Handyticket → <b>не штампуй</b></li>
+        <li><b>gültig</b> → можно ехать <i>(и спать спокойно)</i></li></ul></div>
+      <div class="cc c"><h4>Где ждать</h4><ul>
+        <li><b>Haltestelle</b> → Bim, автобус</li>
+        <li><b>Station</b> → U-Bahn</li>
+        <li><b>Bahnsteig</b> → платформа</li>
+        <li><b>Gleis</b> → путь, S-Bahn, поезд</li>
+        <li><b>Richtung</b> → по конечной</li></ul></div>
+      <div class="cc d"><h4>Пересадка</h4><ul>
+        <li><b>ein</b>steigen → сел</li>
+        <li><b>aus</b>steigen → вышел</li>
+        <li><b>um</b>steigen → пересел</li>
+        <li>Ich steige am Karlsplatz <b>um</b>.</li>
+        <li>Ich <b>bin</b> um<b>ge</b>stiegen.</li></ul></div>
+    </div>
+    <p class="aph rv">Купить это намерение. <span>Entwerten это поступок.</span></p>
+  </div>
+</section>
+
+
+<!-- ================= PLATFORM AD ================= -->
+<section class="sec" id="platform">
+  <div class="wrap">
+    <div class="ad-hero" id="adhero">
+      <div>
+        <div class="hmeta">
+          <div><b>340+</b><span>гайдов<small>A0–C1</small></span></div>
+          <div><b>7500+</b><span>слов<small>с озвучкой</small></span></div>
+          <div><b>30 €</b><span>навсегда<small>один платёж</small></span></div>
+        </div>
+        <h2 class="ttl"><span class="th">Этот гайд занял 7 минут.</span>Таких на платформе 340+</h2>
+        <p class="hsub">Грамматика, лексика и фразы для жизни в Австрии и Германии. В том же стиле, который ты только что дочитал до конца. В телефоне. Даже <b>без интернета</b>.</p>
+        <div class="hcta">
+          <a class="btn" href="https://app.lava.top/801303618?tabId=products&sort=published" target="_blank" rel="noopener"><svg class="ic paw"><use href="#i-paw-print"/></svg>Получить доступ</a>
+          <span class="chip">Stellas · A0–C1</span>
+        </div>
+      </div>
+      <div class="phonebox" aria-hidden="true">
+        <img class="blurheart" src="media/e-heart.webp" alt="">
+        <img class="emo h" src="media/e-hearteyes.webp" alt="" loading="lazy">
+        <img class="emo z" src="media/e-zap.webp" alt="" loading="lazy">
+        <div class="phone p2"><img src="media/m2.webp" alt="" loading="lazy"></div>
+        <div class="phone p1"><img src="media/m1.webp" alt="" loading="lazy"></div>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat rv"><img src="media/e-books.webp" alt="" loading="lazy"><div class="num" data-to="340" data-suf="+">340+</div><span>гайдов от A0 до C1</span></div>
+      <div class="stat rv"><img src="media/e-speaker.webp" alt="" loading="lazy"><div class="num" data-to="7500" data-suf="+">7500+</div><span>слов с озвучкой и транскрипцией</span></div>
+      <div class="stat rv"><img src="media/e-graduation.webp" alt="" loading="lazy"><div class="num" data-to="5">5</div><span>экзаменов: Goethe, telc, DTZ, ÖSD, TestDaF</span></div>
+      <div class="stat rv"><img src="media/e-partyface.webp" alt="" loading="lazy"><div class="num" data-to="100" data-suf="+">100+</div><span>студентов прошли наши разговорные клубы</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec pinkbg">
+  <div class="wrap">
+    <div class="shead">
+      <h2 class="ttl dark"><span class="th">Узнаёшь</span>себя?</h2>
+      <p class="lede">Транспорт это просто пример. Язык держит тебя на одной ветке. Вот как это выглядит.</p>
+    </div>
+    <div class="rowscroll pains" id="pains">
+      <article class="scard c1"><img class="emo l" src="media/e-sweat.webp" alt="" loading="lazy"><span class="k">Ты едешь</span><h3 class="ttl"><span class="th">за толпой,</span>а не по словам</h3><p>Все вышли, и ты вышел. Иногда это Störung. Иногда просто большая станция. И ты стоишь на перроне один.</p></article>
+      <article class="scard c2"><img class="emo" src="media/e-phone.webp" alt="" loading="lazy"><span class="k">Опаздываешь</span><h3 class="ttl"><span class="th">и не можешь</span>объяснить</h3><p>Начальнику по телефону: «Ich… U-Bahn… sorry». Потом пишешь через переводчик. Звонить страшнее, чем опоздать.</p></article>
+      <article class="scard c3"><img class="emo" src="media/e-map.webp" alt="" loading="lazy"><span class="k">Зальцбург</span><h3 class="ttl"><span class="th">так и не</span>съездил</h3><p>Вокзал, Gleis, пересадка, объявления. Проще остаться дома. Город в паре часов езды, а кажется, что за границей.</p></article>
+      <article class="scard c4"><img class="emo" src="media/e-stopwatch.webp" alt="" loading="lazy"><span class="k">Два года в Вене</span><h3 class="ttl"><span class="th">а знаешь</span>одну линию</h3><p>Дом. Работа. Spar. Всё на одной ветке. Город намного больше твоей U6.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="mob">
+      <div>
+        <h2 class="ttl dark"><span class="th">Всё в телефоне.</span>Даже в тоннеле</h2>
+        <p class="lede">Платформа сделана в Notion. Скачал приложение, и гайды открываются без интернета. Одна поездка на работу это один гайд. U6 превращается в класс.</p>
+      </div>
+      <div class="tilt" aria-hidden="true"><div class="rot" id="rot">
+        <div class="phone a"><img src="media/m3.webp" alt="" loading="lazy"></div>
+        <div class="phone b"><img src="media/m1.webp" alt="" loading="lazy"></div>
+        <div class="phone c"><img src="media/m2.webp" alt="" loading="lazy"></div>
+      </div></div>
+    </div>
+
+    <div class="shead" style="margin-top:60px">
+      <h2 class="h2">Что внутри</h2>
+    </div>
+    <div class="feat">
+      <div class="fc a rv"><h4>Гайды как на канале</h4><p>Объяснение, видео, упражнения и ответы <b>с разбором</b>, почему именно так.</p><div class="media"><video muted playsinline loop preload="none" data-poster="media/v-guide.webp" data-src="media/v-guide.mp4"></video></div></div>
+      <div class="fc b rv"><h4>Интерактивные гайды в Gemini</h4><p>Слова с озвучкой, текст с переводом по клику, три диалога, тест и <b>ИИ-собеседник</b> в образе.</p><div class="media"><video muted playsinline loop preload="none" data-poster="media/v-gemini.webp" data-src="media/v-gemini.mp4"></video></div></div>
+      <div class="fc c rv"><h4>Лексика для жизни</h4><p>Врач, магазин, работа, звонки. <b>Готовые фразы по ситуациям</b>, а не списки слов.</p><div class="media"><img src="media/p8-situations.webp" alt="Раздел лексики по ситуациям" loading="lazy"></div></div>
+      <div class="fc d rv"><h4>Экзамены и трекер</h4><p>Goethe, telc, DTZ, <b>ÖSD</b> и TestDaF в одном месте. Трекер прогресса, флеш-карты, фильмы и книги по уровням.</p><div class="media"><video muted playsinline loop preload="none" data-poster="media/v-notion.webp" data-src="media/v-notion.mp4"></video></div></div>
+    </div>
+
+    <h2 class="h2" style="margin-top:40px">Как это работает</h2>
+    <div class="howto">
+      <div class="hw rv"><img src="media/e-euro.webp" alt="" loading="lazy"><div class="dn">Шаг 1</div><p>Один платёж на lava.top. Никаких подписок.</p></div>
+      <div class="hw rv"><img src="media/e-check.webp" alt="" loading="lazy"><div class="dn">Шаг 2</div><p>Получаешь платформу в Notion. Доступ навсегда.</p></div>
+      <div class="hw rv"><img src="media/e-books.webp" alt="" loading="lazy"><div class="dn">Шаг 3</div><p>Выбираешь A0–A2, B1–C1 или всё сразу.</p></div>
+      <div class="hw rv"><img src="media/e-metro.webp" alt="" loading="lazy"><div class="dn">Шаг 4</div><p>Одна поездка, один гайд. Даже без сети.</p></div>
+      <div class="hw rv"><img src="media/e-graduation.webp" alt="" loading="lazy"><div class="dn">Шаг 5</div><p>Экзамен. Раздел подготовки уже ждёт.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec soft" id="offer">
+  <div class="wrap">
+    <div class="offer">
+      <div class="ol">
+        <h3>Один платёж.<br>Доступ навсегда.</h3>
+        <p style="position:relative;z-index:2;max-width:26ch;margin:14px 0 0;font-weight:500">Штраф за одну поездку без отметки в Вене больше сотни евро. Платформа стоит 30. Арифметика простая.</p>
+        <img class="emo b" src="media/e-ticket.webp" alt="" loading="lazy">
+        <img class="emo" src="media/e-hearteyes.webp" alt="" loading="lazy">
+      </div>
+      <div class="or">
+        <div class="small">Что ты получаешь</div>
+        <ul>
+          <li><svg class="ic"><use href="#i-circle-check"/></svg>340+ гайдов A0–C1: грамматика, лексика, реальные фразы</li>
+          <li><svg class="ic"><use href="#i-circle-check"/></svg>7500+ слов с озвучкой и транскрипцией</li>
+          <li><svg class="ic"><use href="#i-circle-check"/></svg>Фильмы, книги и подкасты, уже отсортированные по уровню</li>
+          <li><svg class="ic"><use href="#i-circle-check"/></svg>Экзамены: Goethe, telc, DTZ, ÖSD, TestDaF</li>
+          <li><svg class="ic"><use href="#i-circle-check"/></svg>Работает в Notion на телефоне и ноутбуке, без интернета</li>
+          <li><svg class="ic"><use href="#i-circle-check"/></svg>Все обновления бесплатно</li>
+        </ul>
+        <div class="prices">
+          <div class="price"><div><b>A0–A2</b><span>с нуля</span></div><div class="p">20 €</div></div>
+          <div class="price"><div><b>B1–C1</b><span>для тех, кто уже в теме</span></div><div class="p">20 €</div></div>
+          <div class="price best"><span class="rib">Выгоднее</span><div><b>A0–C1 целиком</b><span>+ A0–A2 на украинском в подарок</span></div><div class="p"><s>40</s>30 €</div></div>
+        </div>
+        <a class="btn" style="width:100%" href="https://app.lava.top/801303618?tabId=products&sort=published" target="_blank" rel="noopener"><svg class="ic paw"><use href="#i-paw-print"/></svg>Взять доступ</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <h2 class="h2" style="text-align:center;margin-bottom:24px">Отзывы</h2>
+    <div class="revs">
+      <div class="rev rv"><img src="media/r2.webp" alt="Отзыв ученицы о платформе Stellas" loading="lazy"><div class="src"><i><svg class="ic"><use href="#i-send"/></svg></i>через Telegram</div></div>
+      <div class="rev rv"><img src="media/r5.webp" alt="Отзыв ученика о платформе Stellas" loading="lazy"><div class="src"><i><svg class="ic"><use href="#i-send"/></svg></i>через Telegram</div></div>
+      <div class="rev rv"><img src="media/r1.webp" alt="Отзыв о платформе Stellas" loading="lazy"><div class="src"><i><svg class="ic"><use href="#i-send"/></svg></i>через Telegram</div></div>
+      <div class="rev rv"><img src="media/r3.webp" alt="Отзыв о платформе Stellas" loading="lazy"><div class="src"><i><svg class="ic"><use href="#i-send"/></svg></i>через Telegram</div></div>
+    </div>
+
+    <h2 class="h2" style="text-align:center;margin:56px 0 20px">Вопросы</h2>
+    <div class="faq">
+      <details class="rv"><summary>Я с нуля. Подойдёт?<svg class="ic"><use href="#i-chevron-down"/></svg></summary><p>Да. Платформа A0–A2 начинается с самого начала. Когда дорастёшь, B1–C1 уже будет ждать.</p></details>
+      <details class="rv"><summary>Это подписка?<svg class="ic"><use href="#i-chevron-down"/></svg></summary><p>Нет. Один платёж, доступ навсегда. Все обновления для купивших бесплатно.</p></details>
+      <details class="rv"><summary>Нужен интернет?<svg class="ic"><use href="#i-chevron-down"/></svg></summary><p>Платформа сделана в Notion. Скачай приложение на телефон или ноутбук и заходи в офлайн-режиме. Хоть в тоннеле U6.</p></details>
+      <details class="rv"><summary>Я в Австрии. Есть ÖSD?<svg class="ic"><use href="#i-chevron-down"/></svg></summary><p>Да. В разделе «Экзамены» есть Goethe, telc, DTZ, ÖSD и TestDaF.</p></details>
+      <details class="rv"><summary>Чем гайды отличаются от канала?<svg class="ic"><use href="#i-chevron-down"/></svg></summary><p>Объяснение как на канале, плюс видео, упражнения и ответы с разбором. Для B1–C1 есть интерактивные гайды в Gemini с озвучкой, диалогами и ИИ-собеседником.</p></details>
+      <details class="rv"><summary>Остались вопросы<svg class="ic"><use href="#i-chevron-down"/></svg></summary><p>Пиши в Telegram: <a href="https://t.me/stellasdeutsch" target="_blank" rel="noopener">@stellasdeutsch</a>.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="fin">
+  <div class="wrap">
+    <div class="vis"><img class="blurheart" src="media/e-heart.webp" alt=""><img class="emo" src="media/e-victory.webp" alt="" loading="lazy"></div>
+    <h2 class="ttl"><span class="th">Спасибо</span>за поездку</h2>
+    <p lang="de">Endstation. Bitte alle aussteigen.</p>
+    <div class="links"><a href="https://t.me/stellasdeutsch" target="_blank" rel="noopener">Telegram</a><a href="https://app.lava.top/801303618?tabId=products&sort=published" target="_blank" rel="noopener">Платформа</a><a href="#quiz">Квиз ещё раз</a></div>
+  </div>
+</section>
+
+<div class="dock" id="dock">
+  <div class="dt"><b>A0–C1 · 30 € навсегда</b><span>340+ гайдов в Notion</span></div>
+  <a class="btn" href="https://app.lava.top/801303618?tabId=products&sort=published" target="_blank" rel="noopener">Взять</a>
+</div>
+
+
+
+
+</main>
+<!-- confetti assets: media/e-party.webp media/e-star.webp -->
+
+<script>
+function xInit(){
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var G = window.gsap && window.ScrollTrigger ? window.gsap : null;
+  if(G){ try{ G.registerPlugin(ScrollTrigger); window.SplitText && G.registerPlugin(SplitText); window.MotionPathPlugin && G.registerPlugin(MotionPathPlugin); }catch(e){ G = null; } }
+  var root = document.documentElement;
+  if(G && !reduce){ root.classList.add('gs'); ScrollTrigger.config({ignoreMobileResize:true}); }
+  else { G = null; if('IntersectionObserver' in window && !reduce) root.classList.add('io'); }
+  var MP = G && window.MotionPathPlugin, ST = G && window.SplitText;
+  function $(s,r){ return (r||document).querySelector(s); }
+  function $$(s,r){ return Array.prototype.slice.call((r||document).querySelectorAll(s)); }
+  function wait(ms){ return new Promise(function(r){ setTimeout(r, ms); }); }
+
+  /* ---------- speech (de-DE) ---------- */
+  var tts = 'speechSynthesis' in window;
+  if(!tts) root.classList.add('no-tts');
+  var deVoice = null;
+  function pickVoice(){ try{ var v = speechSynthesis.getVoices(); deVoice = v.find(function(x){return /^de/i.test(x.lang)}) || null; }catch(e){} }
+  if(tts){ pickVoice(); try{ speechSynthesis.onvoiceschanged = pickVoice; }catch(e){} }
+  function say(text, btn){
+    if(!tts || !text) return;
+    try{
+      speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(text);
+      u.lang = 'de-DE'; u.rate = .88; if(deVoice) u.voice = deVoice;
+      if(btn){ btn.classList.add('on'); u.onend = u.onerror = function(){ btn.classList.remove('on'); }; }
+      speechSynthesis.speak(u);
+    }catch(e){}
+  }
+  document.addEventListener('click', function(e){
+    var b = e.target.closest('[data-say]');
+    if(!b || b.classList.contains('wc')) return;
+    e.stopPropagation();
+    var sb = b.classList.contains('say') ? b : b.querySelector('.say');
+    say(b.dataset.say, sb);
+    if(G && b.classList.contains('ph')) G.fromTo(b, {scale:.97}, {scale:1, duration:.5, ease:'elastic.out(1.1,.4)'});
+  });
+
+  function whenVisible(el, on, off, th){
+    if(!el) return;
+    if(!('IntersectionObserver' in window)){ on(); return; }
+    new IntersectionObserver(function(es){ es.forEach(function(en){ en.isIntersecting ? on() : (off && off()); }); }, {threshold:th||.25}).observe(el);
+  }
+  function once(el, fn, th){ var done = false; whenVisible(el, function(){ if(done) return; done = true; fn(); }, null, th); }
+
+  /* ---------- progress bar ---------- */
+  var prog = $('#prog');
+  function onScroll(){
+    var h = document.documentElement.scrollHeight - innerHeight;
+    prog.style.transform = 'scaleX(' + (h > 0 ? Math.min(1, scrollY / h) : 0) + ')';
+  }
+  addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  /* ---------- reveal fallback (no GSAP) ---------- */
+  if(!G && root.classList.contains('io')){
+    var io = new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } }); }, {rootMargin:'0px 0px -8% 0px'});
+    $$('.rv').forEach(function(el){ io.observe(el); });
+  }
+
+  /* ---------- GSAP scroll choreography ---------- */
+  if(G){
+    // headings: words rise, one by one
+    $$('.ttl').forEach(function(h){
+      if(h.closest('.hero')) return;
+      var parts = ST ? new SplitText(h, {type:'words', wordsClass:'wd'}).words : [h];
+      G.from(parts, {yPercent:60, rotation:5, transformOrigin:'0 100%', duration:.8, stagger:.06, ease:'back.out(2)',
+        scrollTrigger:{trigger:h, start:'top 88%'}});
+    });
+    ScrollTrigger.batch('.rv', {start:'top 90%', once:true, onEnter:function(b){
+      G.from(b, {y:34, scale:.97, rotation:function(i){ return i%2 ? 1.5 : -1.5; }, duration:.8, stagger:.08, ease:'back.out(1.7)'});
+    }});
+    // hero parallax: emoji drift at different speeds
+    [['.hvis .zap',-70,-25],['.hvis .tick',-110,30],['.hvis .vic',-40,-20],['.hvis .tram',-30,0],['.hvis .blurheart',60,0],['.hvis .ghost-u',80,30]].forEach(function(a){
+      var el = $(a[0]); if(!el) return;
+      G.to(el, {y:a[1], rotation:a[2], ease:'none', scrollTrigger:{trigger:'.hero', start:'top top', end:'bottom top', scrub:true}});
+    });
+    // floating idle on decorative emoji
+    $$('.bigcard .bc-emo, .bigcard .bc-emo2, .offer .ol .emo, .fin .vis .emo, .coda .emo, .stoer .emo').forEach(function(el, i){
+      G.to(el, {y:-12, rotation:'+=6', duration:2.2 + (i%3)*.4, repeat:-1, yoyo:true, ease:'sine.inOut'});
+      G.from(el, {scale:.4, rotation:-30, duration:1, ease:'back.out(2.5)', scrollTrigger:{trigger:el.parentNode, start:'top 80%'}});
+    });
+    // story cards: dealt like a hand of cards
+    $$('#stories, #pains').forEach(function(row){
+      G.from(row.children, {y:80, rotation:function(i){ return (i-1.5)*8; }, scale:.85, duration:1, stagger:.12, ease:'back.out(1.6)',
+        scrollTrigger:{trigger:row, start:'top 85%'}});
+      $$('.emo', row).forEach(function(em){ G.from(em, {scale:.3, rotation:-40, duration:1.1, ease:'elastic.out(1,.45)', scrollTrigger:{trigger:row, start:'top 75%'}}); });
+    });
+    // two columns: list items + emoji pop + arrow
+    $$('#two ul').forEach(function(ul, k){
+      var tl = G.timeline({scrollTrigger:{trigger:ul, start:'top 80%'}});
+      tl.from($$('li', ul), {x:k ? 40 : -40, duration:.6, stagger:.1, ease:'power3.out'})
+        .from($$('li img', ul), {scale:.2, rotation:-90, duration:.8, stagger:.1, ease:'back.out(3)'}, '<.1');
+    });
+    var arr = $('#two .arr');
+    if(arr) G.from(arr, {scale:0.3, rotation:-40, duration:.9, ease:'back.out(3)', scrollTrigger:{trigger:'#two', start:'top 60%'}});
+    // route: line fills with scroll, tram rides down the line
+    var rl = $('#routeList');
+    G.to('#rfill', {scaleY:1, ease:'none', scrollTrigger:{trigger:rl, start:'top 70%', end:'bottom 60%', scrub:.6}});
+    G.to('#rtram', {y:function(){ return $('#routeList .rline').offsetHeight - 30; }, ease:'none', scrollTrigger:{trigger:rl, start:'top 70%', end:'bottom 60%', scrub:.6, invalidateOnRefresh:true}});
+    $$('.day').forEach(function(d, i){
+      G.from(d, {x:(i%2 ? 60 : -60), rotation:(i%2 ? 4 : -4), duration:.9, ease:'back.out(1.6)', scrollTrigger:{trigger:d, start:'top 88%'}});
+      var em = $('.emo', d); if(em) G.from(em, {scale:.2, rotation:60, duration:1, ease:'elastic.out(1,.4)', scrollTrigger:{trigger:d, start:'top 80%'}});
+    });
+    // places: pins drop onto each card
+    $$('#places .pl').forEach(function(p, i){
+      var pin = $('.pin', p);
+      var tl = G.timeline({scrollTrigger:{trigger:'#places', start:'top 75%'}});
+      tl.from(p, {y:60, rotation:(i-1.5)*5, duration:.8, delay:i*.12, ease:'back.out(1.6)'})
+        .fromTo(pin, {y:-60, rotation:-20}, {y:62, rotation:0, duration:.7, ease:'bounce.out'}, '-=.2')
+        .to(pin, {y:40, duration:.4, ease:'power2.out'});
+    });
+    // cheat sheet cards fan
+    G.from('#cheatrow > *', {y:70, rotation:function(i){ return (i-2)*5; }, duration:.9, stagger:.1, ease:'back.out(1.6)', scrollTrigger:{trigger:'#cheatrow', start:'top 82%'}});
+    // ad: phones float, tilt group drifts with scroll
+    $$('.ad-hero .phone').forEach(function(p, i){ G.to(p, {y:i ? 12 : -14, duration:2.6 + i*.5, repeat:-1, yoyo:true, ease:'sine.inOut'}); });
+    var rot = $('#rot');
+    if(rot) G.fromTo(rot, {x:60}, {x:-60, ease:'none', scrollTrigger:{trigger:'.mob', start:'top bottom', end:'bottom top', scrub:true}});
+    $$('.price').forEach(function(p, i){ G.from(p, {x:50, duration:.7, delay:i*.1, ease:'back.out(1.8)', scrollTrigger:{trigger:'.prices', start:'top 85%'}}); });
+  }
+
+  /* ---------- 1. ticket machine (multi-step) ---------- */
+  var TK = [
+    {n:'Einzelfahrschein', s:'der Einzelfahrschein', d:'Одна поездка в одну сторону. Пересаживаться можно. Вернуться по нему нельзя.', r:'1 поездка', p:1},
+    {n:'24-Stunden-Karte', s:'die vierundzwanzig Stunden Karte', d:'Сутки с момента отметки. Есть ещё на 48 и 72 часа.', r:'24 часа', p:1},
+    {n:'Wochenkarte', s:'die Wochenkarte', d:'С понедельника до следующего понедельника, 9:00. Не семь дней с покупки. Именно так.', r:'Пн → Пн 9:00', p:1},
+    {n:'Jahreskarte', s:'die Jahreskarte', d:'Целый год без вопросов. Самый венский билет.', r:'весь год', p:1},
+    {n:'Handyticket', s:'das Handyticket', d:'В приложении WienMobil. Время уже стоит в билете. Штамповать ничего не надо.', r:'в телефоне', p:0}
+  ];
+  var mach = $('#mach'), busy = false, touched = false;
+  function machPick(i){
+    if(busy) return; busy = true;
+    var t = TK[i];
+    $$('.opt', mach).forEach(function(o){ o.classList.toggle('on', +o.dataset.t === i); });
+    mach.dataset.s = 'pick';
+    wait(350).then(function(){
+      $('#payt').textContent = t.p ? 'Bitte zahlen…' : 'Ticket wird geladen…';
+      mach.dataset.s = 'pay';
+      return wait(1300);
+    }).then(function(){
+      $('#tkn').textContent = t.n; $('#tkd').textContent = t.d; $('#tkr').textContent = t.r;
+      $('#tksay').dataset.say = t.s;
+      var st = $('#tkst');
+      st.textContent = t.p ? 'noch nicht entwertet' : 'gültig ab: jetzt';
+      st.style.borderColor = t.p ? '' : '#2BB673'; st.style.color = t.p ? '' : '#2BB673';
+      mach.dataset.s = 'print';
+      $('#mhint').textContent = t.p ? 'Билет напечатан. Но он ещё не живой. Смотри остановку 2.' : 'Готово. Бумаги нет, штамповать нечего.';
+      return wait(900);
+    }).then(function(){
+      mach.dataset.s = 'done'; busy = false;
+      if(G) G.fromTo('#tk .tkn', {scale:.85, rotation:-3}, {scale:1, rotation:0, transformOrigin:'0 50%', duration:.8, ease:'elastic.out(1,.4)'});
+    });
+  }
+  $$('.opt', mach).forEach(function(o){ o.addEventListener('click', function(){ touched = true; machPick(+o.dataset.t); }); });
+  once(mach, function(){ setTimeout(function(){ if(!touched) machPick(0); }, 900); }, .5);
+
+  /* ---------- word cards flip ---------- */
+  $$('.wc').forEach(function(c){
+    c.setAttribute('role','button'); c.tabIndex = 0;
+    function flip(){ c.classList.toggle('f'); if(c.classList.contains('f')) say(c.dataset.say); }
+    c.addEventListener('click', flip);
+    c.addEventListener('keydown', function(e){ if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); flip(); } });
+  });
+  // teaser: first card of each grid flips by itself once
+  $$('.words').forEach(function(w){
+    var c = w.querySelector('.wc');
+    once(w, function(){ setTimeout(function(){ c.classList.add('f'); setTimeout(function(){ c.classList.remove('f'); }, 1800); }, 700); }, .4);
+  });
+
+  /* ---------- 2. Entwerter stepper ---------- */
+  var ent = $('#ent'), ENT = [
+    null,
+    {de:'Ich habe einen Fahrschein gekauft.', ru:'Билет куплен. Но пока это просто бумажка.'},
+    {de:'Ich entwerte den Fahrschein.', ru:'Суёшь билет в ящик. Стрелкой вперёд, как нарисовано.'},
+    {de:'Klack!', ru:'Ящик печатает дату и время. С этой секунды билет живой.'},
+    {de:'Der Fahrschein ist gültig.', ru:'Теперь хоть десять контролёров. Улыбаешься и показываешь.'}
+  ];
+  var entT = null, entStep = 1, entAuto = true;
+  function stamp(){
+    var d = new Date(), p = function(n){ return (n<10?'0':'') + n; };
+    return p(d.getDate()) + '.' + p(d.getMonth()+1) + '.' + String(d.getFullYear()).slice(2) + ' · ' + p(d.getHours()) + ':' + p(d.getMinutes());
+  }
+  function measureEnt(){
+    var st = $('#entstage').getBoundingClientRect(), m = $('#mouth').getBoundingClientRect(), c = $('#entcard');
+    var cr = {left: c.offsetLeft, top: c.offsetTop, w: c.offsetWidth};
+    var ex = (m.left - st.left) + m.width/2 - (cr.left + cr.w/2);
+    var ey = (m.top - st.top) - cr.top - 20;
+    ent.style.setProperty('--ex', ex + 'px'); ent.style.setProperty('--ey', ey + 'px');
+  }
+  function setEnt(s){
+    entStep = s; ent.dataset.s = s;
+    $$('#entsteps button').forEach(function(b){ b.classList.toggle('on', +b.dataset.s === s); });
+    $('#entde').textContent = ENT[s].de; $('#entru').textContent = ENT[s].ru; $('#entsay').dataset.say = ENT[s].de;
+    $('#entcs').textContent = s >= 3 ? stamp() : 'hier stempeln';
+    if(G && s === 3){ G.fromTo('#entbox', {scaleY:.94, y:4}, {scaleY:1, y:0, duration:.5, ease:'elastic.out(1.2,.3)'}); }
+    if(G && s === 4){ G.fromTo('.ent .okb img', {scale:.3, rotation:-90}, {scale:1, rotation:0, duration:.7, ease:'back.out(3)'}); }
+  }
+  measureEnt(); addEventListener('resize', measureEnt);
+  $$('#entsteps button').forEach(function(b){ b.addEventListener('click', function(){ entAuto = false; clearInterval(entT); entT = null; setEnt(+b.dataset.s); }); });
+  if(reduce) setEnt(4);
+  else whenVisible(ent, function(){ if(entT || !entAuto) return; measureEnt(); entT = setInterval(function(){ setEnt(entStep % 4 + 1); }, 2300); }, function(){ clearInterval(entT); entT = null; }, .35);
+
+  /* ---------- 3. board + which platform ---------- */
+  var mins = [2,5,3], bt = null;
+  function clock(){ var d = new Date(); $('#clock').textContent = (d.getHours()<10?'0':'') + d.getHours() + ':' + (d.getMinutes()<10?'0':'') + d.getMinutes(); }
+  function drawBoard(){
+    ['m1','m2','m3'].forEach(function(id, i){ var el = $('#'+id); el.textContent = mins[i] ? mins[i] + ' min' : '* * *'; el.classList.toggle('blink', !mins[i]); });
+  }
+  clock(); drawBoard();
+  whenVisible($('#board'), function(){ if(bt) return; bt = setInterval(function(){ mins = mins.map(function(m, i){ return m === 0 ? [5,7,6][i] : m - 1; }); drawBoard(); clock(); }, 2600); }, function(){ clearInterval(bt); bt = null; });
+  $$('#which button').forEach(function(b){
+    b.addEventListener('click', function(){
+      var ok = b.dataset.ok === '1';
+      $$('#which button').forEach(function(x){ x.classList.remove('ok','bad'); });
+      b.classList.add(ok ? 'ok' : 'bad');
+      $('#wa').innerHTML = ok ? 'Верно. Stephansplatz к северу, а U1 на север идёт <b>Richtung Leopoldau</b>. Одна станция, и ты у собора.' : 'Мимо. Oberlaa это юг. Там термы, а не собор. Тебе <b>Richtung Leopoldau</b>.';
+      say(ok ? 'Richtung Leopoldau. Richtig!' : 'Falsche Richtung.');
+      if(G) G.fromTo(b, {scale:.94}, {scale:1, duration:.6, ease:'elastic.out(1.2,.4)'});
+    });
+  });
+
+  /* ---------- 4. transfer map ---------- */
+  var MS = [
+    {t:0,   c:'#319F49', w:[['Ich'],['steige','vb'],['in Hütteldorf'],['ein','px'],['.']], ru:'Сажусь в Hütteldorf. Это начало U4.', a:'U4 Richtung Heiligenstadt'},
+    {t:.7, c:'#319F49', w:[['Ich'],['fahre','vb'],['mit der U4 Richtung Heiligenstadt.']], ru:'Еду на U4. Направление по конечной: Heiligenstadt.', a:'Nächste Station: Karlsplatz. Umsteigen zur U1.'},
+    {t:.7, c:'#E2001A', w:[['Am Karlsplatz'],['steige','vb'],['ich in die U1'],['um','px'],['.']], ru:'На Karlsplatz пересаживаюсь на U1. «um» улетает в конец.', a:'Umsteigen zur Linie U1'},
+    {t:1,   c:'#E2001A', w:[['Ich'],['fahre','vb'],['eine Station Richtung Leopoldau.']], ru:'Одна станция в сторону Leopoldau.', a:'Nächste Station: Stephansplatz.'},
+    {t:1,   c:'#E2001A', w:[['Am Stephansplatz'],['steige','vb'],['ich'],['aus','px'],['.']], ru:'На Stephansplatz выхожу. Собор прямо над головой.', a:'Stephansplatz.'}
+  ];
+  var P0 = {x:40,y:200}, PK = {x:230,y:200}, PS = {x:230,y:120}, KT = .7;
+  function ptAt(t){ return t <= KT ? {x:P0.x + (PK.x-P0.x)*(t/KT), y:200} : {x:230, y:PK.y + (PS.y-PK.y)*((t-KT)/(1-KT))}; }
+  var mdot = $('#mdot'), mring = $('#mring'), mt = 0, mi = 0, mAnim = null;
+  function placeDot(t){ var p = ptAt(t); mdot.setAttribute('cx', p.x); mdot.setAttribute('cy', p.y); mring.setAttribute('cx', p.x); mring.setAttribute('cy', p.y); }
+  function moveDot(to, done){
+    cancelAnimationFrame(mAnim);
+    var from = mt, dur = reduce ? 1 : Math.max(300, Math.abs(to-from) * 2200), t0 = performance.now();
+    (function step(now){
+      var k = Math.min(1, (now - t0) / dur), e = k < .5 ? 2*k*k : 1 - Math.pow(-2*k + 2, 2)/2;
+      mt = from + (to - from) * e; placeDot(mt);
+      if(k < 1) mAnim = requestAnimationFrame(step); else done && done();
+    })(t0);
+  }
+  function renderSent(s){
+    var el = $('#sent');
+    el.innerHTML = s.w.map(function(w){ return w[1] ? '<span class="'+w[1]+'">'+w[0]+'</span>' : (w[0] === '.' ? '.' : ' ' + w[0] + ' '); }).join('').replace(/\s+\./, '.').trim();
+    var px = $('.px', el), vb = $('.vb', el);
+    if(G && px && vb){
+      var pr = px.getBoundingClientRect(), vr = vb.getBoundingClientRect();
+      var dx = vr.right + 8 - pr.left, dy = vr.top - pr.top;
+      var path = [{x:dx, y:dy}, {x:dx/2, y:Math.min(dy, 0) - 46}, {x:0, y:0}];
+      G.set(px, {x:dx, y:dy, scale:1.25});
+      var tl = G.timeline({delay:.55});
+      if(MP) tl.to(px, {motionPath:{path:path, curviness:1.4}, scale:1, duration:1.1, ease:'power2.inOut'});
+      else tl.to(px, {x:0, y:0, scale:1, duration:1, ease:'power2.inOut'});
+      tl.fromTo(px, {rotation:-12}, {rotation:0, duration:.6, ease:'elastic.out(1,.4)'});
+    }
+    if(G) G.from($$('span:not(.px)', el), {y:14, opacity:.2, duration:.4, stagger:.05});
+  }
+  function setMap(i, fromUser){
+    mi = i; var s = MS[i];
+    $$('#msteps button').forEach(function(b){ b.classList.toggle('on', +b.dataset.i === i); });
+    $('#mcnt').textContent = (i+1) + ' / 5';
+    $('#mnext').firstChild.textContent = i === 4 ? 'Сначала' : 'Дальше';
+    renderSent(s);
+    $('#sentru').textContent = s.ru; $('#annot').textContent = s.a;
+    $('#msay').dataset.say = s.w.map(function(w){ return w[0]; }).join(' ').replace(' .', '.');
+    mdot.setAttribute('fill', s.c); mring.setAttribute('stroke', s.c);
+    $('#lnU4').setAttribute('opacity', i < 2 ? 1 : .45); $('#lnU1').setAttribute('opacity', i >= 2 ? 1 : .45);
+    moveDot(s.t, function(){
+      if(G){ G.fromTo(mring, {attr:{r:12}, opacity:.9}, {attr:{r:26}, opacity:0, duration:.9, ease:'power2.out'}); }
+    });
+    if(fromUser) say($('#msay').dataset.say);
+  }
+  $('#msay').addEventListener('click', function(){ say(this.dataset.say, this); });
+  $$('#msteps button').forEach(function(b){ b.addEventListener('click', function(){ mAuto = false; setMap(+b.dataset.i, true); }); });
+  $('#mnext').addEventListener('click', function(){ mAuto = false; setMap((mi + 1) % 5, true); });
+  setMap(0);
+  var mAuto = true;
+  once($('#mapcard'), function(){
+    var k = 0;
+    (function tick(){ if(!mAuto || k >= 4) return; k++; setTimeout(function(){ if(mAuto){ setMap(k); tick(); } }, 2800); })();
+  }, .45);
+
+  /* ---------- trennbar: door scene ---------- */
+  var TR = {
+    ein:{w:[['Ich'],['steige','v'],['in die Bim'],['ein','p']], ru:'Я сажусь в трамвай.', say:'Ich steige in die Bim ein.'},
+    aus:{w:[['Ich'],['steige','v'],['aus der Bim'],['aus','p']], ru:'Я выхожу из трамвая.', say:'Ich steige aus der Bim aus.'},
+    um:{w:[['Ich'],['steige','v'],['in die U6'],['um','p']], ru:'Я пересаживаюсь на U6.', say:'Ich steige in die U6 um.'}
+  };
+  var door = $('#door'), guy = $('#guy'), seq = 0;
+  function instant(fn){ door.classList.add('nt'); guy.style.transition = 'none'; fn(); void guy.offsetWidth; guy.style.transition = ''; door.classList.remove('nt'); }
+  function play(k){
+    var my = ++seq, t = TR[k];
+    $$('#tsw button').forEach(function(b){ b.classList.toggle('on', b.dataset.k === k); });
+    $('#dbadge').textContent = k + 'steigen';
+    var line = $('#tline');
+    line.innerHTML = t.w.map(function(w){ return '<span class="'+(w[1]||'')+'">'+w[0]+'</span>'; }).join('');
+    $('#tru').textContent = t.ru; $('#tsay').dataset.say = t.say;
+    var p = $('.p', line), v = $('.v', line);
+    if(G && p && v){
+      var pr = p.getBoundingClientRect(), vr = v.getBoundingClientRect();
+      var dx = vr.right + 6 - pr.left, dy = vr.top - pr.top;
+      G.set(p, {x:dx, y:dy});
+      if(MP) G.to(p, {motionPath:{path:[{x:dx,y:dy},{x:dx/2,y:Math.min(dy,0)-40},{x:0,y:0}], curviness:1.4}, duration:1, delay:.4, ease:'power2.inOut'});
+      else G.to(p, {x:0, y:0, duration:.9, delay:.4});
+    }
+    function go(ms, fn){ return wait(ms).then(function(){ if(my === seq) fn(); }); }
+    instant(function(){
+      door.classList.remove('open','two'); guy.className = 'guy';
+      if(k !== 'ein') guy.classList.add('inside');
+    });
+    go(400, function(){ door.classList.add('open'); })
+    .then(function(){ return go(500, function(){
+      if(k === 'ein') guy.classList.add('inside');
+      else { guy.classList.remove('inside'); guy.classList.add('left'); }
+      if(k === 'um') door.classList.add('two');
+    }); })
+    .then(function(){ return go(800, function(){
+      if(k === 'um'){ guy.classList.remove('left'); guy.classList.add('right'); }
+      door.classList.remove('open');
+    }); });
+  }
+  $$('#tsw button').forEach(function(b){ b.addEventListener('click', function(){ tAuto = false; play(b.dataset.k); }); });
+  $('#tsay').addEventListener('click', function(){ say(this.dataset.say, this); });
+  var tAuto = true, tk = 0, tt = null, KS = ['ein','aus','um'];
+  play('ein');
+  whenVisible(door, function(){ if(tt || !tAuto) return; tt = setInterval(function(){ if(!tAuto){ clearInterval(tt); return; } tk = (tk+1)%3; play(KS[tk]); }, 3600); }, function(){ clearInterval(tt); tt = null; });
+
+  /* ---------- 5. chat: messages arrive one by one ---------- */
+  var chat = $('#chat'), msgs = $$('.msg', chat), chatRun = 0;
+  function runChat(){
+    if(reduce){ return; }
+    var my = ++chatRun;
+    msgs.forEach(function(m){ m.classList.add('hid'); });
+    var typing = document.createElement('div'); typing.className = 'typing'; typing.innerHTML = '<i></i><i></i><i></i>';
+    var i = 0;
+    (function next(){
+      if(my !== chatRun) return;
+      if(i >= msgs.length){ typing.remove(); return; }
+      var m = msgs[i];
+      typing.style.justifySelf = m.classList.contains('me') ? 'end' : (m.classList.contains('nar') ? 'center' : 'start');
+      chat.insertBefore(typing, m);
+      setTimeout(function(){
+        if(my !== chatRun) return;
+        typing.remove(); m.classList.remove('hid');
+        if(G) G.from(m, {y:16, scale:.92, transformOrigin:m.classList.contains('me') ? '100% 0' : '0 0', duration:.5, ease:'back.out(2)'});
+        i++; setTimeout(next, 450);
+      }, m.classList.contains('nar') ? 600 : 1000);
+    })();
+  }
+  once(chat, runChat, .3);
+  $('#chatagain').addEventListener('click', runChat);
+
+  /* ---------- quiz ---------- */
+  var Q = [
+    {q:'Ты купил бумажный билет в трафике. Что сделать до поездки?', o:[['entwerten','e-ticket',1],['umsteigen','e-metro'],['aussteigen','e-door']],
+     x:'<b>Entwerten.</b> Купить мало. Без даты и времени билет для контролёра просто бумажка.', s:'Ich muss den Fahrschein entwerten.'},
+    {q:'В вагоне: «Nächste Station: Karlsplatz. Umsteigen zur U1». Что это значит?', o:[['Следующая Karlsplatz, там пересадка на U1','e-speaker',1],['Поезд дальше не идёт','e-cross'],['Выход только на Karlsplatz','e-door']],
+     x:'<b>Nächste Station</b> это «следующая станция». <b>Umsteigen zur U1</b>: тут можно пересесть на U1.', s:'Nächste Station: Karlsplatz. Umsteigen zur U1.'},
+    {q:'Ты на Karlsplatz. Тебе на Stephansplatz по U1. Куда идёшь?', o:[['U1 Richtung Leopoldau','e-map',1],['U1 Richtung Oberlaa','e-thinking'],['U4 Richtung Hütteldorf','e-rolling']],
+     x:'Stephansplatz к северу. U1 на север это <b>Richtung Leopoldau</b>. Направление всегда по конечной.', s:'Richtung Leopoldau.'},
+    {q:'Как спросить у двери, выходит ли человек на следующей?', o:[['Steigen Sie bei der nächsten aus?','e-door',1],['Steigen Sie bei der nächsten um?','e-metro'],['Sind Sie entwertet?','e-police']],
+     x:'<b>aussteigen</b> это выходить. Приставка <b>aus</b> улетает в конец. А «Sind Sie entwertet?» спроси только у билета.', s:'Steigen Sie bei der nächsten aus?'},
+    {q:'Где ждут Bim?', o:[['an der Haltestelle','e-busstop',1],['am Gleis 7','e-light'],['in der Trafik','e-books']],
+     x:'<b>Bim</b> это трамвай. Трамвай и автобус ждут на <b>Haltestelle</b>. Gleis у поездов, а в Trafik покупают билет.', s:'Ich warte an der Haltestelle.'},
+    {q:'Звонишь начальнику: опаздываю, на U6 сбой.', o:[['Ich komme später, auf der U6 gibt es eine Störung.','e-phone',1],['Ich bin schwarzgefahren.','e-sweat'],['Die U6 ist entwertet.','e-grimace']],
+     x:'<b>die Störung</b> это сбой. А «Ich bin schwarzgefahren» значит «я ехал зайцем». Начальнику лучше не надо.', s:'Ich komme später. Auf der U6 gibt es eine Störung.'}
+  ];
+  var qi = 0, score = 0, res = [];
+  var qb = $('#qbody'), qd = $('#qdots');
+  Q.forEach(function(){ qd.appendChild(document.createElement('i')); });
+  function dots(){ $$('i', qd).forEach(function(d, i){ d.className = res[i] === 1 ? 'ok' : res[i] === 0 ? 'no' : i === qi ? 'cur' : ''; }); }
+  function drawQ(){
+    var q = Q[qi];
+    $('#qn').innerHTML = '<small>Вопрос</small>' + (qi+1) + ' / ' + Q.length;
+    var order = q.o.map(function(o, i){ return i; });
+    if(qi % 2) order.reverse();
+    qb.innerHTML = '<p class="qq">' + q.q + '</p><div class="qopts">' + order.map(function(i){ var o = q.o[i];
+      return '<button class="qopt" data-i="'+i+'"><img src="media/'+o[1]+'.webp" alt="">'+o[0]+'</button>'; }).join('') + '</div><div class="qexp" id="qexp"></div>';
+    dots();
+    $$('.qopt', qb).forEach(function(b){ b.addEventListener('click', function(){ answer(+b.dataset.i, b); }); });
+    if(G) G.from($$('.qq, .qopt', qb), {x:30, duration:.5, stagger:.07, ease:'back.out(1.7)'});
+  }
+  function answer(i, btn){
+    var q = Q[qi], ok = !!q.o[i][2];
+    $$('.qopt', qb).forEach(function(b){ b.disabled = true; if(q.o[+b.dataset.i][2]) b.classList.add('ok'); });
+    if(!ok) btn.classList.add('no');
+    res[qi] = ok ? 1 : 0; if(ok) score++;
+    dots();
+    var ex = $('#qexp'); ex.innerHTML = (ok ? '✅ ' : '❌ ') + q.x; ex.classList.add('on');
+    var nav = document.createElement('div'); nav.className = 'qnav';
+    nav.innerHTML = '<button class="btn sm violet">' + (qi < Q.length-1 ? 'Дальше' : 'Результат') + '<svg class="ic"><use href="#i-arrow-right"/></svg></button>';
+    qb.appendChild(nav);
+    nav.firstChild.addEventListener('click', function(){ qi++; qi < Q.length ? drawQ() : done(); });
+    say(q.s);
+    if(G) G.fromTo(btn, {scale:.95}, {scale:1, duration:.6, ease:'elastic.out(1.2,.4)'});
+  }
+  function done(){
+    $('#qn').innerHTML = '<small>Итог</small>' + score + ' / ' + Q.length;
+    dots();
+    var e = score === 6 ? 'e-partyface' : score >= 4 ? 'e-sunglasses' : 'e-thinking';
+    var line = score === 6 ? 'Контролёр уважительно кивнул. Passt.' : score >= 4 ? 'Почти местный. Ещё пара поездок.' : 'Пробей билет и прокати гайд ещё раз.';
+    qb.innerHTML = '<div class="qres"><img src="media/'+e+'.webp" alt=""><div class="sc">'+score+' / 6</div><p style="font-weight:700;font-size:17px">'+line+'</p><button class="btn sm violet" id="qagain"><svg class="ic"><use href="#i-rotate-ccw"/></svg>Ещё раз</button></div>';
+    $('#qagain').addEventListener('click', function(){ qi = 0; score = 0; res = []; drawQ(); });
+    if(G) G.from('.qres img', {scale:.2, rotation:-60, duration:1, ease:'elastic.out(1,.4)'});
+    if(score >= 4) confetti();
+  }
+  function confetti(){
+    if(reduce) return;
+    var box = document.createElement('div'); box.className = 'confetti'; document.body.appendChild(box);
+    var E = ['e-party','e-star','e-heart','e-zap','e-ticket','e-partyface'];
+    for(var i=0;i<26;i++){
+      var im = document.createElement('img'); im.src = 'media/' + E[i % E.length] + '.webp'; im.alt = '';
+      im.style.left = (Math.random()*100) + '%'; box.appendChild(im);
+      if(G) G.to(im, {y:innerHeight + 120, x:(Math.random()-.5)*160, rotation:(Math.random()-.5)*720, duration:2 + Math.random()*1.6, delay:Math.random()*.5, ease:'power1.in'});
+      else { im.style.transition = 'translate 2.6s ease-in, rotate 2.6s'; requestAnimationFrame(function(x){ return function(){ x.style.translate = '0 ' + (innerHeight+120) + 'px'; x.style.rotate = '360deg'; }; }(im)); }
+    }
+    setTimeout(function(){ box.remove(); }, 4500);
+  }
+  drawQ();
+
+  /* ---------- ad: counters, lazy videos, dock ---------- */
+  $$('.num[data-to]').forEach(function(n){
+    once(n, function(){
+      if(reduce) return;
+      var to = +n.dataset.to, suf = n.dataset.suf || '', o = {v:0};
+      if(G) G.to(o, {v:to, duration:1.6, ease:'power2.out', onUpdate:function(){ n.textContent = Math.round(o.v) + suf; }});
+    }, .6);
+  });
+  var vids = $$('video[data-src]');
+  if('IntersectionObserver' in window){
+    var vo = new IntersectionObserver(function(es){ es.forEach(function(en){
+      var v = en.target;
+      if(en.isIntersecting){
+        if(!v.src){ v.poster = v.dataset.poster; v.src = v.dataset.src; v.muted = true; }
+        var p = v.play(); if(p && p.catch) p.catch(function(){});
+      } else if(v.src){ v.pause(); }
+    }); }, {rootMargin:'300px 0px', threshold:.01});
+    vids.forEach(function(v){ vo.observe(v); });
+    var po = new IntersectionObserver(function(es){ es.forEach(function(en){ if(en.isIntersecting && !en.target.poster){ en.target.poster = en.target.dataset.poster; } }); }, {rootMargin:'900px 0px'});
+    vids.forEach(function(v){ po.observe(v); });
+  }
+  var dock = $('#dock'), adh = $('#adhero'), fin = $$('.fin')[0];
+  if(dock && adh){
+    addEventListener('scroll', function(){
+      var a = adh.getBoundingClientRect(), f = fin.getBoundingClientRect();
+      dock.classList.toggle('on', a.bottom < 0 && f.top > innerHeight * .6);
+    }, {passive:true});
+  }
+
+  /* ---------- refresh after fonts / images ---------- */
+  if(G){
+    addEventListener('load', function(){ ScrollTrigger.refresh(); measureEnt(); });
+    if(document.fonts && document.fonts.ready) document.fonts.ready.then(function(){ ScrollTrigger.refresh(); measureEnt(); });
+  }
+}
+if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', xInit); else xInit();
+</script>
+
+</body>
+</html>
